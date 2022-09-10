@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Monopoly Board</title>
+    <script src="../src/common-scripts.js" type="module"></script>
+    <script src="../src/board.js" type="module"></script>
+  </head>
+  <body>
+    <style>
+      @font-face { font-family: Monopoly; src: url('../assets/MONOPOLY.ttf'); } 
+      body {
+        background-image: url("../assets/background.jpg");
+      }
+      img.board {
+        display: block;
+        margin: auto;
+        margin-top: -25px;
+        align-self: center;
+        height: auto;
+        width: auto;
+        z-index: -1;
+      }
+      img.textcard {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: block;
+        margin: auto;
+        align-self: center;
+        height: auto;
+        width: auto;
+      }
+      img.dice {
+        position: absolute;
+        align-self: center;
+        z-index: 1;
+        margin-top: 550px;
+        margin-left: -140px;
+      }
+      div.cardtext {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: block;
+        margin: auto;
+        text-align: center;
+        align-content: center;
+        height: fit-content;
+        word-wrap: break-word;
+        white-space: normal;
+        width: fit-content;
+        font-family: Monopoly, sans-serif;
+      }
+      button {
+        font-family: Monopoly, sans-serif;
+      }
+      button.OK {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 80%;
+        bottom: 10%;
+        display: block;
+        display: -webkit-box;
+        margin: auto;
+        align-self: center;
+        text-align: center;
+        width: auto;
+        height: auto;
+        font-size: 30px;
+        text-align: center;
+        color: aliceblue;
+        background-color: red;
+      }
+      button.exit {
+        display: inline-block;
+        margin: auto;
+        align-self: center;
+        width: auto;
+        height: auto;
+        font-size: 20px;
+        text-align: center;
+        color: aliceblue;
+        background-color: red;
+      }
+      div.score {
+        position: absolute;
+        left: 85%;
+        right: 0;
+        top: -81%;
+        bottom: 0;
+        display: block;
+        margin: auto;
+        text-align: right;
+        height: fit-content;
+        word-wrap: break-word;
+        white-space: normal;
+        width: fit-content;
+        color: antiquewhite;
+        font-size: 28px;
+        font-family: Monopoly, sans-serif;
+        margin-right: 25px;
+      }
+      div.player1 {
+        background-color: blue;
+        width: 15px;
+        height: 30px;
+        position: relative;
+        top: -80px;
+        left: 613px;
+      }
+      div.player2 {
+        background-color: red;
+        width: 15px;
+        height: 30px;
+        position: relative;
+        top: -80px;
+        left: 613px;
+        margin-left: 20px;
+        margin-top: -30px;
+      }
+      div.field {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        display: block;
+        margin: auto;
+        align-self: center;
+        height: 685px;
+        width: 685px;
+        z-index: -1;
+      }
+    </style>
+      <button class="exit" id="exit">Menu</button>
+      <button class="exit" id="giveup">Give up</button>
+      <img class="dice" id="dice" src="../assets/dice.png">
+      <div class="field" id="field">
+        <img class="board" id="board" src="../assets/board.jpg" />
+        <div class="player1" id="player1"></div><div class="player2" id="player2"></div>
+      </div>
+      <div class="score" id="score">
+        Team 1: <span class="score1" id="score1">0</span><br>Team 2: <span class="score2" id="score2">0</span>
+      </div>
+  </body>
+</html>

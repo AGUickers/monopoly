@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1"
+    />
+    <title>Monopoly</title>
+    <script src="../src/common-scripts.js" type="module"></script>
+    <script src="../src/menu.js" type="module"></script>
+  </head>
+  <body>
+    <style>
+      @font-face { font-family: Monopoly; src: url('../assets/MONOPOLY.ttf'); }       
+      body {
+        background-image: url("../assets/background.jpg");
+        display: grid;
+        overflow: hidden;
+      }
+      button {
+        font-family: Monopoly, sans-serif;
+      }
+      button.startbutton {
+        display: block;
+        margin: auto;
+        align-self: center;
+        width: auto;
+        height: auto;
+        font-size: 40px;
+        text-align: center;
+        color: aliceblue;
+        background-color: red;
+        margin-top: 10%;
+      }
+      button.exitbutton {
+        display: block;
+        margin: auto;
+        margin-top: 5px;
+        align-self: center;
+        width: auto;
+        height: auto;
+        font-size: 40px;
+        text-align: center;
+        color: aliceblue;
+        background-color: red;
+      }
+      img.logo {
+        display: block;
+        margin: auto;
+        align-self: center;
+        height: auto;
+        width: auto;
+        scale: 0.5;
+      }
+    </style>
+    <img class="logo" id="logo" src="../assets/logo.png" />
+    <button class="startbutton" id="startbutton">Start Game</button
+    ><br /><button class="exitbutton" id="exitbutton">Exit</button>
+  </body>
+</html>
