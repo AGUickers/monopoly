@@ -2,7 +2,6 @@ const {
   app,
   BrowserWindow,
   Menu,
-  MenuItem,
   dialog,
 } = require("electron");
 const fs = require("fs");
@@ -21,10 +20,10 @@ function getProjectFile() {
 
 const createWindow = () => {
   let width =
-    parseInt(app.commandLine.getSwitchValue("width")) ||
+    parseInt(app.commandLine.getSwitchValue("width"), 10) ||
     projectFile.targetWidth;
   let height =
-    parseInt(app.commandLine.getSwitchValue("height")) ||
+    parseInt(app.commandLine.getSwitchValue("height"), 10) ||
     projectFile.targetHeight;
   let debug = app.commandLine.getSwitchValue("debugmode") === "true";
   let fullscreen =
