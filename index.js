@@ -1,7 +1,13 @@
-const { app, BrowserWindow, screen, Menu, MenuItem, dialog } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  Menu,
+  MenuItem,
+  dialog,
+} = require("electron");
 const fs = require("fs");
 
-var projectFile = undefined;
+let projectFile = undefined;
 function getProjectFile() {
   if (fs.existsSync("./project.json")) {
     projectFile = JSON.parse(fs.readFileSync("./project.json"));
@@ -14,52 +20,57 @@ function getProjectFile() {
 }
 
 const createWindow = () => {
-    width = parseInt(app.commandLine.getSwitchValue("width")) || projectFile.targetWidth;
-    height = parseInt(app.commandLine.getSwitchValue("height")) || projectFile.targetHeight;
-    debug = app.commandLine.getSwitchValue("debugmode") === "true";
-    fullscreen = app.commandLine.getSwitchValue("fullscreen") === "true" || projectFile.fullScreen;
-    page = app.commandLine.getSwitchValue("page") || projectFile.defaultPage;
-    console.log(debug);
-    const win = new BrowserWindow({
-      width: width,
-      height: height,
-      webPreferences: {
-        devTools: debug
-      },
-      autoHideMenuBar: !debug,
-      fullscreen: fullscreen,
-      resizable: true
-    })
-    //Load file from the argument passed from the command line.
-    win.loadFile(page);
-}
+  let width =
+    parseInt(app.commandLine.getSwitchValue("width")) ||
+    projectFile.targetWidth;
+  let height =
+    parseInt(app.commandLine.getSwitchValue("height")) ||
+    projectFile.targetHeight;
+  let debug = app.commandLine.getSwitchValue("debugmode") === "true";
+  let fullscreen =
+    app.commandLine.getSwitchValue("fullscreen") === "true" ||
+    projectFile.fullScreen;
+  let page = app.commandLine.getSwitchValue("page") || projectFile.defaultPage;
+  const win = new BrowserWindow({
+    width: width,
+    height: height,
+    webPreferences: {
+      devTools: debug,
+    },
+    autoHideMenuBar: !debug,
+    fullscreen: fullscreen,
+    resizable: true,
+  });
+  //Load file from the argument passed from the command line.
+  win.loadFile(page);
+};
 
 const menustructure = [
   {
     label: "Debug Tools",
     submenu: [
-	  {
+      {
         label: "Reload",
         accelerator: process.platform === "darwin" ? "Command+R" : "Ctrl+R",
         click(item, focusedWindow) {
-            focusedWindow.reload();
-        }
+          focusedWindow.reload();
+        },
       },
       {
         label: "Toggle DevTools",
         accelerator: process.platform === "darwin" ? "Command+I" : "Ctrl+I",
         click(item, focusedWindow) {
           focusedWindow.toggleDevTools();
-        }
+        },
       },
       {
         label: "Toggle Full Screen",
         accelerator: "F11",
         click(item, focusedWindow) {
           focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
   {
     label: "Help",
@@ -70,23 +81,23 @@ const menustructure = [
           dialog.showMessageBox({
             type: "info",
             title: "About",
-            message: "Grammar Engine - A simple game engine for learning English.\nBuild: DevTest Build\nPowered by Electron.",
-            buttons: ["OK"]
+            message:
+              "Grammar Engine - A simple game engine for learning English.\nBuild: DevTest Build\nPowered by Electron.",
+            buttons: ["OK"],
           });
-        }
-      }
-    ]
-  }       
+        },
+      },
+    ],
+  },
 ];
 
-
 app.whenReady().then(() => {
-    getProjectFile();
-    createWindow();
-    if (debug == true) {
-      const appMenu = Menu.buildFromTemplate(menustructure);
-      Menu.setApplicationMenu(appMenu);
-    } else {
-      Menu.setApplicationMenu(null);
-    }
-})
+  getProjectFile();
+  createWindow();
+  if (debug == true) {
+    const appMenu = Menu.buildFromTemplate(menustructure);
+    Menu.setApplicationMenu(appMenu);
+  } else {
+    Menu.setApplicationMenu(null);
+  }
+});
