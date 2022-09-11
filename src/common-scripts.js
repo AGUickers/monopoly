@@ -9,8 +9,8 @@ export const page = document.body;
 export const maxHeight = screen.availHeight;
 export const maxWidth = screen.availWidth;
 
-export function playSound(sound) {
-  let sound = new Audio("../assets/" + sound);
+export function playSound(soundPath) {
+  let sound = new Audio("../assets/" + soundPath);
   sound.play();
   return sound;
 }
@@ -19,8 +19,8 @@ export function stopSound(sound) {
   sound.pause();
 }
 
-export function playMusic(music, looped) {
-  let music = new Audio("../assets/" + music);
+export function playMusic(musicPath, looped) {
+  let music = new Audio("../assets/" + musicPath);
   music.loop = looped;
   music.play();
   return music;
