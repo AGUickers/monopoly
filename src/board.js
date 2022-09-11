@@ -17,6 +17,14 @@ fetch("../assets/items.json").then((response) => response.json()).then((json) =>
   questions = json;
 });
 
+//Fill this with zeros for now.
+let owned = [
+  -1, 0, -1, 0, -1, 0, 0, -1, 0, 0, 
+  -1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 
+  -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 
+  -1, 0, 0, -1, 0, 0, -1, 0, -1, 0
+];
+console.log(owned.length)
 
 const TextBoxButtonType = {
   OK: 1,
@@ -72,11 +80,31 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
 
   switch (buttontype) {
     case TextBoxButtonType.OK:
+    case "OK":
       const OKButton = common.createElement("button", "OK", "OK", common.page);
       OKButton.innerText = "OK";
       OKButton.style.zIndex = "3";
       OKButton.onclick = function () {
         common.playSound("monopoly_select.wav");
+        closeTextBox();
+      };
+      break;
+    case TextBoxButtonType.YesNo:
+    case "YesNo":
+      const YesButton = common.createElement("button", "Yes", "Yes", common.page);
+      YesButton.innerText = "Correct";
+      YesButton.style.zIndex = "3";
+      YesButton.onclick = function () {
+        common.playSound("monopoly_select.wav");
+        common.playSound("monopoly_win.wav");
+        closeTextBox();
+      };
+      const NoButton = common.createElement("button", "No", "No", common.page);
+      NoButton.innerText = "Wrong";
+      NoButton.style.zIndex = "3";
+      NoButton.onclick = function () {
+        common.playSound("monopoly_select.wav");
+        common.playSound("monopoly_lose.wav");
         closeTextBox();
       };
       break;
@@ -88,11 +116,13 @@ function closeTextBox() {
   const card = common.getElement("textcard");
   const cardtext = common.getElement("cardtext");
   const OKButton = common.getElement("OK");
+  const YesButton = common.getElement("Yes");
   const NOButton = common.getElement("No");
   if (cover) cover.remove();
   if (card) card.remove();
   if (cardtext) cardtext.remove();
   if (OKButton) OKButton.remove();
+  if (YesButton) YesButton.remove();
   if (NOButton) NOButton.remove();
 }
 
@@ -102,11 +132,22 @@ function throwDice() {
   const player = common.getElement("player" + currentTeam);
   const style = getComputedStyle(player);
   //dice.style.display = "none";
-  let roll = Math.floor(Math.random() * 1) + 1;
+  let roll = Math.floor(Math.random() * 6) + 1;
   console.log(roll);
   common.playSound("../assets/monopoly_dice.wav");
-  gotoPos(currentTeam, currentpos[currentTeam] + roll);
+  gotoPos(currentTeam, currentpos[currentTeam - 1] + roll);
   //Spawn a textbox with the question on that position.
+  //Let's read from the JSON file in the questions variable.
+  let currentquestion = questions[currentpos[currentTeam - 1]];
+  if (currentquestion) {
+    spawnTextBox(
+      currentquestion.cardAsset,
+      currentquestion.scale,
+      currentquestion.text,
+      currentquestion.fontSize,
+      currentquestion.buttonType
+    );
+  } 
   switch (currentTeam) {
     case 1:
       currentTeam = 2;
@@ -153,6 +194,11 @@ function gotoPos(team, pos) {
       setPos(team, minleftvalue, minupvalue);
     }
     
+}
+
+function setOwnership(pos, team) {
+  //Create a small circle on the position. It will have the team's color.
+
 }
 
 load();

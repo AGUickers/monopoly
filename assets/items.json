@@ -2,8 +2,8 @@
     "1": {
         "cardAsset": "../assets/stockcard.png",
         "scale": 1,
-        "text": "Did you know this game was created by students of the Faculty of Foreign Languages?",
+        "text": "This game was created in the\nFaculty of Foreign Languages.",
         "fontSize": "28px",
-        "buttonType": "OK"
+        "buttonType": "YesNo"
     }
 }
