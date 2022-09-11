@@ -122,8 +122,8 @@ export function setElementProperty(element, property, value) {
   element[property] = value;
 }
 
-export function createElement(element, id, className, parent) {
-  let element = document.createElement(element);
+export function createElement(elementName, id, className, parent) {
+  let element = document.createElement(elementName);
   element.id = id;
   element.className = className;
   parent.appendChild(element);
