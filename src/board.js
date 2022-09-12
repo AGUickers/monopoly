@@ -1,6 +1,6 @@
 import * as common from "./common-scripts.js";
 
-var currentTeam = 1;
+let currentTeam = 1;
 
 let maxleftvalue = 53;
 let maxupvalue = -640;
@@ -107,7 +107,7 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
         //Let's set the ownership.
         setOwnership(currentpos[currentTeam - 1], currentTeam);
         //Let's also award some points.
-        editPoints(currentTeam, 1000)
+        editPoints(currentTeam, 1000);
         switchTeam();
       };
       const NoButton = common.createElement("button", "No", "No", common.page);
@@ -142,8 +142,7 @@ function throwDice() {
   //Let's get a number from 1 to 6 first.
   const dice = common.getElement("dice");
   const player = common.getElement("player" + currentTeam);
-  const style = getComputedStyle(player);
-  //dice.style.display = "none";
+  dice.style.display = "none";
   let roll = Math.floor(Math.random() * 6) + 1;
   console.log(roll);
   common.playSound("../assets/monopoly_dice.wav");
@@ -166,11 +165,12 @@ function throwDice() {
       );
     } else switchTeam();
   } else switchTeam();
+  dice.style.display = "block";
 }
 
 function editPoints(team, value) {
   const score = common.getElement("score" + team);
-  score.innerText = parseInt(score.innerText) + value;
+  score.innerText = parseInt(score.innerText, 10) + value;
 }
 
 function setPos(team, x, y) {
@@ -190,7 +190,7 @@ function gotoPos(team, pos) {
   console.log("Moving team " + team);
   console.log(pos);
   currentpos[team - 1] = pos;
-  if (pos == 0) setPos(team, minleftvalue, minupvalue);
+  if (pos === 0) setPos(team, minleftvalue, minupvalue);
   else if (pos > 0 && pos <= 10)
     setPos(team, minleftvalue - 56 * pos, minupvalue);
   else if (pos > 10 && pos <= 20)
@@ -206,7 +206,7 @@ function gotoPos(team, pos) {
 }
 
 function getPos(pos) {
-  if (pos == 0) return [minleftvalue, minupvalue];
+  if (pos === 0) return [minleftvalue, minupvalue];
   else if (pos > 0 && pos <= 10) return [minleftvalue - 56 * pos, minupvalue];
   else if (pos > 10 && pos <= 20)
     return [maxleftvalue, minupvalue - 56 * (pos - 10)];
@@ -220,7 +220,7 @@ function getPos(pos) {
 }
 
 function setOwnership(pos, team) {
-  if (checkOwnership(pos) != null && checkOwnership(pos) != true) {
+  if (checkOwnership(pos) !== null && checkOwnership(pos) !== true) {
     const player = common.getElement("player" + team);
     const playerstyle = getComputedStyle(player);
     owned[pos] = team;

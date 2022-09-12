@@ -93,7 +93,7 @@ const menustructure = [
 app.whenReady().then(() => {
   getProjectFile();
   createWindow();
-  if (debug == true) {
+  if (debug === true) {
     const appMenu = Menu.buildFromTemplate(menustructure);
     Menu.setApplicationMenu(appMenu);
   } else {

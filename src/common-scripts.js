@@ -71,7 +71,7 @@ export function skipCutScene(videoid) {
 export function checkConnection() {
   let networkstatus = navigator.onLine;
   console.log(networkstatus);
-  if (networkstatus == false) {
+  if (networkstatus === false) {
     displayMessageBox(
       "It appears you're offline. Please check your internet connection.",
       messageBoxType.OK
@@ -84,20 +84,22 @@ export function displayMessageBox(message, type) {
     case messageBoxType.OK:
       alert(message);
       break;
-    case messageBoxType.YesNo:
+    case messageBoxType.YesNo: {
       let result = confirm(message);
       if (result) {
         return true;
       } else {
         return false;
       }
-    case messageBoxType.TextPrompt:
-      let textresult = prompt(message);
-      if (textresult) {
-        return textresult;
+    }
+    case messageBoxType.TextPrompt: {
+      let result = prompt(message);
+      if (result) {
+        return result;
       } else {
         return false;
       }
+    }
   }
 }
 
