@@ -12,19 +12,19 @@ let currentpos = [0, 0];
 
 let questions = undefined;
 
-fetch("../assets/items.json").then((response) => response.json()).then((json) => {
-  console.log(json);
-  questions = json;
-});
+fetch("../assets/items.json")
+  .then((response) => response.json())
+  .then((json) => {
+    console.log(json);
+    questions = json;
+  });
 
 //Fill this with zeros for now.
 let owned = [
-  -1, 0, -1, 0, -1, 0, 0, -1, 0, 0, 
-  -1, 0, 0, 0, 0, 0, 0, -1, 0, 0, 
-  -1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 
-  -1, 0, 0, -1, 0, 0, -1, 0, -1, 0
+  -1, 0, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, 0, 0, -1, 0, -1,
+  0, 0, 0, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, -1, 0,
 ];
-console.log(owned.length)
+console.log(owned.length);
 
 const TextBoxButtonType = {
   OK: 1,
@@ -87,17 +87,28 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
       OKButton.onclick = function () {
         common.playSound("monopoly_select.wav");
         closeTextBox();
+        switchTeam();
       };
       break;
     case TextBoxButtonType.YesNo:
     case "YesNo":
-      const YesButton = common.createElement("button", "Yes", "Yes", common.page);
+      const YesButton = common.createElement(
+        "button",
+        "Yes",
+        "Yes",
+        common.page
+      );
       YesButton.innerText = "Correct";
       YesButton.style.zIndex = "3";
       YesButton.onclick = function () {
         common.playSound("monopoly_select.wav");
         common.playSound("monopoly_win.wav");
         closeTextBox();
+        //Let's set the ownership.
+        setOwnership(currentpos[currentTeam - 1], currentTeam);
+        //Let's also award some points.
+        editPoints(currentTeam, 1000)
+        switchTeam();
       };
       const NoButton = common.createElement("button", "No", "No", common.page);
       NoButton.innerText = "Wrong";
@@ -106,6 +117,7 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
         common.playSound("monopoly_select.wav");
         common.playSound("monopoly_lose.wav");
         closeTextBox();
+        switchTeam();
       };
       break;
   }
@@ -136,26 +148,24 @@ function throwDice() {
   console.log(roll);
   common.playSound("../assets/monopoly_dice.wav");
   gotoPos(currentTeam, currentpos[currentTeam - 1] + roll);
-  //Spawn a textbox with the question on that position.
-  //Let's read from the JSON file in the questions variable.
-  let currentquestion = questions[currentpos[currentTeam - 1]];
-  if (currentquestion) {
-    spawnTextBox(
-      currentquestion.cardAsset,
-      currentquestion.scale,
-      currentquestion.text,
-      currentquestion.fontSize,
-      currentquestion.buttonType
-    );
-  } 
-  switch (currentTeam) {
-    case 1:
-      currentTeam = 2;
-      break;
-    case 2:
-      currentTeam = 1;
-      break;
-  }
+  //Let's check if someone already owns that cell.
+  if (
+    checkOwnership(currentpos[currentTeam - 1]) === false ||
+    checkOwnership(currentpos[currentTeam - 1]) === null
+  ) {
+    //Spawn a textbox with the question on that position.
+    //Let's read from the JSON file in the questions variable.
+    let currentquestion = questions[currentpos[currentTeam - 1]];
+    if (currentquestion) {
+      spawnTextBox(
+        currentquestion.cardAsset,
+        currentquestion.scale,
+        currentquestion.text,
+        currentquestion.fontSize,
+        currentquestion.buttonType
+      );
+    } else switchTeam();
+  } else switchTeam();
 }
 
 function editPoints(team, value) {
@@ -177,28 +187,79 @@ function gotoPos(team, pos) {
   //For positions 11 - 20 go 56 px up.
   //For positions 21 - 30 go 56 px left.
   //For positions 31 - 39 go 56 px down.
-  console.log("Moving team " + team)
-  console.log(pos)
+  console.log("Moving team " + team);
+  console.log(pos);
   currentpos[team - 1] = pos;
-    if (pos == 0) setPos(team, minleftvalue, minupvalue);
-    else if (pos > 0 && pos <= 10)
-      setPos(team, minleftvalue - 56 * pos, minupvalue);
-    else if (pos > 10 && pos <= 20)
-      setPos(team, maxleftvalue, minupvalue - 56 * (pos - 10));
-    else if (pos > 20 && pos <= 30)
-      setPos(team, maxleftvalue + 56 * (pos - 20), maxupvalue);
-    else if (pos > 30 && pos <= 39)
-      setPos(team, minleftvalue, maxupvalue + 56 * (pos - 30));
-    else if (pos > 39) {
-      currentpos[team - 1] = 0;
-      setPos(team, minleftvalue, minupvalue);
-    }
-    
+  if (pos == 0) setPos(team, minleftvalue, minupvalue);
+  else if (pos > 0 && pos <= 10)
+    setPos(team, minleftvalue - 56 * pos, minupvalue);
+  else if (pos > 10 && pos <= 20)
+    setPos(team, maxleftvalue, minupvalue - 56 * (pos - 10));
+  else if (pos > 20 && pos <= 30)
+    setPos(team, maxleftvalue + 56 * (pos - 20), maxupvalue);
+  else if (pos > 30 && pos <= 39)
+    setPos(team, minleftvalue, maxupvalue + 56 * (pos - 30));
+  else if (pos > 39) {
+    currentpos[team - 1] = 0;
+    setPos(team, minleftvalue, minupvalue);
+  }
+}
+
+function getPos(pos) {
+  if (pos == 0) return [minleftvalue, minupvalue];
+  else if (pos > 0 && pos <= 10) return [minleftvalue - 56 * pos, minupvalue];
+  else if (pos > 10 && pos <= 20)
+    return [maxleftvalue, minupvalue - 56 * (pos - 10)];
+  else if (pos > 20 && pos <= 30)
+    return [maxleftvalue + 56 * (pos - 20), maxupvalue];
+  else if (pos > 30 && pos <= 39)
+    return [minleftvalue, maxupvalue + 56 * (pos - 30)];
+  else if (pos > 39) {
+    return [minleftvalue, minupvalue];
+  }
 }
 
 function setOwnership(pos, team) {
-  //Create a small circle on the position. It will have the team's color.
+  if (checkOwnership(pos) != null && checkOwnership(pos) != true) {
+    const player = common.getElement("player" + team);
+    const playerstyle = getComputedStyle(player);
+    owned[pos] = team;
+    //We need to spawn an ownership mark.
+    const field = common.getElement("field");
+    let mark = common.createElement("div", `mark${pos}`, `mark${pos}`, field);
+    mark.style.position = "relative";
+    mark.style.left = getPos(pos)[0] + "px";
+    mark.style.top = getPos(pos)[1] + "px";
+    mark.style.backgroundColor = playerstyle.backgroundColor;
+    mark.style.borderRadius = "15px";
+    mark.style.height = "25px";
+    mark.style.width = "25px";
+    mark.style.zIndex = "3";
+    mark.style.padding = "0px";
+  }
+}
 
+function switchTeam() {
+  switch (currentTeam) {
+    case 1:
+      currentTeam = 2;
+      break;
+    case 2:
+      currentTeam = 1;
+      break;
+  }
+}
+
+function checkOwnership(pos) {
+  switch (owned[pos]) {
+    case 0:
+      return false;
+    case 1:
+    case 2:
+      return true;
+    default:
+      return null;
+  }
 }
 
 load();
