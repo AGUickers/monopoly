@@ -5,6 +5,25 @@
     <title>Monopoly Board</title>
     <script src="../src/common-scripts.js" type="module"></script>
     <script src="../src/board.js" type="module"></script>
+    <link rel="preload prefetch" as="image" href="../assets/background.jpg">
+    <link rel="preload prefetch" as="image" href="../assets/board.jpg">
+    <link rel="preload prefetch" as="image" href="../assets/card.jpg">
+    <link rel="preload prefetch" as="image" href="../assets/stockcard.png">
+    <link rel="preload prefetch" as="image" href="../assets/cover.png">
+    <link rel="preload prefetch" as="image" href="../assets/dice.png">
+    <link rel="preload prefetch" as="fetch" href="../assets/items.json">
+    <link rel="preload prefetch" as="font" href="../assets/MONOPOLY.ttf">
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly1.mp3">
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly2.mp3">
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly3.mp3">
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly_chance.wav">
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly_correct.wav">
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly_dice.wav">
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly_fail.wav">
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly_lose.wav">
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly_select.wav">
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly_victory.wav">
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly_win.wav">
   </head>
   <body>
     <style>
@@ -54,6 +73,22 @@
         white-space: normal;
         width: fit-content;
         font-family: Monopoly, sans-serif;
+      }
+      div.imagetext {
+        left: 0;
+        right: 0;
+        top: -30%;
+        bottom: 0;
+        display: block;
+        margin: auto;
+        text-align: center;
+        align-content: center;
+        height: fit-content;
+        word-wrap: break-word;
+        white-space: normal;
+        width: fit-content;
+        font-family: Monopoly, sans-serif;
+        color:white;
       }
       button {
         font-family: Monopoly, sans-serif;
@@ -174,6 +209,7 @@
         height: 685px;
         width: 685px;
         z-index: -1;
+        position: relative;
       }
     </style>
       <button class="exit" id="exit">Menu</button>
