@@ -5,5 +5,76 @@
         "text": "This game was created in the\nFaculty of Foreign Languages.",
         "fontSize": "28px",
         "buttonType": "YesNo"
+    },
+    "2": {
+        "cardAsset": "../assets/stockcard.png",
+        "scale": 1,
+        "text": "This game was created in the\nFaculty of Foreign Languages.",
+        "fontSize": "28px",
+        "buttonType": "YesNo"
+    },
+    "3": {
+        "cardAsset": "../assets/stockcard.png",
+        "scale": 1,
+        "text": "This game was created in the\nFaculty of Foreign Languages.",
+        "fontSize": "28px",
+        "buttonType": "YesNo"
+    },
+    "4": {
+        "cardAsset": "../assets/stockcard.png",
+        "scale": 1,
+        "text": "This game was created in the\nFaculty of Foreign Languages.",
+        "fontSize": "28px",
+        "buttonType": "YesNo"
+    },
+    "5": {
+        "cardAsset": "../assets/stockcard.png",
+        "scale": 1,
+        "text": "This game was created in the\nFaculty of Foreign Languages.",
+        "fontSize": "28px",
+        "buttonType": "YesNo"
+    },
+    "6": {
+        "cardAsset": "../assets/stockcard.png",
+        "scale": 1,
+        "text": "This game was created in the\nFaculty of Foreign Languages.",
+        "fontSize": "28px",
+        "buttonType": "YesNo"
+    },
+    "7": {
+        "cardAsset": "../assets/stockcard.png",
+        "scale": 1,
+        "text": "This game was created in the\nFaculty of Foreign Languages.",
+        "fontSize": "28px",
+        "buttonType": "YesNo"
+    },
+    "8": {
+        "cardAsset": "../assets/stockcard.png",
+        "scale": 1,
+        "text": "This game was created in the\nFaculty of Foreign Languages.",
+        "fontSize": "28px",
+        "buttonType": "YesNo"
+    },
+    "9": {
+        "cardAsset": "../assets/stockcard.png",
+        "scale": 1,
+        "text": "This game was created in the\nFaculty of Foreign Languages.",
+        "fontSize": "28px",
+        "buttonType": "YesNo"
+    },
+    "10": {
+        "cardAsset": "../assets/stockcard.png",
+        "scale": 1,
+        "text": "This game was created in the\nFaculty of Foreign Languages.",
+        "fontSize": "28px",
+        "buttonType": "YesNo"
+    },
+    "11": {
+        "cardAsset": "../assets/stockcard.png",
+        "scale": 1,
+        "text": "This game was created in the\nFaculty of Foreign Languages.",
+        "fontSize": "28px",
+        "buttonType": "YesNo"
     }
+    
 }
