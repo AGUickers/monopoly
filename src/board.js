@@ -2,10 +2,10 @@ import * as common from "./common-scripts.js";
 
 let currentTeam = 1;
 
-let maxleftvalue = 28;
-let maxupvalue = 44;
-let minleftvalue = 68;
-let minupvalue = 5.5;
+let maxleftvalue = 0;
+let maxupvalue = 100;
+let minleftvalue = 85;
+let minupvalue = 13;
 
 let currentpos = [0, 0];
 //Position can only iterate up to 39.
@@ -207,8 +207,16 @@ function editPoints(team, value) {
 
 function setPos(team, x, y) {
   const player = common.getElement("player" + team);
-  player.style.bottom = y + "vmax";
-  player.style.left = x + "vmax";
+  switch (team) {
+    case 1:
+      player.style.bottom = y + "%";
+      player.style.left = x + "%";
+      break;
+    case 2:
+      player.style.bottom = y + "%";
+      player.style.left = x - 7 + "%";
+    break;
+  }
   console.log(`New position: ${x}, ${y}`);
 }
 
@@ -277,6 +285,7 @@ function checkOwnership(pos) {
 function setDefaultMusic() {
   bgm.pause();
   bgm = defaultbgm;
+  bgm.looped = true;
   bgm.play();
 }
 
