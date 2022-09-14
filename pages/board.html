@@ -37,8 +37,8 @@
         margin: auto;
         margin-top: -25px;
         align-self: center;
-        height: auto;
-        width: auto;
+        height: 90vmin;
+        width: 90vmin;
         z-index: -1;
       }
       img.textcard {
@@ -49,15 +49,18 @@
         display: block;
         margin: auto;
         align-self: center;
-        height: auto;
+        height: 15vmax;
         width: auto;
+
       }
       img.dice {
-        position: absolute;
+        position: fixed;
         align-self: center;
         z-index: 1;
-        margin-top: 550px;
-        margin-left: -140px;
+        bottom: 0%;
+        left: 0%;
+        width: 25vmin;
+        height: 25vmin;
       }
       div.cardtext {
         left: 0;
@@ -73,6 +76,7 @@
         white-space: normal;
         width: fit-content;
         font-family: Monopoly, sans-serif;
+        font-size: 15vmax;
       }
       div.imagetext {
         left: 0;
@@ -94,55 +98,46 @@
         font-family: Monopoly, sans-serif;
       }
       button.OK {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 80%;
-        bottom: 10%;
+        position: fixed;
+        left: 48.5vmax;
+        bottom: 3vmax;
         display: block;
-        display: -webkit-box;
         margin: auto;
         align-self: center;
         text-align: center;
         width: auto;
         height: auto;
-        font-size: 30px;
+        font-size: 5vmin;
         text-align: center;
         color: aliceblue;
         background-color: red;
       }
       button.Yes {
-        position: absolute;
-        left: -10%;
-        right: 0;
-        top: 80%;
-        bottom: 10%;
+        position: fixed;
+        left: 45vmax;
+        bottom: 8vmax;
         display: block;
-        display: -webkit-box;
         margin: auto;
         align-self: center;
         text-align: center;
         width: auto;
         height: auto;
-        font-size: 30px;
+        font-size: 5vmin;
         text-align: center;
         color: aliceblue;
         background-color: red;
       }
       button.No {
-        position: absolute;
-        left: 10%;
-        right: 0;
-        top: 80%;
-        bottom: 10%;
+        position: fixed;
+        left: 45.5vmax;
+        bottom: 3vmax;
         display: block;
-        display: -webkit-box;
         margin: auto;
         align-self: center;
         text-align: center;
         width: auto;
         height: auto;
-        font-size: 30px;
+        font-size: 5vmin;
         text-align: center;
         color: aliceblue;
         background-color: red;
@@ -153,17 +148,15 @@
         align-self: center;
         width: auto;
         height: auto;
-        font-size: 20px;
+        font-size: 3vmin;
         text-align: center;
         color: aliceblue;
         background-color: red;
       }
       div.score {
-        position: absolute;
-        left: 85%;
+        position: fixed;
         right: 0;
-        top: -81%;
-        bottom: 0;
+        top: 1%;
         display: block;
         margin: auto;
         text-align: right;
@@ -172,44 +165,37 @@
         white-space: normal;
         width: fit-content;
         color: antiquewhite;
-        font-size: 28px;
+        font-size: 5vmin;
         font-family: Monopoly, sans-serif;
-        margin-right: 25px;
       }
-      div.player1 {
-        background-color: blue;
-        width: 15px;
-        height: 30px;
-        position: relative;
-        top: -80px;
-        left: 613px;
-        border-radius: 15px;
+      img.player1 {
+        width: 5vmax;
+        height: auto;
+        position: fixed;
+        bottom: 5.5vmax;
+        left: 68vmax;
         z-index: 2;
       }
-      div.player2 {
-        background-color: red;
-        width: 15px;
-        height: 30px;
-        position: relative;
-        top: -80px;
-        left: 613px;
-        margin-left: 20px;
-        margin-top: -30px;
-        border-radius: 15px;
+      img.player2 {
+        width: 2vmax;
+        height: auto;
+        position: fixed;
+        bottom: 3.5vmax;
+        left: 68vmax;
         z-index: 2;
       }
       div.field {
         left: 0;
         right: 0;
-        top: 0;
+        top: 5%;
         bottom: 0;
         display: block;
         margin: auto;
         align-self: center;
-        height: 685px;
-        width: 685px;
+        height: 90vmin;
+        width: 90vmin;
         z-index: -1;
-        position: relative;
+        position: fixed;
       }
     </style>
       <button class="exit" id="exit">Menu</button>
@@ -217,7 +203,7 @@
       <img class="dice" id="dice" src="../assets/dice.png">
       <div class="field" id="field">
         <img class="board" id="board" src="../assets/board.jpg" />
-        <div class="player1" id="player1"></div><div class="player2" id="player2"></div>
+        <img class="player1" id="player1" src="../assets/player1.png"><img class="player2" id="player2" src="../assets/player2.png">
       </div>
       <div class="score" id="score">
         Team 1: <span class="score1" id="score1">0</span><br>Team 2: <span class="score2" id="score2">0</span>

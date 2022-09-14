@@ -18,6 +18,8 @@ function getProjectFile() {
   }
 }
 
+let debug = undefined;
+
 const createWindow = () => {
   let width =
     parseInt(app.commandLine.getSwitchValue("width"), 10) ||
@@ -25,7 +27,7 @@ const createWindow = () => {
   let height =
     parseInt(app.commandLine.getSwitchValue("height"), 10) ||
     projectFile.targetHeight;
-  let debug = app.commandLine.getSwitchValue("debugmode") === "true";
+  debug = app.commandLine.getSwitchValue("debugmode") === "true";
   let fullscreen =
     app.commandLine.getSwitchValue("fullscreen") === "true" ||
     projectFile.fullScreen;

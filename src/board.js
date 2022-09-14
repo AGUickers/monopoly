@@ -2,22 +2,30 @@ import * as common from "./common-scripts.js";
 
 let currentTeam = 1;
 
-let maxleftvalue = 53;
-let maxupvalue = -640;
-let minleftvalue = 613;
-let minupvalue = -80;
+let maxleftvalue = 28;
+let maxupvalue = 44;
+let minleftvalue = 68;
+let minupvalue = 5.5;
 
 let currentpos = [0, 0];
 //Position can only iterate up to 39.
 
 let questions = undefined;
+let coords = undefined;
 
 fetch("../assets/items.json")
   .then((response) => response.json())
   .then((json) => {
     console.log(json);
     questions = json;
-  });
+});
+
+fetch("../assets/coords.json")
+  .then((response) => response.json())
+  .then((json) => {
+    console.log(json);
+    coords = json;
+});
 
 //Fill this with zeros for now.
 let owned = [
@@ -31,10 +39,18 @@ const TextBoxButtonType = {
   YesNo: 2,
 };
 
+let bgm = undefined;
+let defaultbgm = undefined;
+
+let currentquestion = undefined;
+
 function load() {
   //This will trigger once as soon as the page is loaded.
   let roll = Math.floor(Math.random() * 3) + 1;
-  common.playMusic(`../assets/monopoly${roll}.mp3`, true);
+  defaultbgm = new Audio(`../assets/monopoly${roll}.mp3`);
+  bgm = defaultbgm;
+  bgm.loop = true;
+  bgm.play();
   const menu = common.getElement("exit");
   menu.onclick = function () {
     common.goToScreen("menu.html");
@@ -78,6 +94,11 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   cardtext.style.zIndex = "3";
   cardtext.style.fontSize = fontSize;
 
+  if (currentquestion.video) {
+    bgm.pause();
+    common.playCutScene("cutscene", currentquestion.video);
+  }
+
   switch (buttontype) {
     case TextBoxButtonType.OK:
     case "OK":
@@ -88,6 +109,10 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
         common.playSound("monopoly_select.wav");
         closeTextBox();
         switchTeam();
+        if (currentquestion.successvideo) {
+          bgm.pause();
+          common.playCutScene("cutscene", currentquestion.successvideo);
+        }
       };
       break;
     case TextBoxButtonType.YesNo:
@@ -109,6 +134,10 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
         //Let's also award some points.
         editPoints(currentTeam, 1000);
         switchTeam();
+        if (currentquestion.successvideo) {
+          bgm.pause();
+          common.playCutScene("cutscene", currentquestion.successvideo);
+        }
       };
       const NoButton = common.createElement("button", "No", "No", common.page);
       NoButton.innerText = "Wrong";
@@ -127,23 +156,25 @@ function closeTextBox() {
   const cover = common.getElement("cover");
   const card = common.getElement("textcard");
   const cardtext = common.getElement("cardtext");
+  const imagetext = common.getElement("imagetext");
   const OKButton = common.getElement("OK");
   const YesButton = common.getElement("Yes");
   const NOButton = common.getElement("No");
   if (cover) cover.remove();
   if (card) card.remove();
   if (cardtext) cardtext.remove();
+  if (imagetext) imagetext.remove();
   if (OKButton) OKButton.remove();
   if (YesButton) YesButton.remove();
   if (NOButton) NOButton.remove();
+  if (bgm !== defaultbgm) setDefaultMusic();
 }
 
 function throwDice() {
   //Let's get a number from 1 to 6 first.
   const dice = common.getElement("dice");
-  const player = common.getElement("player" + currentTeam);
   dice.style.display = "none";
-  let roll = Math.floor(Math.random() * 6) + 1;
+  let roll = Math.floor(Math.random() * 1) + 1;
   console.log(roll);
   common.playSound("../assets/monopoly_dice.wav");
   gotoPos(currentTeam, currentpos[currentTeam - 1] + roll);
@@ -154,7 +185,7 @@ function throwDice() {
   ) {
     //Spawn a textbox with the question on that position.
     //Let's read from the JSON file in the questions variable.
-    let currentquestion = questions[currentpos[currentTeam - 1]];
+    currentquestion = questions[currentpos[currentTeam - 1]];
     if (currentquestion) {
       spawnTextBox(
         currentquestion.cardAsset,
@@ -163,9 +194,10 @@ function throwDice() {
         currentquestion.fontSize,
         currentquestion.buttonType
       );
+      if (currentquestion.musicOverride) setMusic(currentquestion.musicOverride);
     } else switchTeam();
   } else switchTeam();
-  dice.style.display = "block";
+  dice.style.display = "unset";
 }
 
 function editPoints(team, value) {
@@ -175,51 +207,31 @@ function editPoints(team, value) {
 
 function setPos(team, x, y) {
   const player = common.getElement("player" + team);
-  player.style.top = y + "px";
-  player.style.left = x + "px";
+  player.style.bottom = y + "vmax";
+  player.style.left = x + "vmax";
   console.log(`New position: ${x}, ${y}`);
 }
 
+
+//5.5
+
 function gotoPos(team, pos) {
   //Let's iterate over positions starting from 0 and ending in 39.
-  //For position 0, set top and left to minimum values.
-  //For positions 1 - 10 go 56 px left.
-  //For positions 11 - 20 go 56 px up.
-  //For positions 21 - 30 go 56 px left.
-  //For positions 31 - 39 go 56 px down.
   console.log("Moving team " + team);
   console.log(pos);
   currentpos[team - 1] = pos;
-  if (pos === 0) setPos(team, minleftvalue, minupvalue);
-  else if (pos > 0 && pos <= 10)
-    setPos(team, minleftvalue - 56 * pos, minupvalue);
-  else if (pos > 10 && pos <= 20)
-    setPos(team, maxleftvalue, minupvalue - 56 * (pos - 10));
-  else if (pos > 20 && pos <= 30)
-    setPos(team, maxleftvalue + 56 * (pos - 20), maxupvalue);
-  else if (pos > 30 && pos <= 39)
-    setPos(team, minleftvalue, maxupvalue + 56 * (pos - 30));
-  else if (pos > 39) {
+  if (pos > 39)  {
     currentpos[team - 1] = 0;
-    setPos(team, minleftvalue, minupvalue);
-  }
+    setPos(team, coords[0].X, coords[0].Y)
+  } else setPos(team, coords[pos].X, coords[pos].Y);
 }
 
 function getPos(pos) {
-  if (pos === 0) return [minleftvalue, minupvalue];
-  else if (pos > 0 && pos <= 10) return [minleftvalue - 56 * pos, minupvalue];
-  else if (pos > 10 && pos <= 20)
-    return [maxleftvalue, minupvalue - 56 * (pos - 10)];
-  else if (pos > 20 && pos <= 30)
-    return [maxleftvalue + 56 * (pos - 20), maxupvalue];
-  else if (pos > 30 && pos <= 39)
-    return [minleftvalue, maxupvalue + 56 * (pos - 30)];
-  else if (pos > 39) {
-    return [minleftvalue, minupvalue];
-  }
+    return coords[pos];
 }
 
 function setOwnership(pos, team) {
+  console.log(checkOwnership(pos));
   if (checkOwnership(pos) !== null && checkOwnership(pos) !== true) {
     const player = common.getElement("player" + team);
     const playerstyle = getComputedStyle(player);
@@ -227,7 +239,7 @@ function setOwnership(pos, team) {
     //We need to spawn an ownership mark.
     const field = common.getElement("field");
     let mark = common.createElement("div", `mark${pos}`, `mark${pos}`, field);
-    mark.style.position = "relative";
+    mark.style.position = "absolute";
     mark.style.left = getPos(pos)[0] + "px";
     mark.style.top = getPos(pos)[1] + "px";
     mark.style.backgroundColor = playerstyle.backgroundColor;
@@ -262,13 +274,15 @@ function checkOwnership(pos) {
   }
 }
 
+function setDefaultMusic() {
+  bgm.pause();
+  bgm = defaultbgm;
+  bgm.play();
+}
+
+function setMusic(path) {
+  bgm.pause();
+  bgm = common.playMusic(path, true);
+}
+
 load();
-setTimeout(() => {
-  spawnTextBox(
-    "../assets/stockcard.png",
-    1,
-    "Welcome to the Monopoly Dev Test!\nYou can test various features in here.\nThis might be broken.",
-    "20px",
-    TextBoxButtonType.OK
-  );
-}, 1000);
