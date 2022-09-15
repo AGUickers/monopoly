@@ -3,7 +3,7 @@
     "cardAsset": "../assets/stockcard.png",
     "scale": 1,
     "text": "This game was created in the\nFaculty of Foreign Languages.",
-    "fontSize": "28px",
+    "fontSize": "2",
     "buttonType": "OK"
   }
 }

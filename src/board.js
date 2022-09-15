@@ -92,7 +92,7 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   cardtext.innerText = text;
   cardtext.style.position = "absolute";
   cardtext.style.zIndex = "3";
-  cardtext.style.fontSize = fontSize;
+  cardtext.style.fontSize = fontSize + "vmax";
 
   if (currentquestion.video) {
     bgm.pause();
