@@ -50,7 +50,7 @@ export function playCutScene(videoid, file) {
   video.style.position = "absolute";
   video.style.top = "0";
   video.style.left = "0";
-  video.style.zIndex = "1";
+  video.style.zIndex = "18";
   video.style.objectFit = "fill";
   video.style.objectPosition = "center";
   video.style.backgroundColor = "black";

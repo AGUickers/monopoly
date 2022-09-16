@@ -1,9 +1,92 @@
 {
   "1": {
-    "cardAsset": "../assets/stockcard.png",
-    "scale": 1,
-    "text": "This game was created in the\nFaculty of Foreign Languages.",
+    "cardAsset": "../assets/property-card-eng.png",
+    "scale": 2,
+    "text": "London Ferris Wheel\n\n\n\n\n\n\n\n\nI want to visit...",
     "fontSize": "2",
-    "buttonType": "OK"
+    "image": "../assets/london-eye.jpg",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "3": {
+    "cardAsset": "../assets/property-card-eng.png",
+    "scale": 2,
+    "text": "Buckingham Palace\n\n\n\n\n\n\n\n\nI want to visit...",
+    "fontSize": "2",
+    "image": "../assets/buckingham-palace.jpg",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "5": {
+    "cardAsset": "../assets/property-card-eng.png",
+    "scale": 2,
+    "text": "Big Ben\n\n\n\n\n\n\n\n\nI want to visit...",
+    "fontSize": "2",
+    "image": "../assets/big-ben.jpg",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "6": {
+    "cardAsset": "../assets/property-card-ger.png",
+    "scale": 2,
+    "text": "Bayern München\n(Байе(р)н Мюнхен)\n\n\n\n\n\n\n\nIch bin für...\n(Ихь бин фюр...)",
+    "fontSize": "2",
+    "image": "../assets/munchen.png",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "8": {
+    "cardAsset": "../assets/property-card-ger.png",
+    "scale": 2,
+    "text": "Borussia Dortmund\n(Боруссия Дортмунд)\n\n\n\n\n\n\n\nIch bin für...\n(Ихь бин фюр...)",
+    "fontSize": "2",
+    "image": "../assets/borussia.png",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "9": {
+    "cardAsset": "../assets/property-card-ger.png",
+    "scale": 2,
+    "text": "Eintracht Frankfurt\n(Айнтрахт Франкфурт)\n\n\n\n\n\n\n\nIch bin für...\n(Ихь бин фюр...)",
+    "fontSize": "2",
+    "image": "../assets/frankfurt.png",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "31": {
+    "cardAsset": "../assets/property-card-jap.png",
+    "scale": 2,
+    "text": "寿司バー\n(сушиба:)\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
+    "fontSize": "1.8",
+    "image": "../assets/sushi.jpg",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "32": {
+    "cardAsset": "../assets/property-card-jap.png",
+    "scale": 2,
+    "text": "カラオケ\n(караоке)\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
+    "fontSize": "1.8",
+    "image": "../assets/karaoke.jpg",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "34": {
+    "cardAsset": "../assets/property-card-jap.png",
+    "scale": 2,
+    "text": "マンガ店\n(магатэн)\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
+    "fontSize": "1.8",
+    "image": "../assets/mangaimage.jpg",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo"
   }
 }

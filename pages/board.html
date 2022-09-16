@@ -11,7 +11,10 @@
     <link rel="preload prefetch" as="image" href="../assets/stockcard.png">
     <link rel="preload prefetch" as="image" href="../assets/cover.png">
     <link rel="preload prefetch" as="image" href="../assets/dice.png">
+    <link rel="preload prefetch" as="image" href="../assets/player1.png">
+    <link rel="preload prefetch" as="image" href="../assets/player2.png">
     <link rel="preload prefetch" as="fetch" href="../assets/items.json">
+    <link rel="preload prefetch" as="fetch" href="../assets/coords.json">
     <link rel="preload prefetch" as="font" href="../assets/MONOPOLY.ttf">
     <link rel="preload prefetch" as="audio" href="../assets/monopoly1.mp3">
     <link rel="preload prefetch" as="audio" href="../assets/monopoly2.mp3">
@@ -51,7 +54,17 @@
         align-self: center;
         height: 15vmax;
         width: auto;
-
+      }
+      img.cardimage {
+        left: 0;
+        right: 0;
+        top: 1%;
+        bottom: 0;
+        display: block;
+        margin: auto;
+        align-self: center;
+        height: 13vmax;
+        width: auto;
       }
       img.dice {
         position: fixed;
@@ -60,7 +73,7 @@
         bottom: 0%;
         left: 0%;
         width: 25vmin;
-        height: 25vmin;
+        height: auto;
       }
       div.cardtext {
         left: 0;
@@ -115,7 +128,7 @@
       button.Yes {
         position: fixed;
         left: 45vmax;
-        bottom: 8vmax;
+        bottom: 7vmax;
         display: block;
         margin: auto;
         align-self: center;
@@ -131,6 +144,21 @@
         position: fixed;
         left: 45.5vmax;
         bottom: 3vmax;
+        display: block;
+        margin: auto;
+        align-self: center;
+        text-align: center;
+        width: auto;
+        height: auto;
+        font-size: 5vmin;
+        text-align: center;
+        color: aliceblue;
+        background-color: red;
+      }
+      button.PlayAgain {
+        position: fixed;
+        left: 45.5vmax;
+        bottom: 7vmax;
         display: block;
         margin: auto;
         align-self: center;
@@ -181,7 +209,7 @@
         height: auto;
         position: relative;
         bottom: 10%;
-        left: 80%;
+        left: 83%;
         z-index: 2;
       }
       div.field {

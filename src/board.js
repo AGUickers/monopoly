@@ -93,10 +93,31 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   cardtext.style.position = "absolute";
   cardtext.style.zIndex = "3";
   cardtext.style.fontSize = fontSize + "vmax";
+  cardtext.style.color = currentquestion.textColor;
+
+  if (currentquestion.image) {
+  const cardimage = common.createElement(
+    "img",
+    "cardimage",
+    "cardimage",
+    common.page
+  );
+  cardimage.src = currentquestion.image;
+  cardimage.style.zIndex = "3";
+  cardimage.style.position = "absolute";
+  if (currentquestion.imageScale) cardimage.style.scale = currentquestion.imageScale;
+  }
 
   if (currentquestion.video) {
     bgm.pause();
     common.playCutScene("cutscene", currentquestion.video);
+    const PlayAgain = common.createElement("button", "PlayAgain", "PlayAgain", common.page);
+    PlayAgain.innerText = "Play Again";
+    PlayAgain.style.zIndex = "3";
+    PlayAgain.onclick = function () {
+      common.playSound("monopoly_select.wav");
+      common.playCutScene("cutscene", currentquestion.video);
+    };
   }
 
   switch (buttontype) {
@@ -160,6 +181,8 @@ function closeTextBox() {
   const OKButton = common.getElement("OK");
   const YesButton = common.getElement("Yes");
   const NOButton = common.getElement("No");
+  const PlayAgain = common.getElement("PlayAgain");
+  const cardimage = common.getElement("cardimage");
   if (cover) cover.remove();
   if (card) card.remove();
   if (cardtext) cardtext.remove();
@@ -167,14 +190,17 @@ function closeTextBox() {
   if (OKButton) OKButton.remove();
   if (YesButton) YesButton.remove();
   if (NOButton) NOButton.remove();
-  if (bgm !== defaultbgm) setDefaultMusic();
+  if (PlayAgain) PlayAgain.remove();
+  if (cardimage) cardimage.remove();
+  if (bgm.paused === true || bgm !== defaultbgm) setDefaultMusic();
 }
 
 function throwDice() {
+  if (bgm.paused === true || bgm !== defaultbgm) setDefaultMusic();
   //Let's get a number from 1 to 6 first.
   const dice = common.getElement("dice");
   dice.style.display = "none";
-  let roll = Math.floor(Math.random() * 1) + 1;
+  let roll = Math.floor(Math.random() * 6) + 1;
   console.log(roll);
   common.playSound("../assets/monopoly_dice.wav");
   gotoPos(currentTeam, currentpos[currentTeam - 1] + roll);

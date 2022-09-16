@@ -1,12 +1,78 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8" />
-    <title>Untitled</title>
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1"
+    />
+    <title>Monopoly</title>
     <script src="../src/common-scripts.js" type="module"></script>
-    <script src="../src/results.js" type="module"></script>
-</head>
-<body>
-<p>This is a results page. Use the Editor or VS Code to make changes.</p>
-</body>
+    <script src="../src/menu.js" type="module"></script>
+    <link rel="preload prefetch" href="../assets/background.jpg" as="image">
+    <link rel="preload prefetch" href="../assets/logo.png" as="image">
+    <link rel="preload prefetch prerender" href="./board.html">
+  </head>
+  <body>
+    <style>
+      @font-face { font-family: Monopoly; src: url('../assets/MONOPOLY.ttf'); }       
+      body {
+        background-image: url("../assets/background.jpg");
+        display: grid;
+        overflow: hidden;
+      }
+      button {
+        font-family: Monopoly, sans-serif;
+        position: fixed;
+      }
+      button.exitbutton {
+        display: block;
+        margin: auto;
+        margin-top: 5px;
+        align-self: center;
+        width: auto;
+        height: auto;
+        bottom: 5vmax;
+        left: 47.5vmax;
+        font-size: 3vmax;
+        text-align: center;
+        color: aliceblue;
+        background-color: red;
+      }
+      img.logo {
+        display: block;
+        position: fixed;
+        top: 5vmax;
+        left: 35vmax;
+        width: 30vmax;
+        height: auto;
+        align-self: center;
+      }
+      div.score {
+        position: fixed;
+        width: 25vmax;
+        height: auto;
+        top: 25vmax;
+        left: 42vmax;
+        display: block;
+        margin: auto;
+        text-align: center;
+        height: fit-content;
+        word-wrap: break-word;
+        white-space: normal;
+        width: fit-content;
+        color: antiquewhite;
+        background-color: rebeccapurple;
+        font-size: 5vmin;
+        font-family: Monopoly, sans-serif;
+      }
+    </style>
+    <img class="logo" id="logo" src="../assets/logo.png" />
+    <div class="score" id="score">
+        Final Score:<br>
+        Team 1: <span class="score1" id="score1">0</span><br>Team 2: <span class="score2" id="score2">0</span><br>
+        Congratulations!
+    </div>
+    <button class="exitbutton" id="exitbutton">Exit</button>
+  </body>
 </html>
