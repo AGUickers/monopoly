@@ -59,6 +59,42 @@
     "textColor": "black",
     "buttonType": "YesNo"
   },
+  "21": {
+    "cardAsset": "../assets/property-card-kor.png",
+    "scale": 2,
+    "text": "스트레이 키즈\n(сытырэи киджи)\n\n\n\n\n\n\n\n저는 ... 를 들어요\nджонын ... рыль тыроё",
+    "fontSize": "2",
+    "image": "../assets/stray.jpg",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "musicOverride": "../assets/thunder.mp3",
+    "successvideo": "../assets/sorikkun.mp4"
+  },
+  "23": {
+    "cardAsset": "../assets/property-card-kor.png",
+    "scale": 2,
+    "text": "엔하이픈\n(энхайпын)\n\n\n\n\n\n\n\n저는 ... 를 들어요\nджонын ... рыль тыроё",
+    "fontSize": "2",
+    "image": "../assets/enhyphen.jpg",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "musicOverride": "../assets/blessed.mp3",
+    "successvideo": "../assets/liar.mp4"
+  },
+  "24": {
+    "cardAsset": "../assets/property-card-kor.png",
+    "scale": 2,
+    "text": "트와이스\n(тывайсы)\n\n\n\n\n\n\n\n저는 ... 를 들어요\nджонын ... рыль тыроё",
+    "fontSize": "2",
+    "image": "../assets/twice.jpg",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "musicOverride": "../assets/fancy.mp3",
+    "successvideo": "../assets/liar.mp4"
+  },
   "31": {
     "cardAsset": "../assets/property-card-jap.png",
     "scale": 2,
