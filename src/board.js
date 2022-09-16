@@ -45,6 +45,10 @@ let defaultbgm = undefined;
 let currentquestion = undefined;
 
 function load() {
+  screen.orientation.onchange = function() {
+    let elem = document.documentElement;
+    elem.requestFullscreen("hide");
+  }
   //This will trigger once as soon as the page is loaded.
   let roll = Math.floor(Math.random() * 3) + 1;
   defaultbgm = new Audio(`../assets/monopoly${roll}.mp3`);
