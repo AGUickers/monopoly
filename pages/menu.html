@@ -9,15 +9,15 @@
     <title>Monopoly</title>
     <script src="../src/common-scripts.js" type="module"></script>
     <script src="../src/menu.js" type="module"></script>
-    <link rel="preload prefetch" href="../assets/background.jpg" as="image">
-    <link rel="preload prefetch" href="../assets/logo.png" as="image">
+    <link rel="preload prefetch" href="../assets/background.avif" as="image">
+    <link rel="preload prefetch" href="../assets/logo.avif" as="image">
     <link rel="preload prefetch prerender" href="./board.html">
   </head>
   <body>
     <style>
       @font-face { font-family: Monopoly; src: url('../assets/MONOPOLY.ttf'); }       
       body {
-        background-image: url("../assets/background.jpg");
+        background-image: url("../assets/background.avif");
         display: grid;
         overflow: hidden;
       }
@@ -77,7 +77,7 @@
         color: aliceblue;
       }
     </style>
-    <img class="logo" id="logo" src="../assets/logo.png" />
+    <img class="logo" id="logo" src="../assets/logo.avif" />
     <button class="startbutton" id="startbutton">Start Game</button
     ><br /><button class="exitbutton" id="exitbutton">Exit</button>
   </body>

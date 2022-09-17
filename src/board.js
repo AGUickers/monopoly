@@ -71,10 +71,10 @@ function load() {
 
 function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   common.playSound("monopoly_chance.wav");
-  //Let's cover the entire page with a file named "cover.png"
+  //Let's cover the entire page with a file named "cover.avif"
   const cover = common.createElement("img", "cover", "cover", common.page);
   cover.style.zIndex = "1";
-  cover.src = "../assets/cover.png";
+  cover.src = "../assets/cover.avif";
   cover.style.width = "100%";
   cover.style.height = "100%";
   cover.style.position = "fixed";

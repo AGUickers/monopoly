@@ -9,15 +9,15 @@
     <title>Monopoly</title>
     <script src="../src/common-scripts.js" type="module"></script>
     <script src="../src/menu.js" type="module"></script>
-    <link rel="preload prefetch" href="../assets/background.jpg" as="image">
-    <link rel="preload prefetch" href="../assets/logo.png" as="image">
+    <link rel="preload prefetch" href="../assets/background.avif" as="image">
+    <link rel="preload prefetch" href="../assets/logo.avif" as="image">
     <link rel="preload prefetch prerender" href="./board.html">
   </head>
   <body>
     <style>
       @font-face { font-family: Monopoly; src: url('../assets/MONOPOLY.ttf'); }       
       body {
-        background-image: url("../assets/background.jpg");
+        background-image: url("../assets/background.avif");
         display: grid;
         overflow: hidden;
       }
@@ -67,7 +67,7 @@
         font-family: Monopoly, sans-serif;
       }
     </style>
-    <img class="logo" id="logo" src="../assets/logo.png" />
+    <img class="logo" id="logo" src="../assets/logo.avif" />
     <div class="score" id="score">
         Final Score:<br>
         Team 1: <span class="score1" id="score1">0</span><br>Team 2: <span class="score2" id="score2">0</span><br>
