@@ -47,7 +47,7 @@ export function playCutScene(videoid, file) {
   video.src = "../assets/" + file;
   video.style.width = "100%";
   video.style.height = "100%";
-  video.style.position = "absolute";
+  video.style.position = "fixed";
   video.style.top = "0";
   video.style.left = "0";
   video.style.zIndex = "18";
