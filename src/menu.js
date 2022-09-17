@@ -1,5 +1,11 @@
 import * as common from "./common-scripts.js";
 
+function loadAllAssets() {
+  var preload = new createjs.LoadQueue(true);
+  preload.loadFile("../assets/background.avif")
+  preload.loadFile("../assets/logo.avif")
+}
+
 function load() {
   //This will trigger once as soon as the page is loaded.
   const startButton = common.getElement("startbutton");
