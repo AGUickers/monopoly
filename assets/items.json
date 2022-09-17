@@ -158,7 +158,7 @@
   "35": {
     "cardAsset": "../assets/property-card-ch.avif",
     "scale": 2,
-    "text": "商店 (shāng diàn)\n(шан диэн)\n\n\n\n\n\n\n\n\n\n我去...(wǒ qù)(во чу)",
+    "text": "商店 (shāng diàn)\n(шан диэн)\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\n(во чу)",
     "fontSize": "1.8",
     "image": "../assets/shangdian.avif",
     "imageScale": "1",
@@ -168,7 +168,7 @@
   "37": {
     "cardAsset": "../assets/property-card-ch.avif",
     "scale": 2,
-    "text": "公园 (gōng yuán)\n(гон юан)\n\n\n\n\n\n\n\n\n\n我去...(wǒ qù)(во чу)",
+    "text": "公园 (gōng yuán)\n(гон юан)\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\n(во чу)",
     "fontSize": "1.8",
     "image": "../assets/gongyuan.avif",
     "imageScale": "1",
@@ -178,7 +178,7 @@
   "39": {
     "cardAsset": "../assets/property-card-ch.avif",
     "scale": 2,
-    "text": "食堂 (shí táng)\n(ши тхан)\n\n\n\n\n\n\n\n\n\n我去...(wǒ qù)(во чу)",
+    "text": "食堂 (shí táng)\n(ши тхан)\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\n(во чу)",
     "fontSize": "1.8",
     "image": "../assets/shitang.avif",
     "imageScale": "1.1",
