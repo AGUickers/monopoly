@@ -77,7 +77,7 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   cover.src = "../assets/cover.png";
   cover.style.width = "100%";
   cover.style.height = "100%";
-  cover.style.position = "absolute";
+  cover.style.position = "fixed";
   cover.style.top = "0";
   cover.style.left = "0";
 
