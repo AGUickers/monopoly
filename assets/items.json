@@ -59,6 +59,36 @@
     "textColor": "black",
     "buttonType": "YesNo"
   },
+  "11": {
+    "cardAsset": "../assets/property-card-spa.png",
+    "scale": 2,
+    "text": "Gazpacho\n(Гаспаччо)\n\n\n\n\n\n\n\nQuiero comer ...\n(КийЭро комЭр ...)",
+    "fontSize": "2",
+    "image": "../assets/gazpacho.jpg",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "13": {
+    "cardAsset": "../assets/property-card-spa.png",
+    "scale": 2,
+    "text": "Churros\n(чуррос)\n\n\n\n\n\n\n\nQuiero comer ...\n(КийЭро комЭр ...)",
+    "fontSize": "2",
+    "image": "../assets/churros.jpg",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "14": {
+    "cardAsset": "../assets/property-card-spa.png",
+    "scale": 2,
+    "text": "Paella\n(паэйа)\n\n\n\n\n\n\n\nQuiero comer ...\n(КийЭро комЭр ...)",
+    "fontSize": "2",
+    "image": "../assets/paella.jpg",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
   "21": {
     "cardAsset": "../assets/property-card-kor.png",
     "scale": 2,
