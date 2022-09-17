@@ -160,7 +160,7 @@
     "scale": 2,
     "text": "بو علی سینا\n(бу алú синó)\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\n(ман ми хохáм достóн парú ... ро бехунáм)",
     "fontSize": "1.35",
-    "image": "../assets/twice.avif",
+    "image": "../assets/bu.avif",
     "imageScale": "1.1",
     "textColor": "black",
     "buttonType": "YesNo"
@@ -170,7 +170,7 @@
     "scale": 2,
     "text": "روباه و خروس\n(рубóх ва харýс)\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\n(ман ми хохáм достóн парú ... ро бехунáм)",
     "fontSize": "1.35",
-    "image": "../assets/twice.avif",
+    "image": "../assets/fox.avif",
     "imageScale": "1.1",
     "textColor": "black",
     "buttonType": "YesNo"
@@ -180,7 +180,7 @@
     "scale": 2,
     "text": "درباره مرد تنبل\n(дарборé мард танбáль)\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\n(ман ми хохáм достóн парú ... ро бехунáм)",
     "fontSize": "1.35",
-    "image": "../assets/fox.avif",
+    "image": "../assets/lazy.avif",
     "imageScale": "1.1",
     "textColor": "black",
     "buttonType": "YesNo"
