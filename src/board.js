@@ -44,7 +44,7 @@ let defaultbgm = undefined;
 
 let currentquestion = undefined;
 
-function loadAllAssets() {
+async function loadAllAssets() {
   var preload = new createjs.LoadQueue(true);
   //This will trigger once as soon as the page is loaded.
   let roll = Math.floor(Math.random() * 3) + 1;
