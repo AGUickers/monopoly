@@ -124,5 +124,35 @@
     "imageScale": "1",
     "textColor": "black",
     "buttonType": "YesNo"
+  },
+  "35": {
+    "cardAsset": "../assets/property-card-ch.png",
+    "scale": 2,
+    "text": "商店 (shāng diàn)\n(шан диэн)\n\n\n\n\n\n\n\n\n\n我去...(wǒ qù)(во чу)",
+    "fontSize": "1.8",
+    "image": "../assets/shangdian.jpg",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "37": {
+    "cardAsset": "../assets/property-card-ch.png",
+    "scale": 2,
+    "text": "公园 (gōng yuán)\n(гон юан)\n\n\n\n\n\n\n\n\n\n我去...(wǒ qù)(во чу)",
+    "fontSize": "1.8",
+    "image": "../assets/gongyuan.jpg",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "39": {
+    "cardAsset": "../assets/property-card-ch.png",
+    "scale": 2,
+    "text": "食堂 (shí táng)\n(ши тхан)\n\n\n\n\n\n\n\n\n\n我去...(wǒ qù)(во чу)",
+    "fontSize": "1.8",
+    "image": "../assets/shitang.jpg",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
   }
 }
