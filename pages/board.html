@@ -2,35 +2,71 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1"
+    />
     <title>Monopoly Board</title>
     <script src="../src/common-scripts.js" type="module"></script>
     <script src="../src/board.js" type="module"></script>
-    <link rel="preload prefetch" as="image" href="../assets/background.jpg">
-    <link rel="preload prefetch" as="image" href="../assets/board.jpg">
-    <link rel="preload prefetch" as="image" href="../assets/card.jpg">
-    <link rel="preload prefetch" as="image" href="../assets/stockcard.png">
-    <link rel="preload prefetch" as="image" href="../assets/cover.png">
-    <link rel="preload prefetch" as="image" href="../assets/dice.png">
-    <link rel="preload prefetch" as="image" href="../assets/player1.png">
-    <link rel="preload prefetch" as="image" href="../assets/player2.png">
-    <link rel="preload prefetch" as="fetch" href="../assets/items.json">
-    <link rel="preload prefetch" as="fetch" href="../assets/coords.json">
-    <link rel="preload prefetch" as="font" href="../assets/MONOPOLY.ttf">
-    <link rel="preload prefetch" as="audio" href="../assets/monopoly1.mp3">
-    <link rel="preload prefetch" as="audio" href="../assets/monopoly2.mp3">
-    <link rel="preload prefetch" as="audio" href="../assets/monopoly3.mp3">
-    <link rel="preload prefetch" as="audio" href="../assets/monopoly_chance.wav">
-    <link rel="preload prefetch" as="audio" href="../assets/monopoly_correct.wav">
-    <link rel="preload prefetch" as="audio" href="../assets/monopoly_dice.wav">
-    <link rel="preload prefetch" as="audio" href="../assets/monopoly_fail.wav">
-    <link rel="preload prefetch" as="audio" href="../assets/monopoly_lose.wav">
-    <link rel="preload prefetch" as="audio" href="../assets/monopoly_select.wav">
-    <link rel="preload prefetch" as="audio" href="../assets/monopoly_victory.wav">
-    <link rel="preload prefetch" as="audio" href="../assets/monopoly_win.wav">
+    <link rel="preload prefetch" as="image" href="../assets/background.jpg" />
+    <link rel="preload prefetch" as="image" href="../assets/board.jpg" />
+    <link rel="preload prefetch" as="image" href="../assets/card.jpg" />
+    <link rel="preload prefetch" as="image" href="../assets/stockcard.png" />
+    <link rel="preload prefetch" as="image" href="../assets/cover.png" />
+    <link rel="preload prefetch" as="image" href="../assets/dice.png" />
+    <link rel="preload prefetch" as="image" href="../assets/player1.png" />
+    <link rel="preload prefetch" as="image" href="../assets/player2.png" />
+    <link rel="preload prefetch" as="fetch" href="../assets/items.json" />
+    <link rel="preload prefetch" as="fetch" href="../assets/coords.json" />
+    <link rel="preload prefetch" as="font" href="../assets/MONOPOLY.ttf" />
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly1.mp3" />
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly2.mp3" />
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly3.mp3" />
+    <link
+      rel="preload prefetch"
+      as="audio"
+      href="../assets/monopoly_chance.wav"
+    />
+    <link
+      rel="preload prefetch"
+      as="audio"
+      href="../assets/monopoly_correct.wav"
+    />
+    <link
+      rel="preload prefetch"
+      as="audio"
+      href="../assets/monopoly_dice.wav"
+    />
+    <link
+      rel="preload prefetch"
+      as="audio"
+      href="../assets/monopoly_fail.wav"
+    />
+    <link
+      rel="preload prefetch"
+      as="audio"
+      href="../assets/monopoly_lose.wav"
+    />
+    <link
+      rel="preload prefetch"
+      as="audio"
+      href="../assets/monopoly_select.wav"
+    />
+    <link
+      rel="preload prefetch"
+      as="audio"
+      href="../assets/monopoly_victory.wav"
+    />
+    <link rel="preload prefetch" as="audio" href="../assets/monopoly_win.wav" />
   </head>
   <body>
     <style>
-      @font-face { font-family: Monopoly; src: url('../assets/MONOPOLY.ttf'); } 
+      @font-face {
+        font-family: Monopoly;
+        src: url("../assets/MONOPOLY.ttf");
+        font-display: swap;
+      }
       body {
         background-image: url("../assets/background.jpg");
         overflow: hidden;
@@ -88,7 +124,8 @@
         word-wrap: break-word;
         white-space: normal;
         width: fit-content;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+          sans-serif;
         font-size: 15vmax;
       }
       div.imagetext {
@@ -105,7 +142,7 @@
         white-space: normal;
         width: fit-content;
         font-family: Monopoly, sans-serif;
-        color:white;
+        color: white;
       }
       button {
         font-family: Monopoly, sans-serif;
@@ -230,15 +267,20 @@
         position: fixed;
       }
     </style>
-      <button class="exit" id="exit">Menu</button>
-      <button class="exit" id="giveup">Give up</button>
-      <img class="dice" id="dice" src="../assets/dice.png">
-      <div class="field" id="field">
-        <img class="board" id="board" src="../assets/board.jpg" />
-        <img class="player1" id="player1" src="../assets/player1.png"><img class="player2" id="player2" src="../assets/player2.png">
-      </div>
-      <div class="score" id="score">
-        Team 1: <span class="score1" id="score1">0</span><br>Team 2: <span class="score2" id="score2">0</span>
-      </div>
+    <button class="exit" id="exit">Menu</button>
+    <button class="exit" id="giveup">Give up</button>
+    <img class="dice" id="dice" src="../assets/dice.png" />
+    <div class="field" id="field">
+      <img class="board" id="board" src="../assets/board.jpg" />
+      <img class="player1" id="player1" src="../assets/player1.png" /><img
+        class="player2"
+        id="player2"
+        src="../assets/player2.png"
+      />
+    </div>
+    <div class="score" id="score">
+      Team 1: <span class="score1" id="score1">0</span><br />Team 2:
+      <span class="score2" id="score2">0</span>
+    </div>
   </body>
 </html>
