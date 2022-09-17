@@ -4,6 +4,7 @@ function loadAllAssets() {
   var preload = new createjs.LoadQueue(true);
   preload.loadFile("../assets/background.avif")
   preload.loadFile("../assets/logo.avif")
+  preload.on("complete", load, this);
 }
 
 function load() {
@@ -17,5 +18,4 @@ function load() {
     common.exit();
   };
 }
-
-load();
+loadAllAssets();
