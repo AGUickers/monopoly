@@ -89,6 +89,36 @@
     "textColor": "black",
     "buttonType": "YesNo"
   },
+  "16": {
+    "cardAsset": "../assets/property-card-fr.avif",
+    "scale": 2,
+    "text": "Dior\n(диор)\n\n\n\n\n\n\n\nje veaux acheter\n(Же вё аштер)",
+    "fontSize": "2",
+    "image": "../assets/dior.avif",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "18": {
+    "cardAsset": "../assets/property-card-fr.avif",
+    "scale": 2,
+    "text": "Chanel\n(шанель)\n\n\n\n\n\n\n\nje veaux acheter\n(Же вё аштер)",
+    "fontSize": "2",
+    "image": "../assets/chanel.avif",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "19": {
+    "cardAsset": "../assets/property-card-fr.avif",
+    "scale": 2,
+    "text": "West\n(вест)\n\n\n\n\n\n\n\nje veaux acheter\n(Же вё аштер)",
+    "fontSize": "2",
+    "image": "../assets/west.avif",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
   "21": {
     "cardAsset": "../assets/property-card-kor.avif",
     "scale": 2,
@@ -123,7 +153,37 @@
     "textColor": "black",
     "buttonType": "YesNo",
     "musicOverride": "../assets/fancy.mp3",
-    "successvideo": "../assets/liar.webm"
+    "successvideo": "../assets/fancy.mp4"
+  },
+  "26": {
+    "cardAsset": "../assets/property-card-per.avif",
+    "scale": 2,
+    "text": "بو علی سینا\n(бу алú синó)\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\n(ман ми хохáм достóн парú ... ро бехунáм)",
+    "fontSize": "1.35",
+    "image": "../assets/twice.avif",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "27": {
+    "cardAsset": "../assets/property-card-per.avif",
+    "scale": 2,
+    "text": "روباه و خروس\n(рубóх ва харýс)\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\n(ман ми хохáм достóн парú ... ро бехунáм)",
+    "fontSize": "1.35",
+    "image": "../assets/twice.avif",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
+  },
+  "29": {
+    "cardAsset": "../assets/property-card-per.avif",
+    "scale": 2,
+    "text": "درباره مرد تنبل\n(дарборé мард танбáль)\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\n(ман ми хохáм достóн парú ... ро бехунáм)",
+    "fontSize": "1.35",
+    "image": "../assets/fox.avif",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo"
   },
   "31": {
     "cardAsset": "../assets/property-card-jap.avif",

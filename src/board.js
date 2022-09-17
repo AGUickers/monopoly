@@ -44,14 +44,87 @@ let defaultbgm = undefined;
 
 let currentquestion = undefined;
 
+function loadAllAssets() {
+  var preload = new createjs.LoadQueue(true);
+  //This will trigger once as soon as the page is loaded.
+  let roll = Math.floor(Math.random() * 3) + 1;
+  defaultbgm = new Audio(`../assets/monopoly${roll}.mp3`);
+  let count = 0;
+  preload.loadFile("../assets/items.json")
+  preload.loadFile("../assets/coords.json")
+  preload.loadFile("../assets/MONOPOLY.ttf")
+  preload.loadFile("../assets/background.avif")
+  preload.loadFile("../assets/dice.avif")
+  preload.loadFile("../assets/board.avif")
+  preload.loadFile("../assets/player1.avif")
+  preload.loadFile("../assets/player2.avif")
+  preload.loadFile("../assets/cover.avif")
+  preload.loadFile("../assets/property-card-ch.avif")
+  preload.loadFile("../assets/property-card-eng.avif")
+  preload.loadFile("../assets/property-card-ger.avif")
+  preload.loadFile("../assets/property-card-jap.avif")
+  preload.loadFile("../assets/property-card-kor.avif")
+  preload.loadFile("../assets/property-card-spa.avif")
+  preload.loadFile("../assets/property-card-fr.avif")
+  preload.loadFile("../assets/property-card-per.avif")
+  preload.loadFile("../assets/card.avif")
+  preload.loadFile("../assets/stockcard.avif")
+  preload.loadFile("../assets/big-ben.avif")
+  preload.loadFile("../assets/borussia.avif")
+  preload.loadFile("../assets/buckingham-palace.avif")
+  preload.loadFile("../assets/churros.avif")
+  preload.loadFile("../assets/enhyphen.avif")
+  preload.loadFile("../assets/frankfurt.avif")
+  preload.loadFile("../assets/gazpacho.avif")
+  preload.loadFile("../assets/gongyuan.avif")
+  preload.loadFile("../assets/karaoke.avif")
+  preload.loadFile("../assets/london-eye.avif")
+  preload.loadFile("../assets/mangaimage.avif")
+  preload.loadFile("../assets/munchen.avif")
+  preload.loadFile("../assets/paella.avif")
+  preload.loadFile("../assets/shangdian.avif")
+  preload.loadFile("../assets/shitang.avif")
+  preload.loadFile("../assets/stray.avif")
+  preload.loadFile("../assets/sushi.avif")
+  preload.loadFile("../assets/twice.avif")
+  preload.loadFile("../assets/dior.avif")
+  preload.loadFile("../assets/chanel.avif")
+  preload.loadFile("../assets/west.avif")
+  preload.loadFile("../assets/bu.avif")
+  preload.loadFile("../assets/fox.avif")
+  preload.loadFile("../assets/lazy.avif")
+  preload.loadFile(`../assets/monopoly${roll}.mp3`)
+  preload.loadFile("../assets/monopoly_chance.wav")
+  preload.loadFile("../assets/monopoly_correct.wav")
+  preload.loadFile("../assets/monopoly_dice.wav")
+  preload.loadFile("../assets/monopoly_lose.wav")
+  preload.loadFile("../assets/monopoly_select.wav")
+  preload.loadFile("../assets/monopoly_win.wav")
+  preload.loadFile("../assets/thunder.mp3")
+  preload.loadFile("../assets/blessed.mp3")
+  preload.loadFile("../assets/fancy.mp3")
+  preload.loadFile("../assets/liar.webm")
+  preload.loadFile("../assets/sorikkun.webm")
+  preload.loadFile("../assets/fancy.mp4")
+  preload.on("fileload", function() {
+    count++;
+    console.log("Files loaded: " + count);
+  }, this)
+  preload.on("complete", load, this);
+}
+
 function load() {
   screen.orientation.onchange = function() {
     let elem = document.documentElement;
     elem.requestFullscreen("hide");
   }
-  //This will trigger once as soon as the page is loaded.
-  let roll = Math.floor(Math.random() * 3) + 1;
-  defaultbgm = new Audio(`../assets/monopoly${roll}.mp3`);
+  console.log("All assets loaded!");
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("field").style.display = "block";
+  document.getElementById("dice").style.display = "block";
+  document.getElementsByClassName("exit")[0].style.display = "inline-block";
+  document.getElementsByClassName("exit")[1].style.display = "inline-block";
+  document.getElementById("score").style.display = "block";
   bgm = defaultbgm;
   bgm.loop = true;
   bgm.play();
@@ -324,4 +397,4 @@ function setMusic(path) {
   bgm = common.playMusic(path, true);
 }
 
-load();
+loadAllAssets();
