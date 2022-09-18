@@ -43,6 +43,15 @@ let bgm = undefined;
 let defaultbgm = undefined;
 
 let currentquestion = undefined;
+let currentmove = 0;
+
+let movesTeam1 = [
+  0, 3, 3, 6, 2, 5, 6, 4, 6, 3
+]
+
+let movesTeam2 = [
+  0, 2, 6, 3, 4, 6, 3, 3, 4, 6
+]
 
 async function loadMandatoryAssets() {
   var preload = new createjs.LoadQueue(true);
@@ -143,6 +152,7 @@ function load() {
   bgm = defaultbgm;
   bgm.loop = true;
   bgm.play();
+  currentmove = 1;
   const menu = common.getElement("exit");
   menu.onclick = function () {
     common.goToScreen("menu.html");
@@ -307,7 +317,17 @@ function throwDice() {
   //Let's get a number from 1 to 6 first.
   const dice = common.getElement("dice");
   dice.style.display = "none";
-  let roll = Math.floor(Math.random() * 6) + 1;
+  let roll = undefined;
+  switch (currentTeam) {
+    case 1:
+      roll = movesTeam1[currentmove];
+      console.log(roll);
+      break;
+    case 2:
+      roll = movesTeam2[currentmove];
+      console.log(roll);
+      break;  
+  }
   console.log(roll);
   common.playSound("../assets/monopoly_dice.wav");
   gotoPos(currentTeam, currentpos[currentTeam - 1] + roll);
@@ -358,9 +378,6 @@ function setPos(team, x, y) {
   console.log(`New position: ${x}, ${y}`);
 }
 
-
-//5.5
-
 function gotoPos(team, pos) {
   //Let's iterate over positions starting from 0 and ending in 39.
   console.log("Moving team " + team);
@@ -405,6 +422,8 @@ function switchTeam() {
       break;
     case 2:
       currentTeam = 1;
+      currentmove++;
+      if (currentmove > 9) endGame();
       break;
   }
 }
