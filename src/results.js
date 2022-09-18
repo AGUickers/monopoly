@@ -14,6 +14,7 @@ function load() {
   exitButton.onclick = function () {
     common.exit();
   };
+  common.playSound("monopoly_victory.wav");
 }
 
 load();
