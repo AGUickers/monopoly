@@ -29,8 +29,8 @@ fetch("../assets/coords.json")
 
 //Fill this with zeros for now.
 let owned = [
-  -1, 0, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 0, 0, 0, 0, -1, 0, 0, -1, 0, -1,
-  0, 0, 0, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, -1, 0,
+  -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ];
 console.log(owned.length);
 
@@ -44,7 +44,7 @@ let defaultbgm = undefined;
 
 let currentquestion = undefined;
 
-async function loadAllAssets() {
+async function loadMandatoryAssets() {
   var preload = new createjs.LoadQueue(true);
   //This will trigger once as soon as the page is loaded.
   let roll = Math.floor(Math.random() * 3) + 1;
@@ -93,19 +93,14 @@ async function loadAllAssets() {
   "../assets/bu.avif",
   "../assets/fox.avif",
   "../assets/lazy.avif",
+  "../assets/hiragana.avif",
   `../assets/monopoly${roll}.mp3`,
   "../assets/monopoly_chance.wav",
   "../assets/monopoly_correct.wav",
   "../assets/monopoly_dice.wav",
   "../assets/monopoly_lose.wav",
   "../assets/monopoly_select.wav",
-  "../assets/monopoly_win.wav",
-  "../assets/thunder.mp3",
-  "../assets/blessed.mp3",
-  "../assets/fancy.mp3",
-  "../assets/liar.webm",
-  "../assets/sorikkun.webm",
-  "../assets/fancy.mp4"
+  "../assets/monopoly_win.wav"
 ]
   preload.loadManifest(manifest);
   preload.setMaxConnections(60);
@@ -114,6 +109,23 @@ async function loadAllAssets() {
     console.log("Files loaded: " + count);
   }, this)
   preload.on("complete", load, this);
+}
+
+async function loadMovies() {
+  var movieLoad = new createjs.LoadQueue(true);
+  var movies = [
+    "../assets/thunder.mp3",
+    "../assets/blessed.mp3",
+    "../assets/fancy.mp3",
+    "../assets/liar.webm",
+    "../assets/sorikkun.webm",
+    "../assets/fancy.mp4",
+    "../assets/rain.mp4",
+    "../assets/run.mp4",
+    "../assets/bye.mp4"
+  ]
+  movieLoad.loadManifest(movies);
+  movieLoad.setMaxConnections(60);
 }
 
 function load() {
@@ -137,7 +149,7 @@ function load() {
   };
   const giveup = common.getElement("giveup");
   giveup.onclick = function () {
-    common.goToScreen("results.html");
+    endGame();
   };
   const dice = common.getElement("dice");
   dice.onclick = function () {
@@ -198,6 +210,11 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
       common.playSound("monopoly_select.wav");
       common.playCutScene("cutscene", currentquestion.video);
     };
+    document.onkeydown = (ev => {
+      if (ev.key === "Enter") {
+        common.skipCutScene("cutscene");
+      }
+    })
   }
 
   switch (buttontype) {
@@ -213,6 +230,11 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
         if (currentquestion.successvideo) {
           bgm.pause();
           common.playCutScene("cutscene", currentquestion.successvideo);
+          document.onkeydown = (ev => {
+            if (ev.key === "Enter") {
+              common.skipCutScene("cutscene");
+            }
+          })
         }
       };
       break;
@@ -233,11 +255,16 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
         //Let's set the ownership.
         setOwnership(currentpos[currentTeam - 1], currentTeam);
         //Let's also award some points.
-        editPoints(currentTeam, 1000);
+        editPoints(currentTeam, currentquestion.score);
         switchTeam();
         if (currentquestion.successvideo) {
           bgm.pause();
           common.playCutScene("cutscene", currentquestion.successvideo);
+          document.onkeydown = (ev => {
+            if (ev.key === "Enter") {
+              common.skipCutScene("cutscene");
+            }
+          })
         }
       };
       const NoButton = common.createElement("button", "No", "No", common.page);
@@ -311,6 +338,11 @@ function editPoints(team, value) {
   score.innerText = parseInt(score.innerText, 10) + value;
 }
 
+function getPoints(team) {
+  const score = common.getElement("score" + team);
+  return parseInt(score.innerText, 10);
+}
+
 function setPos(team, x, y) {
   const player = common.getElement("player" + team);
   switch (team) {
@@ -336,7 +368,8 @@ function gotoPos(team, pos) {
   currentpos[team - 1] = pos;
   if (pos > 39)  {
     currentpos[team - 1] = 0;
-    setPos(team, coords[0].X, coords[0].Y)
+    setPos(team, coords[0].X, coords[0].Y);
+    allClear();
   } else setPos(team, coords[pos].X, coords[pos].Y);
 }
 
@@ -400,4 +433,24 @@ function setMusic(path) {
   bgm = common.playMusic(path, true);
 }
 
-loadAllAssets();
+function allClear() {
+  let ownedcount = 0;
+  console.log("Checking status!")
+  for (let index = 0; index < owned.length; index++) {
+    var status = checkOwnership(index);
+    if (status === true) {
+      ownedcount++;
+    }
+    console.log(ownedcount);
+    if (ownedcount >= 35) {
+      endGame();
+    }
+  }
+}
+
+function endGame() {
+  common.goToScreen(`results.html?score1=${getPoints(1)}&score2=${getPoints(2)}`);
+}
+
+loadMandatoryAssets();
+loadMovies();

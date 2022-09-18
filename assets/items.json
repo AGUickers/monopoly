@@ -7,7 +7,17 @@
     "image": "../assets/london-eye.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 200
+  },
+  "2": {
+    "cardAsset": "../assets/stockcard.avif",
+    "scale": 1.5,
+    "text": "Что значит 森 (sēn)(сэн),\nесли он состоит из трёх 木 (mù)(му)?\n(на русском 木 = дерево)",
+    "fontSize": "1.7",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
   },
   "3": {
     "cardAsset": "../assets/property-card-eng.avif",
@@ -17,7 +27,17 @@
     "image": "../assets/buckingham-palace.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 200
+  },
+  "4": {
+    "cardAsset": "../assets/hiragana.avif",
+    "scale": 2.29,
+    "text": "",
+    "fontSize": "1.7",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
   },
   "5": {
     "cardAsset": "../assets/property-card-eng.avif",
@@ -27,222 +47,337 @@
     "image": "../assets/big-ben.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 200
   },
   "6": {
     "cardAsset": "../assets/property-card-ger.avif",
     "scale": 2,
-    "text": "Bayern München\n(Байе(р)н Мюнхен)\n\n\n\n\n\n\n\nIch bin für...\n(Ихь бин фюр...)",
+    "text": "Bayern München\nБайе(р)н Мюнхен\n\n\n\n\n\n\n\nIch bin für...\nИхь бин фюр...",
     "fontSize": "2",
     "image": "../assets/munchen.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 400
+  },
+  "7": {
+    "cardAsset": "../assets/stockcard.avif",
+    "scale": 1.5,
+    "text": "Что значит 火山 (huǒ shān)(хуо шан),\nесли он состоит из\n火 (huǒ)(хуо) - огонь и 山 (shān)(шан) - гора?",
+    "fontSize": "1.7",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
   },
   "8": {
     "cardAsset": "../assets/property-card-ger.avif",
     "scale": 2,
-    "text": "Borussia Dortmund\n(Боруссия Дортмунд)\n\n\n\n\n\n\n\nIch bin für...\n(Ихь бин фюр...)",
+    "text": "Borussia Dortmund\nБоруссия Дортмунд\n\n\n\n\n\n\n\nIch bin für...\nИхь бин фюр...",
     "fontSize": "2",
     "image": "../assets/borussia.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 400
   },
   "9": {
     "cardAsset": "../assets/property-card-ger.avif",
     "scale": 2,
-    "text": "Eintracht Frankfurt\n(Айнтрахт Франкфурт)\n\n\n\n\n\n\n\nIch bin für...\n(Ихь бин фюр...)",
+    "text": "Eintracht Frankfurt\nАйнтрахт Франкфурт\n\n\n\n\n\n\n\nIch bin für...\nИхь бин фюр...",
     "fontSize": "2",
     "image": "../assets/frankfurt.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 400
   },
   "11": {
     "cardAsset": "../assets/property-card-spa.avif",
     "scale": 2,
-    "text": "Gazpacho\n(Гаспаччо)\n\n\n\n\n\n\n\nQuiero comer ...\n(КийЭро комЭр ...)",
+    "text": "Gazpacho\nГаспаччо\n\n\n\n\n\n\n\nQuiero comer ...\nКийЭро комЭр ...",
     "fontSize": "2",
     "image": "../assets/gazpacho.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 600
+  },
+  "12": {
+    "cardAsset": "../assets/stockcard.avif",
+    "scale": 1.5,
+    "text": "Как можно перевести эту фразу?\n1. Бежим, Смоуки\n2. Нас сейчас убьют, Смоуки\n3. Не забудь заплатить, Смоуки",
+    "fontSize": "2",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "video": "../assets/run.mp4",
+    "score": 2000
   },
   "13": {
     "cardAsset": "../assets/property-card-spa.avif",
     "scale": 2,
-    "text": "Churros\n(чуррос)\n\n\n\n\n\n\n\nQuiero comer ...\n(КийЭро комЭр ...)",
+    "text": "Churros\nчуррос\n\n\n\n\n\n\n\nQuiero comer ...\nКийЭро комЭр ...",
     "fontSize": "2",
     "image": "../assets/churros.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 600
   },
   "14": {
     "cardAsset": "../assets/property-card-spa.avif",
     "scale": 2,
-    "text": "Paella\n(паэйа)\n\n\n\n\n\n\n\nQuiero comer ...\n(КийЭро комЭр ...)",
+    "text": "Paella\nпаэйа\n\n\n\n\n\n\n\nQuiero comer ...\nКийЭро комЭр ...",
     "fontSize": "2",
     "image": "../assets/paella.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 600
+  },
+  "15": {
+    "cardAsset": "../assets/stockcard.avif",
+    "scale": 1.5,
+    "text": "Что значит 老人 (lǎo rén)(лао жен),\nесли он состоит из\n老 (lǎо)(лао) - старый и 人 (rén)(жен) - человек?",
+    "fontSize": "1.7",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
   },
   "16": {
     "cardAsset": "../assets/property-card-fr.avif",
     "scale": 2,
-    "text": "Dior\n(диор)\n\n\n\n\n\n\n\nje veaux acheter\n(Же вё аштер)",
+    "text": "Dior\nдиор\n\n\n\n\n\n\n\nje veaux acheter\nЖе вё аштер",
     "fontSize": "2",
     "image": "../assets/dior.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 600
+  },
+  "17": {
+    "cardAsset": "../assets/stockcard.avif",
+    "scale": 1.5,
+    "text": "Как можно перевести эту фразу?\n1. Спасибо\n2. До свидания\n3. Как дела?",
+    "fontSize": "2",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "video": "../assets/bye.mp4",
+    "score": 2000
   },
   "18": {
     "cardAsset": "../assets/property-card-fr.avif",
     "scale": 2,
-    "text": "Chanel\n(шанель)\n\n\n\n\n\n\n\nje veaux acheter\n(Же вё аштер)",
+    "text": "Chanel\nшанель\n\n\n\n\n\n\n\nje veaux acheter\nЖе вё аштер",
     "fontSize": "2",
     "image": "../assets/chanel.avif",
     "imageScale": "1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 600
   },
   "19": {
     "cardAsset": "../assets/property-card-fr.avif",
     "scale": 2,
-    "text": "West\n(вест)\n\n\n\n\n\n\n\nje veaux acheter\n(Же вё аштер)",
+    "text": "West\nвест\n\n\n\n\n\n\n\nje veaux acheter\nЖе вё аштер",
     "fontSize": "2",
     "image": "../assets/west.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 600
   },
   "21": {
     "cardAsset": "../assets/property-card-kor.avif",
     "scale": 2,
-    "text": "스트레이 키즈\n(сытырэи киджи)\n\n\n\n\n\n\n\n저는 ... 를 들어요\nджонын ... рыль тыроё",
+    "text": "스트레이 키즈\nсытырэи киджи\n\n\n\n\n\n\n\n저는 ... 를 들어요\nджонын ... рыль тыроё",
     "fontSize": "2",
     "image": "../assets/stray.avif",
     "imageScale": "1.1",
     "textColor": "black",
     "buttonType": "YesNo",
     "musicOverride": "../assets/thunder.mp3",
-    "successvideo": "../assets/sorikkun.webm"
+    "successvideo": "../assets/sorikkun.webm",
+    "score": 800
+  },
+  "22": {
+    "cardAsset": "../assets/stockcard.avif",
+    "scale": 1.5,
+    "text": "Что значит 天气 (tiān qì)(тхиан чи),\nесли он состоит из\n天 (tiān)(тхиан) - небо и 气 (qì)(чи) - воздух?",
+    "fontSize": "1.7",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
   },
   "23": {
     "cardAsset": "../assets/property-card-kor.avif",
     "scale": 2,
-    "text": "엔하이픈\n(энхайпын)\n\n\n\n\n\n\n\n저는 ... 를 들어요\nджонын ... рыль тыроё",
+    "text": "엔하이픈\nэнхайпын\n\n\n\n\n\n\n\n저는 ... 를 들어요\nджонын ... рыль тыроё",
     "fontSize": "2",
     "image": "../assets/enhyphen.avif",
     "imageScale": "1.1",
     "textColor": "black",
     "buttonType": "YesNo",
     "musicOverride": "../assets/blessed.mp3",
-    "successvideo": "../assets/liar.webm"
+    "successvideo": "../assets/liar.webm",
+    "score": 800
   },
   "24": {
     "cardAsset": "../assets/property-card-kor.avif",
     "scale": 2,
-    "text": "트와이스\n(тывайсы)\n\n\n\n\n\n\n\n저는 ... 를 들어요\nджонын ... рыль тыроё",
+    "text": "트와이스\nтывайсы\n\n\n\n\n\n\n\n저는 ... 를 들어요\nджонын ... рыль тыроё",
     "fontSize": "2",
     "image": "../assets/twice.avif",
     "imageScale": "1.1",
     "textColor": "black",
     "buttonType": "YesNo",
     "musicOverride": "../assets/fancy.mp3",
-    "successvideo": "../assets/fancy.mp4"
+    "successvideo": "../assets/fancy.mp4",
+    "score": 800
+  },
+  "25": {
+    "cardAsset": "../assets/stockcard.avif",
+    "scale": 1.5,
+    "text": "To make a mountain out of a molehill.\nЧто означает эта фраза?",
+    "fontSize": "2",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
   },
   "26": {
     "cardAsset": "../assets/property-card-per.avif",
     "scale": 2,
-    "text": "بو علی سینا\n(бу алú синó)\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\n(ман ми хохáм достóн парú ... ро бехунáм)",
+    "text": "بو علی سینا\nбу алú синó\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\nман ми хохáм достóн парú ... ро бехунáм",
     "fontSize": "1.35",
     "image": "../assets/bu.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 900
   },
   "27": {
     "cardAsset": "../assets/property-card-per.avif",
     "scale": 2,
-    "text": "روباه و خروس\n(рубóх ва харýс)\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\n(ман ми хохáм достóн парú ... ро бехунáм)",
+    "text": "روباه و خروس\nрубóх ва харýс\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\nман ми хохáм достóн парú ... ро бехунáм",
     "fontSize": "1.35",
     "image": "../assets/fox.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 900
+  },
+  "28": {
+    "cardAsset": "../assets/stockcard.avif",
+    "scale": 1.5,
+    "text": "Что значит 口水 (kǒu shuǐ)(кхоу шуэй),\nесли он состоит из\n口 (kǒu)(кхоу) - рот и 水 (shuǐ)(шуэй) - вода?",
+    "fontSize": "1.7",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
   },
   "29": {
     "cardAsset": "../assets/property-card-per.avif",
     "scale": 2,
-    "text": "درباره مرد تنبل\n(дарборé мард танбáль)\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\n(ман ми хохáм достóн парú ... ро бехунáм)",
+    "text": "درباره مرد تنبل\nдарборé мард танбáль\n\n\n\n\n\n\n\n\n\n\n\nمن می خواهم داستان پری ... را بخوانم\nман ми хохáм достóн парú ... ро бехунáм",
     "fontSize": "1.35",
     "image": "../assets/lazy.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 900
   },
   "31": {
     "cardAsset": "../assets/property-card-jap.avif",
     "scale": 2,
-    "text": "寿司バー\n(сушиба:)\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
+    "text": "寿司バー\nсушиба:\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
     "fontSize": "1.8",
     "image": "../assets/sushi.avif",
     "imageScale": "1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 1200
   },
   "32": {
     "cardAsset": "../assets/property-card-jap.avif",
     "scale": 2,
-    "text": "カラオケ\n(караоке)\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
+    "text": "カラオケ\nкараоке\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
     "fontSize": "1.8",
     "image": "../assets/karaoke.avif",
     "imageScale": "1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 1200
+  },
+  "33": {
+    "cardAsset": "../assets/stockcard.avif",
+    "scale": 1.5,
+    "text": "From the frying pan into the fire.\nЧто означает эта фраза?",
+    "fontSize": "2",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
   },
   "34": {
     "cardAsset": "../assets/property-card-jap.avif",
     "scale": 2,
-    "text": "マンガ店\n(магатэн)\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
+    "text": "マンガ店\nмагатэн\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
     "fontSize": "1.8",
     "image": "../assets/mangaimage.avif",
     "imageScale": "1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 1200
   },
   "35": {
     "cardAsset": "../assets/property-card-ch.avif",
     "scale": 2,
-    "text": "商店 (shāng diàn)\n(шан диэн)\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\n(во чу)",
+    "text": "商店 (shāng diàn)\nшан диэн\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
     "fontSize": "1.8",
     "image": "../assets/shangdian.avif",
     "imageScale": "1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 1500
+  },
+  "36": {
+    "cardAsset": "../assets/stockcard.avif",
+    "scale": 1.5,
+    "text": "Дословно break a leg - сломать ногу.\nКакое ещё значение может\nбыть у данной фразы?",
+    "fontSize": "2",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
   },
   "37": {
     "cardAsset": "../assets/property-card-ch.avif",
     "scale": 2,
-    "text": "公园 (gōng yuán)\n(гон юан)\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\n(во чу)",
+    "text": "公园 (gōng yuán)\nгон юан\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
     "fontSize": "1.8",
     "image": "../assets/gongyuan.avif",
     "imageScale": "1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 1500
+  },
+  "38": {
+    "cardAsset": "../assets/stockcard.avif",
+    "scale": 1.5,
+    "text": "Как можно перевести эту фразу?\n1. Машина машина машина\n2. Дождь дождь дождь\n3. Зонтик зонтик зонтик",
+    "fontSize": "2",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "video": "../assets/rain.mp4",
+    "score": 2000
   },
   "39": {
     "cardAsset": "../assets/property-card-ch.avif",
     "scale": 2,
-    "text": "食堂 (shí táng)\n(ши тхан)\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\n(во чу)",
+    "text": "食堂 (shí táng)\nши тхан\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
     "fontSize": "1.8",
     "image": "../assets/shitang.avif",
     "imageScale": "1.1",
     "textColor": "black",
-    "buttonType": "YesNo"
+    "buttonType": "YesNo",
+    "score": 1500
   }
 }

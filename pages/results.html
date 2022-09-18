@@ -8,7 +8,7 @@
     />
     <title>Monopoly</title>
     <script src="../src/common-scripts.js" type="module"></script>
-    <script src="../src/menu.js" type="module"></script>
+    <script src="../src/results.js" type="module"></script>
     <link rel="preload prefetch" href="../assets/background.avif" as="image">
     <link rel="preload prefetch" href="../assets/logo.avif" as="image">
     <link rel="preload prefetch prerender" href="./board.html">
@@ -25,46 +25,52 @@
         font-family: Monopoly, sans-serif;
         position: fixed;
       }
-      button.exitbutton {
+      div.score {
+        position: fixed;
+        font-family: Monopoly, sans-serif;
+        color:aliceblue;
+        left: 0;
+        right: 0;
+        top: 50%;
+        bottom: 0;
         display: block;
         margin: auto;
-        margin-top: 5px;
         align-self: center;
+        text-align: center;
         width: auto;
         height: auto;
-        bottom: 5vmax;
-        left: 47.5vmax;
-        font-size: 3vmax;
+        font-size: 5vmin;
+      }
+      button.exitbutton {
+        position: fixed;
+        left: 0;
+        right: 0%;
+        top: 70%;
+        bottom: 0%;
+        display: block;
+        margin: auto;
+        align-self: center;
+        width: 17vmin;
+        height: 7vmin;
+        font-size: 5vmin;
         text-align: center;
         color: aliceblue;
         background-color: red;
       }
       img.logo {
-        display: block;
         position: fixed;
-        top: 5vmax;
-        left: 35vmax;
-        width: 30vmax;
+        left: 0;
+        right: 0%;
+        top: 0%;
+        bottom: 50%;
+        width: 40%;
         height: auto;
-        align-self: center;
-      }
-      div.score {
-        position: fixed;
-        width: 25vmax;
-        height: auto;
-        top: 25vmax;
-        left: 42vmax;
         display: block;
         margin: auto;
-        text-align: center;
-        height: fit-content;
-        word-wrap: break-word;
-        white-space: normal;
-        width: fit-content;
-        color: antiquewhite;
-        background-color: rebeccapurple;
-        font-size: 5vmin;
-        font-family: Monopoly, sans-serif;
+        align-self: center;
+        display: block;
+        margin: auto;
+        color: aliceblue;
       }
     </style>
     <img class="logo" id="logo" src="../assets/logo.avif" />
