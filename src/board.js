@@ -45,6 +45,8 @@ let defaultbgm = undefined;
 let currentquestion = undefined;
 let currentmove = 0;
 
+let mode = "scripted";
+
 let movesTeam1 = [
   0, 3, 3, 6, 2, 5, 6, 4, 6, 3
 ]
@@ -165,6 +167,17 @@ function load() {
   dice.onclick = function () {
     throwDice();
   };
+  if (window.location.search) {
+    let completed = window.location.search.substring(1)
+    .split("=")[1]
+    .split("&")[0];
+    console.log(completed);
+    if (completed === "1"){
+      spawnTextBox("../assets/stockcard.avif", 1.5, "Congratulations!\nYou completed the game, and now you can try your luck again.\nSomething special can await you here!", 1.5, TextBoxButtonType.OK);
+      mode = "truerandom";
+      console.log(mode);
+    }
+  }
 }
 
 function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
@@ -195,8 +208,10 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   cardtext.style.position = "absolute";
   cardtext.style.zIndex = "3";
   cardtext.style.fontSize = fontSize + "vmax";
-  cardtext.style.color = currentquestion.textColor;
 
+
+  if (currentquestion) {
+    cardtext.style.color = currentquestion.textColor;
   if (currentquestion.image) {
   const cardimage = common.createElement(
     "img",
@@ -226,6 +241,8 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
       }
     })
   }
+
+}
 
   switch (buttontype) {
     case TextBoxButtonType.OK:
@@ -318,14 +335,23 @@ function throwDice() {
   const dice = common.getElement("dice");
   dice.style.display = "none";
   let roll = undefined;
-  switch (currentTeam) {
-    case 1:
-      roll = movesTeam1[currentmove];
-      console.log(roll);
+  switch (mode) {
+    case "scripted":
+      switch (currentTeam) {
+        case 1:
+          roll = movesTeam1[currentmove];
+          console.log(roll);
+          break;
+        case 2:
+          roll = movesTeam2[currentmove];
+          console.log(roll);
+          break;  
+      }
       break;
-    case 2:
-      roll = movesTeam2[currentmove];
-      console.log(roll);
+    case "truerandom":
+      roll = Math.floor(Math.random() * 6) + 1;
+      break;
+    default:
       break;  
   }
   console.log(roll);
@@ -423,7 +449,7 @@ function switchTeam() {
     case 2:
       currentTeam = 1;
       currentmove++;
-      if (currentmove > 9) endGame();
+      if (currentmove > 9 && mode === "scripted") endGame();
       break;
   }
 }
