@@ -2,8 +2,8 @@ import * as common from "./common-scripts.js";
 
 function loadAllAssets() {
   var preload = new createjs.LoadQueue(true);
-  preload.loadFile("../assets/background.avif")
-  preload.loadFile("../assets/logo.avif")
+  preload.loadFile("../assets/background.avif");
+  preload.loadFile("../assets/logo.avif");
   preload.on("complete", load, this);
 }
 

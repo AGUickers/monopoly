@@ -9,13 +9,16 @@
     <title>Monopoly</title>
     <script src="../src/common-scripts.js" type="module"></script>
     <script src="../src/results.js" type="module"></script>
-    <link rel="preload prefetch" href="../assets/background.avif" as="image">
-    <link rel="preload prefetch" href="../assets/logo.avif" as="image">
-    <link rel="preload prefetch prerender" href="./board.html">
+    <link rel="preload prefetch" href="../assets/background.avif" as="image" />
+    <link rel="preload prefetch" href="../assets/logo.avif" as="image" />
+    <link rel="preload prefetch prerender" href="./board.html" />
   </head>
   <body>
     <style>
-      @font-face { font-family: Monopoly; src: url('../assets/MONOPOLY.ttf'); }       
+      @font-face {
+        font-family: Monopoly;
+        src: url("../assets/MONOPOLY.ttf");
+      }
       body {
         background-image: url("../assets/background.avif");
         display: grid;
@@ -28,7 +31,7 @@
       div.score {
         position: fixed;
         font-family: Monopoly, sans-serif;
-        color:aliceblue;
+        color: aliceblue;
         left: 0;
         right: 0;
         top: 50%;
@@ -92,9 +95,10 @@
     </style>
     <img class="logo" id="logo" src="../assets/logo.avif" />
     <div class="score" id="score">
-        Final Score:<br>
-        Team 1: <span class="score1" id="score1">0</span><br>Team 2: <span class="score2" id="score2">0</span><br>
-        Congratulations!
+      Final Score:<br />
+      Team 1: <span class="score1" id="score1">0</span><br />Team 2:
+      <span class="score2" id="score2">0</span><br />
+      Congratulations!
     </div>
     <button class="playagain" id="playagain">Play Again</button>
     <button class="exitbutton" id="exitbutton">Exit</button>

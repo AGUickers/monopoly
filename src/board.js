@@ -2,11 +2,6 @@ import * as common from "./common-scripts.js";
 
 let currentTeam = 1;
 
-let maxleftvalue = 0;
-let maxupvalue = 100;
-let minleftvalue = 85;
-let minupvalue = 13;
-
 let currentpos = [0, 0];
 //Position can only iterate up to 39.
 
@@ -18,19 +13,19 @@ fetch("../assets/items.json")
   .then((json) => {
     console.log(json);
     questions = json;
-});
+  });
 
 fetch("../assets/coords.json")
   .then((response) => response.json())
   .then((json) => {
     console.log(json);
     coords = json;
-});
+  });
 
 //Fill this with zeros for now.
 let owned = [
-  -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 ];
 console.log(owned.length);
 
@@ -47,13 +42,9 @@ let currentmove = 0;
 
 let mode = "scripted";
 
-let movesTeam1 = [
-  0, 3, 3, 6, 2, 5, 6, 4, 6, 3
-]
+let movesTeam1 = [0, 3, 3, 6, 2, 5, 6, 4, 6, 3];
 
-let movesTeam2 = [
-  0, 2, 6, 3, 4, 6, 3, 3, 4, 6
-]
+let movesTeam2 = [0, 2, 6, 3, 4, 6, 3, 3, 4, 6];
 
 async function loadMandatoryAssets() {
   var preload = new createjs.LoadQueue(true);
@@ -61,64 +52,69 @@ async function loadMandatoryAssets() {
   let roll = Math.floor(Math.random() * 3) + 1;
   defaultbgm = new Audio(`../assets/monopoly${roll}.mp3`);
   let count = 0;
-  let manifest = ["../assets/items.json",
-  "../assets/coords.json",
-  "../assets/MONOPOLY.ttf",
-  "../assets/background.avif",
-  "../assets/dice.avif",
-  "../assets/board.avif",
-  "../assets/player1.avif",
-  "../assets/player2.avif",
-  "../assets/cover.avif",
-  "../assets/property-card-ch.avif",
-  "../assets/property-card-eng.avif",
-  "../assets/property-card-ger.avif",
-  "../assets/property-card-jap.avif",
-  "../assets/property-card-kor.avif",
-  "../assets/property-card-spa.avif",
-  "../assets/property-card-fr.avif",
-  "../assets/property-card-per.avif",
-  "../assets/card.avif",
-  "../assets/stockcard.avif",
-  "../assets/big-ben.avif",
-  "../assets/borussia.avif",
-  "../assets/buckingham-palace.avif",
-  "../assets/churros.avif",
-  "../assets/enhyphen.avif",
-  "../assets/frankfurt.avif",
-  "../assets/gazpacho.avif",
-  "../assets/gongyuan.avif",
-  "../assets/karaoke.avif",
-  "../assets/london-eye.avif",
-  "../assets/mangaimage.avif",
-  "../assets/munchen.avif",
-  "../assets/paella.avif",
-  "../assets/shangdian.avif",
-  "../assets/shitang.avif",
-  "../assets/stray.avif",
-  "../assets/sushi.avif",
-  "../assets/twice.avif",
-  "../assets/dior.avif",
-  "../assets/chanel.avif",
-  "../assets/west.avif",
-  "../assets/bu.avif",
-  "../assets/fox.avif",
-  "../assets/lazy.avif",
-  "../assets/hiragana.avif",
-  `../assets/monopoly${roll}.mp3`,
-  "../assets/monopoly_chance.wav",
-  "../assets/monopoly_correct.wav",
-  "../assets/monopoly_dice.wav",
-  "../assets/monopoly_lose.wav",
-  "../assets/monopoly_select.wav",
-  "../assets/monopoly_win.wav"
-]
+  let manifest = [
+    "../assets/items.json",
+    "../assets/coords.json",
+    "../assets/MONOPOLY.ttf",
+    "../assets/background.avif",
+    "../assets/dice.avif",
+    "../assets/board.avif",
+    "../assets/player1.avif",
+    "../assets/player2.avif",
+    "../assets/cover.avif",
+    "../assets/property-card-ch.avif",
+    "../assets/property-card-eng.avif",
+    "../assets/property-card-ger.avif",
+    "../assets/property-card-jap.avif",
+    "../assets/property-card-kor.avif",
+    "../assets/property-card-spa.avif",
+    "../assets/property-card-fr.avif",
+    "../assets/property-card-per.avif",
+    "../assets/card.avif",
+    "../assets/stockcard.avif",
+    "../assets/big-ben.avif",
+    "../assets/borussia.avif",
+    "../assets/buckingham-palace.avif",
+    "../assets/churros.avif",
+    "../assets/enhyphen.avif",
+    "../assets/frankfurt.avif",
+    "../assets/gazpacho.avif",
+    "../assets/gongyuan.avif",
+    "../assets/karaoke.avif",
+    "../assets/london-eye.avif",
+    "../assets/mangaimage.avif",
+    "../assets/munchen.avif",
+    "../assets/paella.avif",
+    "../assets/shangdian.avif",
+    "../assets/shitang.avif",
+    "../assets/stray.avif",
+    "../assets/sushi.avif",
+    "../assets/twice.avif",
+    "../assets/dior.avif",
+    "../assets/chanel.avif",
+    "../assets/west.avif",
+    "../assets/bu.avif",
+    "../assets/fox.avif",
+    "../assets/lazy.avif",
+    "../assets/hiragana.avif",
+    `../assets/monopoly${roll}.mp3`,
+    "../assets/monopoly_chance.wav",
+    "../assets/monopoly_correct.wav",
+    "../assets/monopoly_dice.wav",
+    "../assets/monopoly_lose.wav",
+    "../assets/monopoly_select.wav",
+    "../assets/monopoly_win.wav",
+  ];
   preload.loadManifest(manifest);
   preload.setMaxConnections(60);
-  preload.on("fileload", function() {
-    count++;
-    console.log("Files loaded: " + count);
-  }, this)
+  preload.on(
+    "fileload",
+    function () {
+      count++;
+      console.log("Files loaded: " + count);
+    },
+    this
+  );
   preload.on("complete", load, this);
 }
 
@@ -133,17 +129,17 @@ async function loadMovies() {
     "../assets/fancy.mp4",
     "../assets/rain.mp4",
     "../assets/run.mp4",
-    "../assets/bye.mp4"
-  ]
+    "../assets/bye.mp4",
+  ];
   movieLoad.loadManifest(movies);
   movieLoad.setMaxConnections(60);
 }
 
 function load() {
-  screen.orientation.onchange = function() {
+  screen.orientation.onchange = function () {
     let elem = document.documentElement;
     elem.requestFullscreen("hide");
-  }
+  };
   console.log("All assets loaded!");
   document.getElementById("loading").style.display = "none";
   document.getElementById("field").style.display = "block";
@@ -168,12 +164,19 @@ function load() {
     throwDice();
   };
   if (window.location.search) {
-    let completed = window.location.search.substring(1)
-    .split("=")[1]
-    .split("&")[0];
+    let completed = window.location.search
+      .substring(1)
+      .split("=")[1]
+      .split("&")[0];
     console.log(completed);
-    if (completed === "1"){
-      spawnTextBox("../assets/stockcard.avif", 1.5, "Congratulations!\nYou completed the game, and now you can try your luck again.\nSomething special can await you here!", 1.5, TextBoxButtonType.OK);
+    if (completed === "1") {
+      spawnTextBox(
+        "../assets/stockcard.avif",
+        1.5,
+        "Congratulations!\nYou completed the game, and now you can try your luck again.\nSomething special can await you here!",
+        1.5,
+        TextBoxButtonType.OK
+      );
       mode = "truerandom";
       console.log(mode);
     }
@@ -209,40 +212,44 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   cardtext.style.zIndex = "3";
   cardtext.style.fontSize = fontSize + "vmax";
 
-
   if (currentquestion) {
     cardtext.style.color = currentquestion.textColor;
-  if (currentquestion.image) {
-  const cardimage = common.createElement(
-    "img",
-    "cardimage",
-    "cardimage",
-    common.page
-  );
-  cardimage.src = currentquestion.image;
-  cardimage.style.zIndex = "3";
-  cardimage.style.position = "absolute";
-  if (currentquestion.imageScale) cardimage.style.scale = currentquestion.imageScale;
-  }
+    if (currentquestion.image) {
+      const cardimage = common.createElement(
+        "img",
+        "cardimage",
+        "cardimage",
+        common.page
+      );
+      cardimage.src = currentquestion.image;
+      cardimage.style.zIndex = "3";
+      cardimage.style.position = "absolute";
+      if (currentquestion.imageScale)
+        cardimage.style.scale = currentquestion.imageScale;
+    }
 
-  if (currentquestion.video) {
-    bgm.pause();
-    common.playCutScene("cutscene", currentquestion.video);
-    const PlayAgain = common.createElement("button", "PlayAgain", "PlayAgain", common.page);
-    PlayAgain.innerText = "Play Again";
-    PlayAgain.style.zIndex = "3";
-    PlayAgain.onclick = function () {
-      common.playSound("monopoly_select.wav");
+    if (currentquestion.video) {
+      bgm.pause();
       common.playCutScene("cutscene", currentquestion.video);
-    };
-    document.onkeydown = (ev => {
-      if (ev.key === "Enter") {
-        common.skipCutScene("cutscene");
-      }
-    })
+      const PlayAgain = common.createElement(
+        "button",
+        "PlayAgain",
+        "PlayAgain",
+        common.page
+      );
+      PlayAgain.innerText = "Play Again";
+      PlayAgain.style.zIndex = "3";
+      PlayAgain.onclick = function () {
+        common.playSound("monopoly_select.wav");
+        common.playCutScene("cutscene", currentquestion.video);
+      };
+      document.onkeydown = (ev) => {
+        if (ev.key === "Enter") {
+          common.skipCutScene("cutscene");
+        }
+      };
+    }
   }
-
-}
 
   switch (buttontype) {
     case TextBoxButtonType.OK:
@@ -257,11 +264,11 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
         if (currentquestion.successvideo) {
           bgm.pause();
           common.playCutScene("cutscene", currentquestion.successvideo);
-          document.onkeydown = (ev => {
+          document.onkeydown = (ev) => {
             if (ev.key === "Enter") {
               common.skipCutScene("cutscene");
             }
-          })
+          };
         }
       };
       break;
@@ -287,11 +294,11 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
         if (currentquestion.successvideo) {
           bgm.pause();
           common.playCutScene("cutscene", currentquestion.successvideo);
-          document.onkeydown = (ev => {
+          document.onkeydown = (ev) => {
             if (ev.key === "Enter") {
               common.skipCutScene("cutscene");
             }
-          })
+          };
         }
       };
       const NoButton = common.createElement("button", "No", "No", common.page);
@@ -345,14 +352,14 @@ function throwDice() {
         case 2:
           roll = movesTeam2[currentmove];
           console.log(roll);
-          break;  
+          break;
       }
       break;
     case "truerandom":
       roll = Math.floor(Math.random() * 6) + 1;
       break;
     default:
-      break;  
+      break;
   }
   console.log(roll);
   common.playSound("../assets/monopoly_dice.wav");
@@ -373,7 +380,8 @@ function throwDice() {
         currentquestion.fontSize,
         currentquestion.buttonType
       );
-      if (currentquestion.musicOverride) setMusic(currentquestion.musicOverride);
+      if (currentquestion.musicOverride)
+        setMusic(currentquestion.musicOverride);
     } else switchTeam();
   } else switchTeam();
   dice.style.display = "unset";
@@ -399,7 +407,7 @@ function setPos(team, x, y) {
     case 2:
       player.style.bottom = y + "%";
       player.style.left = x - 7 + "%";
-    break;
+      break;
   }
   console.log(`New position: ${x}, ${y}`);
 }
@@ -409,7 +417,7 @@ function gotoPos(team, pos) {
   console.log("Moving team " + team);
   console.log(pos);
   currentpos[team - 1] = pos;
-  if (pos > 39)  {
+  if (pos > 39) {
     currentpos[team - 1] = 0;
     setPos(team, coords[0].X, coords[0].Y);
     allClear();
@@ -417,7 +425,7 @@ function gotoPos(team, pos) {
 }
 
 function getPos(pos) {
-    return coords[pos];
+  return coords[pos];
 }
 
 function setOwnership(pos, team) {
@@ -480,7 +488,7 @@ function setMusic(path) {
 
 function allClear() {
   let ownedcount = 0;
-  console.log("Checking status!")
+  console.log("Checking status!");
   for (let index = 0; index < owned.length; index++) {
     var status = checkOwnership(index);
     if (status === true) {
@@ -494,7 +502,9 @@ function allClear() {
 }
 
 function endGame() {
-  common.goToScreen(`results.html?score1=${getPoints(1)}&score2=${getPoints(2)}`);
+  common.goToScreen(
+    `results.html?score1=${getPoints(1)}&score2=${getPoints(2)}`
+  );
 }
 
 loadMandatoryAssets();
