@@ -1,9 +1,4 @@
-const {
-  app,
-  BrowserWindow,
-  Menu,
-  dialog,
-} = require("electron");
+const { app, BrowserWindow, Menu, dialog } = require("electron");
 const fs = require("fs");
 
 let projectFile = undefined;
