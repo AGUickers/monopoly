@@ -8,14 +8,14 @@ let currentpos = [0, 0];
 let questions = undefined;
 let coords = undefined;
 
-fetch("../assets/items.json")
+fetch("items.json")
   .then((response) => response.json())
   .then((json) => {
     console.log(json);
     questions = json;
   });
 
-fetch("../assets/coords.json")
+fetch("coords.json")
   .then((response) => response.json())
   .then((json) => {
     console.log(json);
@@ -50,60 +50,60 @@ async function loadMandatoryAssets() {
   var preload = new createjs.LoadQueue(true);
   //This will trigger once as soon as the page is loaded.
   let roll = Math.floor(Math.random() * 3) + 1;
-  defaultbgm = new Audio(`../assets/monopoly${roll}.mp3`);
+  defaultbgm = new Audio(`monopoly${roll}.mp3`);
   let count = 0;
   let manifest = [
-    "../assets/items.json",
-    "../assets/coords.json",
-    "../assets/MONOPOLY.ttf",
-    "../assets/background.avif",
-    "../assets/dice.avif",
-    "../assets/board.avif",
-    "../assets/player1.avif",
-    "../assets/player2.avif",
-    "../assets/cover.avif",
-    "../assets/property-card-ch.avif",
-    "../assets/property-card-eng.avif",
-    "../assets/property-card-ger.avif",
-    "../assets/property-card-jap.avif",
-    "../assets/property-card-kor.avif",
-    "../assets/property-card-spa.avif",
-    "../assets/property-card-fr.avif",
-    "../assets/property-card-per.avif",
-    "../assets/card.avif",
-    "../assets/stockcard.avif",
-    "../assets/big-ben.avif",
-    "../assets/borussia.avif",
-    "../assets/buckingham-palace.avif",
-    "../assets/churros.avif",
-    "../assets/enhyphen.avif",
-    "../assets/frankfurt.avif",
-    "../assets/gazpacho.avif",
-    "../assets/gongyuan.avif",
-    "../assets/karaoke.avif",
-    "../assets/london-eye.avif",
-    "../assets/mangaimage.avif",
-    "../assets/munchen.avif",
-    "../assets/paella.avif",
-    "../assets/shangdian.avif",
-    "../assets/shitang.avif",
-    "../assets/stray.avif",
-    "../assets/sushi.avif",
-    "../assets/twice.avif",
-    "../assets/dior.avif",
-    "../assets/chanel.avif",
-    "../assets/west.avif",
-    "../assets/bu.avif",
-    "../assets/fox.avif",
-    "../assets/lazy.avif",
-    "../assets/hiragana.avif",
-    `../assets/monopoly${roll}.mp3`,
-    "../assets/monopoly_chance.wav",
-    "../assets/monopoly_correct.wav",
-    "../assets/monopoly_dice.wav",
-    "../assets/monopoly_lose.wav",
-    "../assets/monopoly_select.wav",
-    "../assets/monopoly_win.wav",
+    "items.json",
+    "coords.json",
+    "MONOPOLY.ttf",
+    "background.avif",
+    "dice.avif",
+    "board.avif",
+    "player1.avif",
+    "player2.avif",
+    "cover.avif",
+    "property-card-ch.avif",
+    "property-card-eng.avif",
+    "property-card-ger.avif",
+    "property-card-jap.avif",
+    "property-card-kor.avif",
+    "property-card-spa.avif",
+    "property-card-fr.avif",
+    "property-card-per.avif",
+    "card.avif",
+    "stockcard.avif",
+    "big-ben.avif",
+    "borussia.avif",
+    "buckingham-palace.avif",
+    "churros.avif",
+    "enhyphen.avif",
+    "frankfurt.avif",
+    "gazpacho.avif",
+    "gongyuan.avif",
+    "karaoke.avif",
+    "london-eye.avif",
+    "mangaimage.avif",
+    "munchen.avif",
+    "paella.avif",
+    "shangdian.avif",
+    "shitang.avif",
+    "stray.avif",
+    "sushi.avif",
+    "twice.avif",
+    "dior.avif",
+    "chanel.avif",
+    "west.avif",
+    "bu.avif",
+    "fox.avif",
+    "lazy.avif",
+    "hiragana.avif",
+    `monopoly${roll}.mp3`,
+    "monopoly_chance.wav",
+    "monopoly_correct.wav",
+    "monopoly_dice.wav",
+    "monopoly_lose.wav",
+    "monopoly_select.wav",
+    "monopoly_win.wav",
   ];
   preload.loadManifest(manifest);
   preload.setMaxConnections(60);
@@ -121,15 +121,15 @@ async function loadMandatoryAssets() {
 async function loadMovies() {
   var movieLoad = new createjs.LoadQueue(true);
   var movies = [
-    "../assets/thunder.mp3",
-    "../assets/blessed.mp3",
-    "../assets/fancy.mp3",
-    "../assets/liar.webm",
-    "../assets/sorikkun.webm",
-    "../assets/fancy.mp4",
-    "../assets/rain.mp4",
-    "../assets/run.mp4",
-    "../assets/bye.mp4",
+    "thunder.mp3",
+    "blessed.mp3",
+    "fancy.mp3",
+    "liar.webm",
+    "sorikkun.webm",
+    "fancy.mp4",
+    "rain.mp4",
+    "run.mp4",
+    "bye.mp4",
   ];
   movieLoad.loadManifest(movies);
   movieLoad.setMaxConnections(60);
@@ -171,7 +171,7 @@ function load() {
     console.log(completed);
     if (completed === "1") {
       spawnTextBox(
-        "../assets/stockcard.avif",
+        "stockcard.avif",
         1.5,
         "Congratulations!\nYou completed the game, and now you can try your luck again.\nSomething special can await you here!",
         1.5,
@@ -188,7 +188,7 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   //Let's cover the entire page with a file named "cover.avif"
   const cover = common.createElement("img", "cover", "cover", common.page);
   cover.style.zIndex = "1";
-  cover.src = "../assets/cover.avif";
+  cover.src = "cover.avif";
   cover.style.width = "100%";
   cover.style.height = "100%";
   cover.style.position = "fixed";
@@ -362,7 +362,7 @@ function throwDice() {
       break;
   }
   console.log(roll);
-  common.playSound("../assets/monopoly_dice.wav");
+  common.playSound("monopoly_dice.wav");
   gotoPos(currentTeam, currentpos[currentTeam - 1] + roll);
   //Let's check if someone already owns that cell.
   if (

@@ -10,7 +10,7 @@ export const maxHeight = screen.availHeight;
 export const maxWidth = screen.availWidth;
 
 export function playSound(soundPath) {
-  let sound = new Audio("../assets/" + soundPath);
+  let sound = new Audio(soundPath);
   sound.play();
   return sound;
 }
@@ -20,7 +20,7 @@ export function stopSound(sound) {
 }
 
 export function playMusic(musicPath, looped) {
-  let music = new Audio("../assets/" + musicPath);
+  let music = new Audio(musicPath);
   music.loop = looped;
   music.play();
   return music;
@@ -44,7 +44,7 @@ export function playCutScene(videoid, file) {
   //Spawn a video
   createElement("video", videoid, "video", page);
   let video = document.getElementById(videoid);
-  video.src = "../assets/" + file;
+  video.src = file;
   video.style.width = "100%";
   video.style.height = "100%";
   video.style.position = "fixed";
@@ -107,7 +107,7 @@ export function setPageBackground(image) {
   //Do you think we could spawn an image and resize it to the viewport?
   createElement("img", "background", "background", page);
   let background = document.getElementById("background");
-  background.src = "../assets/" + image;
+  background.src = image;
   background.style.width = "100%";
   background.style.height = "100%";
   background.style.position = "absolute";
@@ -169,13 +169,13 @@ export function setElementId(element, id) {
 export function loadStyleSheet(file) {
   let link = document.createElement("link");
   link.rel = "stylesheet";
-  link.href = "../src/" + file;
+  link.href = file;
   document.head.appendChild(link);
 }
 
 export function loadScript(file) {
   let script = document.createElement("script");
-  script.src = "../src/" + file;
+  script.src = file;
   document.head.appendChild(script);
 }
 

@@ -1,0 +1,77 @@
+@font-face {
+  font-family: Monopoly;
+  src: url("MONOPOLY.ttf");
+}
+body {
+  background-image: url("background.avif");
+  display: grid;
+  overflow: hidden;
+}
+button {
+  font-family: Monopoly, sans-serif;
+  position: fixed;
+}
+div.score {
+  position: fixed;
+  font-family: Monopoly, sans-serif;
+  color: aliceblue;
+  left: 0;
+  right: 0;
+  top: 50%;
+  bottom: 0;
+  display: block;
+  margin: auto;
+  align-self: center;
+  text-align: center;
+  width: auto;
+  height: auto;
+  font-size: 5vmin;
+}
+button.exitbutton {
+  position: fixed;
+  left: 0;
+  right: 0%;
+  top: 80%;
+  bottom: 0%;
+  display: block;
+  margin: auto;
+  align-self: center;
+  width: 17vmin;
+  height: 7vmin;
+  font-size: 5vmin;
+  text-align: center;
+  color: aliceblue;
+  background-color: red;
+}
+img.logo {
+  position: fixed;
+  left: 0;
+  right: 0%;
+  top: 0%;
+  bottom: 50%;
+  width: 40%;
+  height: auto;
+  display: block;
+  margin: auto;
+  align-self: center;
+  display: block;
+  margin: auto;
+  color: aliceblue;
+}
+button.playagain {
+  position: fixed;
+  left: 0%;
+  right: 0%;
+  top: 60%;
+  bottom: 0%;
+  display: block;
+  margin: auto;
+  align-self: center;
+  text-align: center;
+  width: 27vmin;
+  height: 7vmin;
+  font-size: 5vmin;
+  text-align: center;
+  color: aliceblue;
+  background-color: red;
+}
