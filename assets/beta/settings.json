@@ -1,0 +1,27 @@
+{
+  "general": {
+    "visiblename": "Beta Package",
+    "modes": ["random"],
+    "ownedstart": [
+      -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    ],
+    "coordsfile": "coords.json",
+    "questionsfile": "items.json"
+  },
+  "styles": {
+    "menustyle": "menu-style.css",
+    "boardstyle": "board-style.css",
+    "resultsstyle": "results-style.css"
+  },
+  "sounds": {
+    "defaultbgm": "bgm_ph.mp3",
+    "selectsound": "monopoly_select.wav",
+    "dicesound": "monopoly_dice.wav",
+    "cardsound": "monopoly_chance.wav",
+    "winsound": "monopoly_win.wav",
+    "failsound": "monopoly_lose.wav",
+    "victorysound": "monopoly_victory.wav",
+    "defeatsound": "monopoly_fail.wav"
+  }
+}
