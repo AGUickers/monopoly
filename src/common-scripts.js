@@ -166,12 +166,10 @@ export function setElementId(element, id) {
   element.id = id;
 }
 
-export function disableInlineStyleSheets() {
+export function unloadAllStyleSheets() {
   let allStyles = Array.from(document.styleSheets);
   allStyles.forEach((style) => {
-    if (style.href === null) {
       style.disabled = true;
-    }
   });
 }
 
@@ -191,6 +189,16 @@ export function loadScript(file) {
 
 export function goToScreen(page) {
   window.location.href = page;
+}
+
+export function deleteAllCookies() {
+  var cookies = document.cookie.split(";");
+  for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i];
+      var eqPos = cookie.indexOf("=");
+      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  }
 }
 
 export function exit() {

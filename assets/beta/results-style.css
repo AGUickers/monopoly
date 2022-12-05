@@ -44,7 +44,7 @@ button.exitbutton {
   background-color: red;
 }
 img.logo {
-  content: url('logo.avif');
+  content: url('logo.png');
   position: fixed;
   left: 0;
   right: 0%;

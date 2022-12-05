@@ -104,7 +104,7 @@ async function load() {
     elem.requestFullscreen("hide");
   };
   console.log("All assets loaded!");
-  common.disableInlineStyleSheets();
+  common.unloadAllStyleSheets();
   common.loadStyleSheet(`${package_folder}/${settings.styles.boardstyle}`);
   document.getElementById("loading").style.display = "none";
   document.getElementById("field").style.display = "block";
@@ -474,6 +474,7 @@ function allClear() {
 }
 
 function endGame() {
+  common.deleteAllCookies();
   document.cookie = `package=${current_package}; path=results.html`;
   document.cookie = `mode=${mode}; path=results.html`;
   document.cookie = `team1score=${getPoints(1)}; path=results.html`;

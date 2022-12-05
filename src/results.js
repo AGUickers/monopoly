@@ -28,6 +28,7 @@ function load() {
   score2.innerText = team2score;
   const PlayAgain = common.getElement("playagain");
   PlayAgain.onclick = function () {
+    common.deleteAllCookies();
     document.cookie = `package=${current_package}; path=board.html`;
     document.cookie = `mode=${mode}; path=board.html`;
     common.goToScreen(`board.html`);

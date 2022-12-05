@@ -25,26 +25,41 @@ async function fetchSettings(pack) {
     .then((response) => response.json())
     .then(async (json) => {
       console.log(json);
-      let packageopt = document.createElement("option");
-      packageopt.value = pack;
-      packageopt.innerHTML = json.general.visiblename;
-      selectpackage.appendChild(packageopt);
-      json.general.modes.forEach((element) => {
-        if (element !== "scripted" && element !== "random") return false;
-        let modeopt = document.createElement("option");
-        modeopt.value = element;
-        switch (element) {
-          case "scripted":
-            modeopt.innerHTML = "Story Mode";
-            break;
-          case "random":
-            modeopt.innerHTML = "Free Play";
-            break;
-        }
-        selectmode.appendChild(modeopt);
-        settings = json;
-      });
+      if (!Array.from(selectpackage.options).some((option) => option.value === pack)) createPackageItem(pack, json);
+      resetModeList();
+      for (let i = 0; i < json.general.modes.length; i++) {
+        await createModeItem(json.general.modes[i]);
+      }
+      settings = json;
     });
+}
+
+function createPackageItem(item, json) {
+  let packageopt = document.createElement("option");
+  packageopt.value = item;
+  packageopt.innerHTML = json.general.visiblename;
+  selectpackage.appendChild(packageopt);
+}
+
+async function createModeItem(element) {
+  if (element !== "scripted" && element !== "random") return false;
+  let modeopt = document.createElement("option");
+  modeopt.value = element;
+  switch (element) {
+    case "scripted":
+      modeopt.innerHTML = "Story Mode";
+      break;
+    case "random":
+      modeopt.innerHTML = "Free Play";
+      break;
+  }
+  selectmode.appendChild(modeopt);
+}
+
+async function resetModeList() {
+  for (var i=selectmode.children.length; i--;) {
+    selectmode.children[i].remove();
+  }
 }
 
 function load() {
@@ -54,16 +69,18 @@ function load() {
     }`
   );
   selectpackage.onchange = async function () {
+    common.unloadAllStyleSheets();
     common.loadStyleSheet(
       `../assets/${selectpackage.value}/${
         settings.styles.menustyle
       }`
     );
-    await fetchFiles();
+    await fetchSettings(selectpackage.value);
   };
   const startButton = common.getElement("startbutton");
   const exitButton = common.getElement("exitbutton");
   startButton.onclick = function () {
+    common.deleteAllCookies();
     document.cookie = `package=${selectpackage.value}; path=board.html`;
     document.cookie = `mode=${selectmode.value}; path=board.html`;
     common.goToScreen(`board.html`);
