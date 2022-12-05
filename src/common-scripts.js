@@ -166,9 +166,19 @@ export function setElementId(element, id) {
   element.id = id;
 }
 
-export function loadStyleSheet(file) {
+export function disableInlineStyleSheets() {
+  let allStyles = Array.from(document.styleSheets);
+  allStyles.forEach((style) => {
+    if (style.href === null) {
+      style.disabled = true;
+    }
+  });
+}
+
+export async function loadStyleSheet(file) {
   let link = document.createElement("link");
   link.rel = "stylesheet";
+  link.type = "text/css";
   link.href = file;
   document.head.appendChild(link);
 }

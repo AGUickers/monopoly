@@ -15,7 +15,7 @@ button.startbutton {
   position: fixed;
   left: 0;
   right: 0%;
-  top: 50%;
+  top: 60%;
   bottom: 0%;
   display: block;
   margin: auto;
@@ -33,7 +33,7 @@ button.exitbutton {
   position: fixed;
   left: 0;
   right: 0%;
-  top: 70%;
+  top: 80%;
   bottom: 0%;
   display: block;
   margin: auto;
@@ -48,6 +48,7 @@ button.exitbutton {
   background-color: red;
 }
 img.logo {
+  content: url("logo.avif");
   position: fixed;
   left: 0;
   right: 0%;
@@ -61,4 +62,72 @@ img.logo {
   display: block;
   margin: auto;
   color: aliceblue;
+}
+p.package {
+  position: fixed;
+  left: 0;
+  right: 0%;
+  top: 25%;
+  bottom: 30%;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: auto;
+  align-self: center;
+  font-family: Monopoly;
+  width: 57vmin;
+  height: 7vmin;
+  font-size: 5vmin;
+  text-align: center;
+  color: aliceblue;
+}
+select.package {
+  position: fixed;
+  left: 0;
+  right: 0%;
+  top: 40%;
+  bottom: 30%;
+  width: 17vmin;
+  height: 5vmin;
+  display: block;
+  margin: auto;
+  align-self: center;
+  font-family: Monopoly;
+  font-size: 3vmin;
+  background-image: url("background.avif");
+  color: blueviolet;
+}
+p.mode {
+  position: fixed;
+  left: 0;
+  right: 0%;
+  top: 55%;
+  bottom: 30%;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: auto;
+  align-self: center;
+  font-family: Monopoly;
+  width: 57vmin;
+  height: 7vmin;
+  font-size: 5vmin;
+  text-align: center;
+  color: aliceblue;
+}
+select.mode {
+  position: fixed;
+  left: 0;
+  right: 0%;
+  top: 70%;
+  bottom: 30%;
+  width: 17vmin;
+  height: 5vmin;
+  display: block;
+  margin: auto;
+  align-self: center;
+  font-family: Monopoly;
+  font-size: 3vmin;
+  background-image: url("background.avif");
+  color: blueviolet;
 }

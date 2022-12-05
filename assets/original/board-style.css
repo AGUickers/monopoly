@@ -25,6 +25,7 @@ div.loading {
   font-size: 5vmax;
 }
 img.board {
+  content: url("board.avif");
   display: block;
   margin: auto;
   margin-top: -25px;
@@ -56,6 +57,7 @@ img.cardimage {
   width: auto;
 }
 img.dice {
+  content: url("dice.avif");
   position: fixed;
   align-self: center;
   z-index: 1;
@@ -196,6 +198,7 @@ div.score {
   font-family: Monopoly, sans-serif;
 }
 img.player1 {
+  content: url("player1.avif");
   width: 4vmax;
   height: auto;
   position: relative;
@@ -204,6 +207,7 @@ img.player1 {
   z-index: 2;
 }
 img.player2 {
+  content: url("player2.avif");
   width: 2vmax;
   height: auto;
   position: relative;
