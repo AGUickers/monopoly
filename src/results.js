@@ -32,7 +32,7 @@ function load() {
   };
   const exitButton = common.getElement("exitbutton");
   exitButton.onclick = function () {
-    common.exit();
+    common.goToScreen(`menu.html`);
   };
   common.playSound(`${package_folder}/${settings.sounds.victorysound}`);
 }

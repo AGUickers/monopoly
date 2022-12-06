@@ -201,6 +201,7 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
       PlayAgain.innerText = "Play Again";
       PlayAgain.style.zIndex = "3";
       PlayAgain.onclick = function () {
+        PlayAgain.blur();
         common.playSound(`${package_folder}/${settings.sounds.selectsound}`);
         common.playCutScene(
           "cutscene",
@@ -208,7 +209,7 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
         );
       };
       document.onkeydown = (ev) => {
-        if (ev.key === "Enter") {
+        if (ev.key === "Enter" && common.getElement("cutscene")) {
           common.skipCutScene("cutscene");
         }
       };
