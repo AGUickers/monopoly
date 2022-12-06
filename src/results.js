@@ -1,28 +1,38 @@
 import * as common from "./common-scripts.js";
 
+let current_package = localStorage.getItem("package");
+
+let mode = localStorage.getItem("mode");
+
+let team1score = localStorage.getItem("team1");
+let team2score = localStorage.getItem("team2");
+
+let package_folder = `../assets/${current_package}`;
+console.log(package_folder);
+
+let settings = undefined;
+
+fetch(`${package_folder}/settings.json`)
+    .then((response) => response.json())
+    .then((json) => {
+      console.log(json);
+      settings = json;
+    load();  
+});
+
 function load() {
+  common.loadStyleSheet(`${package_folder}/${settings.styles.resultsstyle}`);
   let score1 = common.getElement("score1");
   let score2 = common.getElement("score2");
-  if (window.location.search) {
-    score1.innerText = window.location.search
-      .substring(1)
-      .split("=")[1]
-      .split("&")[0];
-    score2.innerText = window.location.search.substring(1).split("=")[2];
-  }
-  let team1score = parseInt(score1.innerText);
-  let team2score = parseInt(score2.innerText);
+  score1.innerText = team1score;
+  score2.innerText = team2score;
   const PlayAgain = common.getElement("playagain");
   PlayAgain.onclick = function () {
-    if (team1score !== 0 && team2score !== 0)
-      common.goToScreen("board.html?completed=1");
-    else common.goToScreen("board.html");
+    common.goToScreen(`board.html`);
   };
   const exitButton = common.getElement("exitbutton");
   exitButton.onclick = function () {
-    common.exit();
+    common.goToScreen(`menu.html`);
   };
-  common.playSound("monopoly_victory.wav");
+  common.playSound(`${package_folder}/${settings.sounds.victorysound}`);
 }
-
-load();
