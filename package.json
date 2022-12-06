@@ -21,7 +21,8 @@
     "electron-packager": "^16.0.0"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "fs-extra": "^11.1.0"
   },
   "config": {
     "forge": {
