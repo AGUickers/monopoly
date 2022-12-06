@@ -1,11 +1,11 @@
 import * as common from "./common-scripts.js";
 
-let current_package = document.cookie.split(";")[0].split("=")[1];
+let current_package = localStorage.getItem("package");
 
-let mode = document.cookie.split(";")[1].split("=")[1];
+let mode = localStorage.getItem("mode");
 
-let team1score = document.cookie.split(";")[2].split("=")[1];
-let team2score = document.cookie.split(";")[3].split("=")[1];
+let team1score = localStorage.getItem("team1");
+let team2score = localStorage.getItem("team2");
 
 let package_folder = `../assets/${current_package}`;
 console.log(package_folder);
@@ -28,9 +28,6 @@ function load() {
   score2.innerText = team2score;
   const PlayAgain = common.getElement("playagain");
   PlayAgain.onclick = function () {
-    common.deleteAllCookies();
-    document.cookie = `package=${current_package}; path=board.html`;
-    document.cookie = `mode=${mode}; path=board.html`;
     common.goToScreen(`board.html`);
   };
   const exitButton = common.getElement("exitbutton");

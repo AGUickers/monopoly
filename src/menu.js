@@ -25,7 +25,12 @@ async function fetchSettings(pack) {
     .then((response) => response.json())
     .then(async (json) => {
       console.log(json);
-      if (!Array.from(selectpackage.options).some((option) => option.value === pack)) createPackageItem(pack, json);
+      if (
+        !Array.from(selectpackage.options).some(
+          (option) => option.value === pack
+        )
+      )
+        createPackageItem(pack, json);
       resetModeList();
       for (let i = 0; i < json.general.modes.length; i++) {
         await createModeItem(json.general.modes[i]);
@@ -57,32 +62,28 @@ async function createModeItem(element) {
 }
 
 async function resetModeList() {
-  for (var i=selectmode.children.length; i--;) {
+  for (var i = selectmode.children.length; i--; ) {
     selectmode.children[i].remove();
   }
 }
 
 function load() {
   common.loadStyleSheet(
-    `../assets/${selectpackage.value}/${
-      settings.styles.menustyle
-    }`
+    `../assets/${selectpackage.value}/${settings.styles.menustyle}`
   );
   selectpackage.onchange = async function () {
     common.unloadAllStyleSheets();
     common.loadStyleSheet(
-      `../assets/${selectpackage.value}/${
-        settings.styles.menustyle
-      }`
+      `../assets/${selectpackage.value}/${settings.styles.menustyle}`
     );
     await fetchSettings(selectpackage.value);
   };
   const startButton = common.getElement("startbutton");
   const exitButton = common.getElement("exitbutton");
   startButton.onclick = function () {
-    common.deleteAllCookies();
-    document.cookie = `package=${selectpackage.value}; path=board.html`;
-    document.cookie = `mode=${selectmode.value}; path=board.html`;
+    localStorage.clear();
+    localStorage.setItem("package", selectpackage.value);
+    localStorage.setItem("mode", selectmode.value);
     common.goToScreen(`board.html`);
   };
   exitButton.onclick = function () {

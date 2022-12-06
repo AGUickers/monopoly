@@ -1,12 +1,10 @@
 import * as common from "./common-scripts.js";
 
-let current_package = document.cookie.split(";")[0].split("=")[1];
+let current_package = localStorage.getItem("package");
 
 let package_folder = `../assets/${current_package}`;
 let package_content = undefined;
 let filemanifest = [];
-
-console.log(document.cookie);
 
 async function loadPackage() {
 fetch(`${package_folder}/files.json`)
@@ -63,7 +61,7 @@ let defaultbgm = undefined;
 let currentquestion = undefined;
 let currentmove = 0;
 
-let mode = document.cookie.split(";")[1].split("=")[1];
+let mode = localStorage.getItem("mode");
 
 let movesTeam1 = undefined;
 
@@ -474,11 +472,8 @@ function allClear() {
 }
 
 function endGame() {
-  common.deleteAllCookies();
-  document.cookie = `package=${current_package}; path=results.html`;
-  document.cookie = `mode=${mode}; path=results.html`;
-  document.cookie = `team1score=${getPoints(1)}; path=results.html`;
-  document.cookie = `team2score=${getPoints(2)}; path=results.html`;
+  localStorage.setItem("team1", getPoints(1));
+  localStorage.setItem("team2", getPoints(2));
   common.goToScreen(
     `results.html`
   );
