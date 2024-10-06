@@ -3,8 +3,9 @@
   src: url("MONOPOLY.ttf");
 }
 body {
-  background-image: url("background.avif");
+  background-image: url("background.jpg");
   display: grid;
+  background-size: cover;
   overflow: hidden;
 }
 button {
@@ -94,8 +95,8 @@ select.package {
   align-self: center;
   font-family: Monopoly;
   font-size: 3vmin;
-  background-image: url("background.avif");
-  color: blueviolet;
+  background-image: url("background.jpg");
+  color: yellow;
 }
 p.mode {
   position: fixed;
@@ -128,6 +129,6 @@ select.mode {
   align-self: center;
   font-family: Monopoly;
   font-size: 3vmin;
-  background-image: url("background.avif");
-  color: blueviolet;
+  background-image: url("background.jpg");
+  color: yellow;
 }

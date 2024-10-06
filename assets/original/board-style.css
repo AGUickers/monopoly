@@ -5,6 +5,8 @@
 }
 body {
   background-image: url("background.avif");
+  display: grid;
+  background-size: cover;
   overflow: hidden;
 }
 div.loading {
@@ -25,6 +27,7 @@ div.loading {
   font-size: 5vmax;
 }
 img.board {
+  position: relative;
   content: url("board.avif");
   display: block;
   margin: auto;
@@ -174,7 +177,8 @@ button.PlayAgain {
 button.exit {
   display: none;
   margin: auto;
-  align-self: center;
+  margin-left: 0;
+  margin-top: 1vmin;
   width: auto;
   height: auto;
   font-size: 3vmin;
@@ -227,4 +231,41 @@ div.field {
   width: 90vmin;
   z-index: -1;
   position: fixed;
+}
+div.owneddiv {
+  display: grid;
+  margin: auto;
+  align-self: center;
+  height: fit-content;
+  width: fit-content;
+}
+img.teamcolor {
+  position: relative;
+  z-index: 998;
+  width: 15vmin; 
+  height: auto;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+img#teamred {
+  content: url("teamred.avif")
+}
+img#teamblue {
+  content: url("teamblue.avif")
+}
+span#owned1 {
+  position: relative;
+  color: red;
+  z-index: 999;
+  margin: auto;
+  align-self: center;
+}
+span#owned2 {
+  position: relative;
+  color: blueviolet;
+  z-index: 999;
+  margin: auto;
+  align-self: center;
 }

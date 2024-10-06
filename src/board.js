@@ -106,10 +106,10 @@ async function load() {
   common.loadStyleSheet(`${package_folder}/${settings.styles.boardstyle}`);
   document.getElementById("loading").style.display = "none";
   document.getElementById("field").style.display = "block";
-  document.getElementById("dice").style.display = "block";
-  document.getElementsByClassName("exit")[0].style.display = "inline-block";
-  document.getElementsByClassName("exit")[1].style.display = "inline-block";
-  document.getElementById("score").style.display = "block";
+  document.getElementById("dice").style.display = "grid";
+  document.getElementsByClassName("exit")[0].style.display = "grid";
+  document.getElementsByClassName("exit")[1].style.display = "grid";
+  document.getElementById("score").style.display = "grid";
   switch (Array.isArray(settings.sounds.defaultbgm)) {
     case true:
       let roll = Math.floor(Math.random() * settings.sounds.defaultbgm.length);
@@ -258,6 +258,7 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
         setOwnership(currentpos[currentTeam - 1], currentTeam);
         //Let's also award some points.
         editPoints(currentTeam, currentquestion.score);
+        editOwned(currentTeam, 1)
         switchTeam();
         if (currentquestion.successvideo) {
           bgm.pause();
@@ -363,6 +364,11 @@ function editPoints(team, value) {
   score.innerText = parseInt(score.innerText, 10) + value;
 }
 
+function editOwned(team, value) {
+  const owned = common.getElement("owned" + team);
+  owned.innerText = parseInt(owned.innerText, 10) + value;
+}
+
 function getPoints(team) {
   const score = common.getElement("score" + team);
   return parseInt(score.innerText, 10);
@@ -402,21 +408,7 @@ function getPos(pos) {
 function setOwnership(pos, team) {
   console.log(checkOwnership(pos));
   if (checkOwnership(pos) !== null && checkOwnership(pos) !== true) {
-    const player = common.getElement("player" + team);
-    const playerstyle = getComputedStyle(player);
     owned[pos] = team;
-    //We need to spawn an ownership mark.
-    const field = common.getElement("field");
-    let mark = common.createElement("div", `mark${pos}`, `mark${pos}`, field);
-    mark.style.position = "absolute";
-    mark.style.left = getPos(pos)[0] + "px";
-    mark.style.top = getPos(pos)[1] + "px";
-    mark.style.backgroundColor = playerstyle.backgroundColor;
-    mark.style.borderRadius = "15px";
-    mark.style.height = "25px";
-    mark.style.width = "25px";
-    mark.style.zIndex = "3";
-    mark.style.padding = "0px";
   }
 }
 

@@ -1,3 +1,5 @@
+window.ondragstart = function() { return false; } 
+
 export const messageBoxType = {
   OK: 0,
   YesNo: 1,
