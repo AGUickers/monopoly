@@ -60,7 +60,7 @@ const createWindow = () => {
     resizable: true,
   });
   //Load file from the argument passed from the command line.
-  win.loadFile(`${page}?debug=${debug}`);
+  win.loadFile(`${page}`);
 };
 
 const menustructure = [
