@@ -1,22 +1,5 @@
 const { app, BrowserWindow, Menu, dialog } = require("electron");
-const fs = require("fs-extra");
-
-async function scan(folder) {
-  let files = fs.readdirSync(folder);
-  if (files.includes("files.json"))
-    files.splice(files.indexOf("files.json"), 1);
-  let filelist = {
-    files: files,
-  };
-  fs.writeJsonSync(`${folder}/files.json`, filelist);
-  files.forEach((file) => {
-    if (
-      fs.statSync(folder + "/" + file).isDirectory()
-    ) {
-      scan(folder + "/" + file);
-    }
-  });
-}
+const fs = require("fs");
 
 let projectFile = undefined;
 function getProjectFile() {
@@ -28,12 +11,33 @@ function getProjectFile() {
     projectFile = JSON.parse(fs.readFileSync("resources/app/project.json"));
     return projectFile;
   }
+  if (fs.existsSync("resources/app.asar/project.json")) {
+    projectFile = JSON.parse(
+      fs.readFileSync("resources/app.asar/project.json")
+    );
+    return projectFile;
+  }
+}
+
+let build = undefined;
+function getBuild() {
+  if (fs.existsSync("./build.txt")) {
+    build = fs.readFileSync("./build.txt");
+    return build;
+  }
+  if (fs.existsSync("resources/app/build.txt")) {
+    build = fs.readFileSync("resources/app/build.txt");
+    return build;
+  }
+  if (fs.existsSync("resources/app.asar/build.txt")) {
+    build = fs.readFileSync("resources/app.asar/build.txt");
+    return build;
+  }
 }
 
 let debug = undefined;
 
 const createWindow = () => {
-  scan("./assets");
   let width =
     parseInt(app.commandLine.getSwitchValue("width"), 10) ||
     projectFile.targetWidth;
@@ -56,7 +60,7 @@ const createWindow = () => {
     resizable: true,
   });
   //Load file from the argument passed from the command line.
-  win.loadFile(page);
+  win.loadFile(`${page}?debug=${debug}`);
 };
 
 const menustructure = [
@@ -96,7 +100,7 @@ const menustructure = [
             type: "info",
             title: "About",
             message:
-              "Grammar Engine - A simple game engine for learning English.\nBuild: DevTest Build\nPowered by Electron.",
+              `Grammar Engine (build ${build})\n\nPowered by Electron.`,
             buttons: ["OK"],
           });
         },
@@ -107,6 +111,7 @@ const menustructure = [
 
 app.whenReady().then(() => {
   getProjectFile();
+  getBuild();
   createWindow();
   if (debug === true) {
     const appMenu = Menu.buildFromTemplate(menustructure);
