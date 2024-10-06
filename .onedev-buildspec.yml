@@ -15,3 +15,24 @@ jobs:
   maxRetries: 3
   retryDelay: 30
   timeout: 14400
+- name: Sync from GitHub
+  steps:
+  - !CheckoutStep
+    name: Clone repository
+    cloneCredential: !DefaultCredential {}
+    withLfs: false
+    withSubmodules: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  - !PullRepository
+    name: Sync
+    remoteUrl: https://github.com/AGUickers/monopoly
+    userName: alexavil
+    passwordSecret: github_token
+    refs: refs/heads/* refs/tags/*
+    withLfs: false
+    force: true
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
