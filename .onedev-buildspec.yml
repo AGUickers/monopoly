@@ -1,0 +1,15 @@
+version: 35
+jobs:
+- name: Sync to GitHub
+  steps:
+  - !PushRepository
+    name: Push to GitHub
+    remoteUrl: https://github.com/AGUickers/monopoly
+    userName: alexavil
+    passwordSecret: github_token
+    force: false
+    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400
