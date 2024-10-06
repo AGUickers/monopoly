@@ -4,7 +4,7 @@
   font-display: swap;
 }
 body {
-  background-image: url("background.jpg");
+  background-image: url("background.avif");
   display: grid;
   background-size: cover;
   overflow: hidden;

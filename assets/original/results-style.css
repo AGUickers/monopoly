@@ -3,9 +3,11 @@
   src: url("MONOPOLY.ttf");
 }
 body {
-  background-image: url("background.avif");
+  background-image: url("background.jpg");
   display: grid;
+  background-size: cover;
   overflow: hidden;
+  user-select: none;
 }
 button {
   font-family: Monopoly, sans-serif;
