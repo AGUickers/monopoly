@@ -87,7 +87,7 @@ select.package {
   right: 0%;
   top: 40%;
   bottom: 30%;
-  width: 20vmin;
+  width: fit-content;
   height: 5vmin;
   display: block;
   margin: auto;

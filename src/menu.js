@@ -68,9 +68,11 @@ async function resetModeList() {
 }
 
 function load() {
+  common.unloadAllStyleSheets();
   common.loadStyleSheet(
     `../assets/${selectpackage.value}/${settings.styles.menustyle}`
   );
+  fetchSettings(selectpackage.value);
   selectpackage.onchange = async function () {
     common.unloadAllStyleSheets();
     common.loadStyleSheet(

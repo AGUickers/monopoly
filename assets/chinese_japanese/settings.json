@@ -1,7 +1,7 @@
 {
   "general": {
     "visiblename": "Chinese & Japanese",
-    "modes": ["scripted", "random"],
+    "modes": ["scripted"],
     "ownedstart": [
       -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0,
       0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0
