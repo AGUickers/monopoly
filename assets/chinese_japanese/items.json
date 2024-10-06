@@ -1,0 +1,199 @@
+{
+  "1": {
+    "cardAsset": "property-card-jap.avif",
+    "scale": 2,
+    "text": "ラーメン\nра:мэн\n\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
+    "fontSize": "1.8",
+    "image": "ramen.jpg",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1200
+  },
+  "2": {
+    "cardAsset": "stockcard.avif",
+    "scale": 1.5,
+    "text": "Что значит 森 (sēn)(сэн),\nесли он состоит из трёх 木 (mù)(му)?\n(на русском 木 = дерево)",
+    "fontSize": "1.7",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
+  },
+  "5": {
+    "cardAsset": "property-card-ch.avif",
+    "scale": 2,
+    "text": "食堂 (shí táng)\nши тхан\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
+    "fontSize": "1.8",
+    "image": "shitang.avif",
+    "imageScale": "1.1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1500
+  },
+  "8": {
+    "cardAsset": "property-card-jap.avif",
+    "scale": 2,
+    "text": "うどん\nудон\n\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
+    "fontSize": "1.8",
+    "image": "udon.jpeg",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1200
+  },
+  "7": {
+    "cardAsset": "stockcard.avif",
+    "scale": 1.5,
+    "text": "Что значит 火山 (huǒ shān)(хуо шан),\nесли он состоит из\n火 (huǒ)(хуо) - огонь и 山 (shān)(шан) - гора?",
+    "fontSize": "1.7",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
+  },
+  "12": {
+    "cardAsset": "stockcard.avif",
+    "scale": 1.5,
+    "text": "Как можно перевести эту фразу?\n1. Бежим, Смоуки\n2. Нас сейчас убьют, Смоуки\n3. Не забудь заплатить, Смоуки",
+    "fontSize": "2",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "video": "run.mp4",
+    "score": 2000
+  },
+  "38": {
+    "cardAsset": "property-card-ch.avif",
+    "scale": 2,
+    "text": "图书馆 (tú shū guǎn)\nтхушугуан\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
+    "fontSize": "1.8",
+    "image": "tushuguan.jpg",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1500
+  },
+  "13": {
+    "cardAsset": "property-card-jap.avif",
+    "scale": 2,
+    "text": "天ぷら\nтэмпура\n\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
+    "fontSize": "1.8",
+    "image": "tempura.jpg",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1200
+  },
+  "14": {
+    "cardAsset": "property-card-jap.avif",
+    "scale": 2,
+    "text": "たこ焼き\nтакояки\n\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
+    "fontSize": "1.8",
+    "image": "takoyaki.jpg",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1200
+  },
+  "15": {
+    "cardAsset": "stockcard.avif",
+    "scale": 1.5,
+    "text": "Что значит 老人 (lǎo rén)(лао жен),\nесли он состоит из\n老 (lǎо)(лао) - старый и 人 (rén)(жен) - человек?",
+    "fontSize": "1.7",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
+  },
+  "17": {
+    "cardAsset": "stockcard.avif",
+    "scale": 1.5,
+    "text": "Как можно перевести эту фразу?\n1. Спасибо\n2. До свидания\n3. Как дела?",
+    "fontSize": "2",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "video": "bye.mp4",
+    "score": 2000
+  },
+  "22": {
+    "cardAsset": "stockcard.avif",
+    "scale": 1.5,
+    "text": "Что значит 天气 (tiān qì)(тхиан чи),\nесли он состоит из\n天 (tiān)(тхиан) - небо и 气 (qì)(чи) - воздух?",
+    "fontSize": "1.7",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
+  },
+  "37": {
+    "cardAsset": "property-card-ch.avif",
+    "scale": 2,
+    "text": "公园 (gōng yuán)\nгон юан\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
+    "fontSize": "1.8",
+    "image": "gongyuan.avif",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1500
+  },
+  "28": {
+    "cardAsset": "stockcard.avif",
+    "scale": 1.5,
+    "text": "Что значит 口水 (kǒu shuǐ)(кхоу шуэй),\nесли он состоит из\n口 (kǒu)(кхоу) - рот и 水 (shuǐ)(шуэй) - вода?",
+    "fontSize": "1.7",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 2000
+  },
+  "31": {
+    "cardAsset": "property-card-jap.avif",
+    "scale": 2,
+    "text": "お寿司屋\nосусия\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
+    "fontSize": "1.8",
+    "image": "sushi.avif",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1200
+  },
+  "39": {
+    "cardAsset": "property-card-ch.avif",
+    "scale": 2,
+    "text": "博物馆 (bó wù guǎn)\nбовугуан\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
+    "fontSize": "1.8",
+    "image": "bowuguan.jpg",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1500
+  },
+  "32": {
+    "cardAsset": "property-card-jap.avif",
+    "scale": 2,
+    "text": "カラオケ\nкараоке\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
+    "fontSize": "1.8",
+    "image": "karaoke.avif",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1200
+  },
+  "34": {
+    "cardAsset": "property-card-jap.avif",
+    "scale": 2,
+    "text": "マンガ店\nмагантэн\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
+    "fontSize": "1.8",
+    "image": "mangaimage.avif",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1200
+  },
+  "35": {
+    "cardAsset": "property-card-ch.avif",
+    "scale": 2,
+    "text": "商店 (shāng diàn)\nшан диэн\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
+    "fontSize": "1.8",
+    "image": "shangdian.avif",
+    "imageScale": "1",
+    "textColor": "black",
+    "buttonType": "YesNo",
+    "score": 1500
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "general": {
+    "visiblename": "Chinese & Japanese",
+    "modes": ["scripted", "random"],
+    "ownedstart": [
+      -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    ],
+    "coordsfile": "coords.json",
+    "questionsfile": "items.json"
+  },
+  "styles": {
+    "menustyle": "menu-style.css",
+    "boardstyle": "board-style.css",
+    "resultsstyle": "results-style.css"
+  },
+  "sounds": {
+    "defaultbgm": ["monopoly1.mp3", "monopoly2.mp3", "monopoly3.mp3"],
+    "selectsound": "monopoly_select.wav",
+    "dicesound": "monopoly_dice.wav",
+    "cardsound": "monopoly_chance.wav",
+    "winsound": "monopoly_win.wav",
+    "failsound": "monopoly_lose.wav",
+    "victorysound": "monopoly_victory.wav",
+    "defeatsound": "monopoly_fail.wav"
+  },
+  "scripted_settings": {
+    "team1moves": [0, 3, 3, 6, 2, 5, 6, 4, 6, 3],
+    "team2moves": [0, 2, 6, 3, 4, 6, 3, 3, 4, 6]
+  }
+}

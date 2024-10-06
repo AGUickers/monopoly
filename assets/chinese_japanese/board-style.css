@@ -1,0 +1,230 @@
+@font-face {
+  font-family: Monopoly;
+  src: url("MONOPOLY.ttf");
+  font-display: swap;
+}
+body {
+  background-image: url("background.avif");
+  overflow: hidden;
+}
+div.loading {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  margin: auto;
+  text-align: center;
+  align-content: center;
+  height: fit-content;
+  word-wrap: break-word;
+  white-space: normal;
+  width: fit-content;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 5vmax;
+}
+img.board {
+  content: url("board.avif");
+  display: block;
+  margin: auto;
+  margin-top: -25px;
+  align-self: center;
+  height: 90vmin;
+  width: 90vmin;
+  z-index: -1;
+}
+img.textcard {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  margin: auto;
+  align-self: center;
+  height: 15vmax;
+  width: auto;
+}
+img.cardimage {
+  left: 0;
+  right: 0;
+  top: 1%;
+  bottom: 0;
+  display: block;
+  margin: auto;
+  align-self: center;
+  height: 13vmax;
+  width: auto;
+}
+img.dice {
+  content: url("dice.avif");
+  position: fixed;
+  align-self: center;
+  z-index: 1;
+  bottom: 0%;
+  left: 0%;
+  width: 25vmin;
+  height: auto;
+  display: none;
+}
+div.cardtext {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: block;
+  margin: auto;
+  text-align: center;
+  align-content: center;
+  height: fit-content;
+  word-wrap: break-word;
+  white-space: normal;
+  width: fit-content;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 15vmax;
+}
+div.imagetext {
+  left: 0;
+  right: 0;
+  top: -30%;
+  bottom: 0;
+  display: block;
+  margin: auto;
+  text-align: center;
+  align-content: center;
+  height: fit-content;
+  word-wrap: break-word;
+  white-space: normal;
+  width: fit-content;
+  font-family: Monopoly, sans-serif;
+  color: white;
+}
+button {
+  font-family: Monopoly, sans-serif;
+}
+button.OK {
+  position: fixed;
+  left: 0%;
+  right: 0%;
+  top: 70%;
+  bottom: 0%;
+  display: block;
+  margin: auto;
+  align-self: center;
+  text-align: center;
+  width: 17vmin;
+  height: 7vmin;
+  font-size: 5vmin;
+  text-align: center;
+  color: aliceblue;
+  background-color: red;
+}
+button.Yes {
+  position: fixed;
+  left: 0;
+  right: 30%;
+  top: 80%;
+  bottom: 0%;
+  display: block;
+  margin: auto;
+  align-self: center;
+  display: block;
+  margin: auto;
+  width: 17vmin;
+  height: 7vmin;
+  font-size: 5vmin;
+  text-align: center;
+  color: aliceblue;
+  background-color: red;
+}
+button.No {
+  position: fixed;
+  left: 30%;
+  right: 0%;
+  top: 80%;
+  bottom: 0%;
+  display: block;
+  margin: auto;
+  align-self: center;
+  text-align: center;
+  width: 17vmin;
+  height: 7vmin;
+  font-size: 5vmin;
+  text-align: center;
+  color: aliceblue;
+  background-color: red;
+}
+button.PlayAgain {
+  position: fixed;
+  left: 0%;
+  right: 0%;
+  top: 60%;
+  bottom: 0%;
+  display: block;
+  margin: auto;
+  align-self: center;
+  text-align: center;
+  width: 27vmin;
+  height: 7vmin;
+  font-size: 5vmin;
+  text-align: center;
+  color: aliceblue;
+  background-color: red;
+}
+button.exit {
+  display: none;
+  margin: auto;
+  align-self: center;
+  width: auto;
+  height: auto;
+  font-size: 3vmin;
+  text-align: center;
+  color: aliceblue;
+  background-color: red;
+}
+div.score {
+  position: fixed;
+  right: 0;
+  top: 1%;
+  display: none;
+  margin: auto;
+  text-align: right;
+  height: fit-content;
+  word-wrap: break-word;
+  white-space: normal;
+  width: fit-content;
+  color: antiquewhite;
+  font-size: 5vmin;
+  font-family: Monopoly, sans-serif;
+}
+img.player1 {
+  content: url("player1.avif");
+  width: 4vmax;
+  height: auto;
+  position: relative;
+  bottom: 13%;
+  left: 87%;
+  z-index: 2;
+}
+img.player2 {
+  content: url("player2.avif");
+  width: 2vmax;
+  height: auto;
+  position: relative;
+  bottom: 10%;
+  left: 83%;
+  z-index: 2;
+}
+div.field {
+  left: 0;
+  right: 0;
+  top: 5%;
+  bottom: 0;
+  display: none;
+  margin: auto;
+  align-self: center;
+  height: 90vmin;
+  width: 90vmin;
+  z-index: -1;
+  position: fixed;
+}
