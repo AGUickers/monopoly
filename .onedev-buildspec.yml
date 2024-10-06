@@ -2,21 +2,6 @@ version: 35
 jobs:
 - name: Sync to GitHub
   steps:
-  - !CheckoutStep
-    name: Clone repository
-    cloneCredential: !DefaultCredential {}
-    withLfs: false
-    withSubmodules: false
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
-  - !PullRepository
-    name: Sync
-    remoteUrl: https://github.com/AGUickers/monopoly
-    userName: alexavil
-    passwordSecret: github_token
-    refs: refs/heads/* refs/tags/*
-    withLfs: false
-    force: false
-    condition: ALL_PREVIOUS_STEPS_WERE_SUCCESSFUL
   - !PushRepository
     name: Push to GitHub
     remoteUrl: https://github.com/AGUickers/monopoly
