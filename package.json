@@ -4,55 +4,24 @@
   "description": "Grammar Engine Headless Player",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "prettier": "npx prettier ./src/*.js ./pages/*.html ./assets/*.css ./engine.js ./index.js --write",
+    "build-windows": "npx electron-packager . LanguagePoly --platform=win32 --arch=all --out=build --asar",
+    "build-win32": "npx electron-packager . LanguagePoly --platform=win32 --arch=ia32 --out=build --asar",
+    "build-win64": "npx electron-packager . LanguagePoly --platform=win32 --arch=x64 --out=build --asar",
+    "build-win-arm64": "npx electron-packager . LanguagePoly --platform=win32 --arch=x64 --out=build --asar",
+    "build-linux": "npx electron-packager . LanguagePoly --platform=linux --arch=x64,arm64,armv7l --out=build --asar",
+    "build-linux64": "npx electron-packager . LanguagePoly --platform=linux --arch=x64 --out=build --asar",
+    "build-linux-arm64": "npx electron-packager . LanguagePoly --platform=linux --arch=arm64 --out=build --asar",
+    "build-linux-armhf": "npx electron-packager . LanguagePoly --platform=linux --arch=armv7l --out=build --asar"
   },
   "author": "alexavil",
   "license": "MIT",
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.65",
-    "@electron-forge/maker-deb": "^6.0.0-beta.65",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.65",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.65",
-    "@electron-forge/maker-zip": "^6.0.0-beta.65",
-    "electron": "^20.0.3",
-    "electron-packager": "^16.0.0"
+    "electron": "^32.1.2",
+    "@electron/packager": "^18.3.5",
+    "prettier": "^3.3.3"
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0",
-    "fs-extra": "^11.1.0"
-  },
-  "config": {
-    "forge": {
-      "packagerConfig": {},
-      "makers": [
-        {
-          "name": "@electron-forge/maker-squirrel",
-          "arch": [
-            "x32",
-            "x64"
-          ],
-          "config": {
-            "name": "gre_player_headless"
-          }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
-        }
-      ]
-    }
+    "fs-extra": "^11.2.0"
   }
 }

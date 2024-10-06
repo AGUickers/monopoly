@@ -1,0 +1,52 @@
+name: Builder
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Scanner Workflow"]
+    branches: [master]
+    types: 
+      - completed
+     
+jobs:
+  build:
+    name: Build my project
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Clone the repository
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: |
+       npm install
+       sudo apt update
+       sudo apt install wine
+
+    - name: Generate build data
+      run: |
+       echo ${{ github.run_id }} >> ./build.txt
+
+    - name: Prepare build
+      run: rm ./build -rf
+
+    - name: Build for Windows
+      run: npm run build-windows
+      
+    - name: Build for Linux
+      run: npm run build-linux
+
+    - name: Compress the build results
+      run: tar -czvf build.tar.gz build
+
+    - name: Upload as Artifact
+      uses: ncipollo/release-action@v1
+      with:
+        name: Build ${{ github.run_id }}
+        tag: ${{ github.run_id }}
+        artifacts: "build.tar.gz"
+
+    - name: Clear Build files
+      run: |
+       rm build -rf
+       rm build.tar.gz
