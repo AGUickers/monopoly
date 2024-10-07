@@ -8,16 +8,16 @@ let package_content = undefined;
 let filemanifest = [];
 
 async function loadPackage() {
-  fetch(`${package_folder}/files.json`)
+  await fetch(`${package_folder}/files.json`)
     .then((response) => response.json())
-    .then((json) => {
+    .then(async (json) => {
       console.log(json);
       package_content = json;
       package_content.files.forEach((file) => {
         console.log(`${package_folder}/${file}`);
         filemanifest.push(`${package_folder}/${file}`);
       });
-      fetch(`${package_folder}/settings.json`)
+      await fetch(`${package_folder}/settings.json`)
         .then((response) => response.json())
         .then((json) => {
           console.log(json);
