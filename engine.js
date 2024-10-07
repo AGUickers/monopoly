@@ -251,7 +251,6 @@ function init() {
   if (Variables.DebugMode === "true") {
     Functions.enableDebug();
   }
-  Functions.addVolume();
   Functions.loadStyleSheet(
     Variables.RootFolder + Variables.UtilsFolder + "engine.css"
   );

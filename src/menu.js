@@ -88,11 +88,10 @@ function load() {
   };
   const startButton = document.getElementById("startbutton");
   const exitButton = document.getElementById("exitbutton");
-  const volume = document.getElementById("sound");
   startButton.onclick = function () {
     localStorage.clear();
     localStorage.setItem("package", selectpackage.value);
-    localStorage.setItem("volume", volume.value);
+    localStorage.setItem("volume", 0.7);
     localStorage.setItem("mode", selectmode.value);
     Engine.Functions.goToScreen(`board.html`);
   };
