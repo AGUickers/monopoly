@@ -25,7 +25,7 @@
     "defeatsound": "monopoly_fail.wav"
   },
   "scripted_settings": {
-    "team1moves": [0, 3, 3, 6, 2, 5, 6, 4, 6, 3],
-    "team2moves": [0, 2, 6, 3, 4, 6, 3, 3, 4, 6]
+    "team1moves": [0, 3, 2, 6, 1, 4, 5, 4, 6, 5],
+    "team2moves": [0, 1, 6, 2, 4, 2, 4, 3, 5, 5]
   }
 }
