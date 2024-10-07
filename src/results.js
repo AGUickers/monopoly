@@ -1,4 +1,4 @@
-import * as common from "./common-scripts.js";
+import Engine from "../engine.js";
 
 let current_package = localStorage.getItem("package");
 
@@ -7,32 +7,41 @@ let mode = localStorage.getItem("mode");
 let team1score = localStorage.getItem("team1");
 let team2score = localStorage.getItem("team2");
 
-let package_folder = `../assets/${current_package}`;
+let package_folder =
+  Engine.Variables.RootFolder + Engine.Variables.AssetsFolder + current_package;
 console.log(package_folder);
 
 let settings = undefined;
 
 fetch(`${package_folder}/settings.json`)
-    .then((response) => response.json())
-    .then((json) => {
-      console.log(json);
-      settings = json;
-    load();  
-});
+  .then((response) => response.json())
+  .then((json) => {
+    console.log(json);
+    settings = json;
+    load();
+  });
 
 function load() {
-  common.loadStyleSheet(`${package_folder}/${settings.styles.resultsstyle}`);
-  let score1 = common.getElement("score1");
-  let score2 = common.getElement("score2");
+  Engine.Functions.unloadAllStyleSheets();
+  Engine.Functions.loadStyleSheet(
+    Engine.Variables.RootFolder + Engine.Variables.UtilsFolder + "engine.css"
+  );
+  Engine.Functions.loadStyleSheet(
+    `${package_folder}/${settings.styles.resultsstyle}`,
+  );
+  let score1 = document.getElementById("score1");
+  let score2 = document.getElementById("score2");
   score1.innerText = team1score;
   score2.innerText = team2score;
-  const PlayAgain = common.getElement("playagain");
+  const PlayAgain = document.getElementById("playagain");
   PlayAgain.onclick = function () {
-    common.goToScreen(`board.html`);
+    Engine.Functions.goToScreen(`board.html`);
   };
-  const exitButton = common.getElement("exitbutton");
+  const exitButton = document.getElementById("exitbutton");
   exitButton.onclick = function () {
-    common.goToScreen(`menu.html`);
+    Engine.Functions.goToScreen(`menu.html`);
   };
-  common.playSound(`${package_folder}/${settings.sounds.victorysound}`);
+  Engine.Functions.playTrack(
+    `${package_folder}/${settings.sounds.victorysound}`,
+  );
 }

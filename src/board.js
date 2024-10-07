@@ -1,41 +1,42 @@
-import * as common from "./common-scripts.js";
+import Engine from "../engine.js";
 
 let current_package = localStorage.getItem("package");
 
-let package_folder = `../assets/${current_package}`;
+let package_folder =
+  Engine.Variables.RootFolder + Engine.Variables.AssetsFolder + current_package;
 let package_content = undefined;
 let filemanifest = [];
 
 async function loadPackage() {
-fetch(`${package_folder}/files.json`)
-  .then((response) => response.json())
-  .then((json) => {
-    console.log(json);
-    package_content = json;
-    package_content.files.forEach((file) => {
-      console.log(`${package_folder}/${file}`);
-      filemanifest.push(`${package_folder}/${file}`);
-    });
-    fetch(`${package_folder}/settings.json`)
+  fetch(`${package_folder}/files.json`)
     .then((response) => response.json())
     .then((json) => {
       console.log(json);
-      settings = json;
-      if (settings.general.ownedstart) {
-        owned = settings.general.ownedstart;
-      } else
-        owned = [
-          -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0,
-          0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        ];
-      if (settings.scripted_settings) {
-        movesTeam1 = settings.scripted_settings.team1moves;
-        movesTeam2 = settings.scripted_settings.team2moves;
-      } else mode = "random";
+      package_content = json;
+      package_content.files.forEach((file) => {
+        console.log(`${package_folder}/${file}`);
+        filemanifest.push(`${package_folder}/${file}`);
+      });
+      fetch(`${package_folder}/settings.json`)
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+          settings = json;
+          if (settings.general.ownedstart) {
+            owned = settings.general.ownedstart;
+          } else
+            owned = [
+              -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1,
+              0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            ];
+          if (settings.scripted_settings) {
+            movesTeam1 = settings.scripted_settings.team1moves;
+            movesTeam2 = settings.scripted_settings.team2moves;
+          } else mode = "random";
+        });
+      console.log("Done loading!");
+      loadMandatoryAssets();
     });
-    console.log("Done loading!");
-    loadMandatoryAssets();
-  });
 }
 
 let currentTeam = 1;
@@ -58,6 +59,8 @@ const TextBoxButtonType = {
 let bgm = undefined;
 let defaultbgm = undefined;
 
+let track = undefined;
+
 let currentquestion = undefined;
 let currentmove = 0;
 
@@ -79,7 +82,7 @@ async function loadMandatoryAssets() {
       count++;
       console.log("Files loaded: " + count);
     },
-    this
+    this,
   );
   preload.on("complete", load, this);
 }
@@ -102,8 +105,13 @@ async function load() {
     elem.requestFullscreen("hide");
   };
   console.log("All assets loaded!");
-  common.unloadAllStyleSheets();
-  common.loadStyleSheet(`${package_folder}/${settings.styles.boardstyle}`);
+  Engine.Functions.unloadAllStyleSheets();
+  Engine.Functions.loadStyleSheet(
+    Engine.Variables.RootFolder + Engine.Variables.UtilsFolder + "engine.css"
+  );
+  Engine.Functions.loadStyleSheet(
+    `${package_folder}/${settings.styles.boardstyle}`,
+  );
   document.getElementById("loading").style.display = "none";
   document.getElementById("field").style.display = "block";
   document.getElementById("dice").style.display = "grid";
@@ -113,38 +121,40 @@ async function load() {
   switch (Array.isArray(settings.sounds.defaultbgm)) {
     case true:
       let roll = Math.floor(Math.random() * settings.sounds.defaultbgm.length);
-      defaultbgm = new Audio(
-        `${package_folder}/${settings.sounds.defaultbgm[roll]}`
-      );
+      defaultbgm = `${package_folder}/${settings.sounds.defaultbgm[roll]}`
       break;
     case false:
-      defaultbgm = new Audio(`${package_folder}/${settings.sounds.defaultbgm}`);
+      defaultbgm = `${package_folder}/${settings.sounds.defaultbgm}`
       break;
     default:
       break;
   }
   bgm = defaultbgm;
-  bgm.loop = true;
-  bgm.play();
+  track = Engine.Functions.playTrack(bgm, true);
   currentmove = 1;
-  const menu = common.getElement("exit");
+  const menu = document.getElementById("exit");
   menu.onclick = function () {
-    common.goToScreen("menu.html");
+    Engine.Functions.goToScreen("menu.html");
   };
-  const giveup = common.getElement("giveup");
+  const giveup = document.getElementById("giveup");
   giveup.onclick = function () {
     endGame();
   };
-  const dice = common.getElement("dice");
+  const dice = document.getElementById("dice");
   dice.onclick = function () {
     throwDice();
   };
 }
 
 function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
-  common.playSound(`${package_folder}/${settings.sounds.cardsound}`);
+  Engine.Functions.playTrack(`${package_folder}/${settings.sounds.cardsound}`);
   //Let's cover the entire page with a file named "cover.avif"
-  const cover = common.createElement("img", "cover", "cover", common.page);
+  const cover = Engine.Functions.createElement(
+    "img",
+    "cover",
+    "cover",
+    Engine.Variables.Page,
+  );
   cover.style.zIndex = "1";
   cover.src = `${package_folder}/cover.avif`;
   cover.style.width = "100%";
@@ -153,17 +163,22 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   cover.style.top = "0";
   cover.style.left = "0";
 
-  const card = common.createElement("img", "textcard", "textcard", common.page);
+  const card = Engine.Functions.createElement(
+    "img",
+    "textcard",
+    "textcard",
+    Engine.Variables.Page,
+  );
   card.src = `${package_folder}/${cardasset}`;
   card.style.position = "absolute";
   card.style.zIndex = "2";
   card.style.scale = scale;
 
-  const cardtext = common.createElement(
+  const cardtext = Engine.Functions.createElement(
     "div",
     "cardtext",
     "cardtext",
-    common.page
+    Engine.Variables.Page,
   );
   cardtext.innerText = text;
   cardtext.style.position = "absolute";
@@ -173,11 +188,11 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   if (currentquestion) {
     cardtext.style.color = currentquestion.textColor;
     if (currentquestion.image) {
-      const cardimage = common.createElement(
+      const cardimage = Engine.Functions.createElement(
         "img",
         "cardimage",
         "cardimage",
-        common.page
+        Engine.Variables.Page,
       );
       cardimage.src = `${package_folder}/${currentquestion.image}`;
       cardimage.style.zIndex = "3";
@@ -187,30 +202,32 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
     }
 
     if (currentquestion.video) {
-      bgm.pause();
-      common.playCutScene(
+      Engine.Functions.pauseTrack(track);
+      Engine.Functions.playVideo(
         "cutscene",
-        `${package_folder}/${currentquestion.video}`
+        `${package_folder}/${currentquestion.video}`,
       );
-      const PlayAgain = common.createElement(
+      const PlayAgain = Engine.Functions.createElement(
         "button",
         "PlayAgain",
         "PlayAgain",
-        common.page
+        Engine.Variables.Page,
       );
       PlayAgain.innerText = "Play Again";
       PlayAgain.style.zIndex = "3";
       PlayAgain.onclick = function () {
         PlayAgain.blur();
-        common.playSound(`${package_folder}/${settings.sounds.selectsound}`);
-        common.playCutScene(
+        Engine.Functions.playTrack(
+          `${package_folder}/${settings.sounds.selectsound}`,
+        );
+        Engine.Functions.playVideo(
           "cutscene",
-          `${package_folder}/${currentquestion.video}`
+          `${package_folder}/${currentquestion.video}`,
         );
       };
       document.onkeydown = (ev) => {
-        if (ev.key === "Enter" && common.getElement("cutscene")) {
-          common.skipCutScene("cutscene");
+        if (ev.key === "Enter" && document.getElementById("cutscene")) {
+          Engine.Functions.stopVideo("cutscene");
         }
       };
     }
@@ -219,22 +236,29 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   switch (buttontype) {
     case TextBoxButtonType.OK:
     case "OK":
-      const OKButton = common.createElement("button", "OK", "OK", common.page);
+      const OKButton = Engine.Functions.createElement(
+        "button",
+        "OK",
+        "OK",
+        Engine.Variables.Page,
+      );
       OKButton.innerText = "OK";
       OKButton.style.zIndex = "3";
       OKButton.onclick = function () {
-        common.playSound(`${package_folder}/${settings.sounds.selectsound}`);
+        Engine.Functions.playTrack(
+          `${package_folder}/${settings.sounds.selectsound}`,
+        );
         closeTextBox();
         switchTeam();
         if (currentquestion.successvideo) {
-          bgm.pause();
-          common.playCutScene(
+          Engine.Functions.pauseTrack(track);
+          Engine.Functions.playVideo(
             "cutscene",
-            `${package_folder}/${currentquestion.successvideo}`
+            `${package_folder}/${currentquestion.successvideo}`,
           );
           document.onkeydown = (ev) => {
             if (ev.key === "Enter") {
-              common.skipCutScene("cutscene");
+              Engine.Functions.stopVideo("cutscene");
             }
           };
         }
@@ -242,43 +266,56 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
       break;
     case TextBoxButtonType.YesNo:
     case "YesNo":
-      const YesButton = common.createElement(
+      const YesButton = Engine.Functions.createElement(
         "button",
         "Yes",
         "Yes",
-        common.page
+        Engine.Variables.Page,
       );
       YesButton.innerText = "Correct";
       YesButton.style.zIndex = "3";
       YesButton.onclick = function () {
-        common.playSound(`${package_folder}/${settings.sounds.selectsound}`);
-        common.playSound(`${package_folder}/${settings.sounds.winsound}`);
+        Engine.Functions.playTrack(
+          `${package_folder}/${settings.sounds.selectsound}`,
+        );
+        Engine.Functions.playTrack(
+          `${package_folder}/${settings.sounds.winsound}`,
+        );
         closeTextBox();
         //Let's set the ownership.
         setOwnership(currentpos[currentTeam - 1], currentTeam);
         //Let's also award some points.
         editPoints(currentTeam, currentquestion.score);
-        editOwned(currentTeam, 1)
+        editOwned(currentTeam, 1);
         switchTeam();
         if (currentquestion.successvideo) {
-          bgm.pause();
-          common.playCutScene(
+          Engine.Functions.pauseTrack(track);
+          Engine.Functions.playVideo(
             "cutscene",
-            `${package_folder}/${currentquestion.successvideo}`
+            `${package_folder}/${currentquestion.successvideo}`,
           );
           document.onkeydown = (ev) => {
             if (ev.key === "Enter") {
-              common.skipCutScene("cutscene");
+              Engine.Functions.stopVideo("cutscene");
             }
           };
         }
       };
-      const NoButton = common.createElement("button", "No", "No", common.page);
+      const NoButton = Engine.Functions.createElement(
+        "button",
+        "No",
+        "No",
+        Engine.Variables.Page,
+      );
       NoButton.innerText = "Wrong";
       NoButton.style.zIndex = "3";
       NoButton.onclick = function () {
-        common.playSound(`${package_folder}/${settings.sounds.selectsound}`);
-        common.playSound(`${package_folder}/${settings.sounds.failsound}`);
+        Engine.Functions.playTrack(
+          `${package_folder}/${settings.sounds.selectsound}`,
+        );
+        Engine.Functions.playTrack(
+          `${package_folder}/${settings.sounds.failsound}`,
+        );
         closeTextBox();
         switchTeam();
       };
@@ -287,15 +324,15 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
 }
 
 function closeTextBox() {
-  const cover = common.getElement("cover");
-  const card = common.getElement("textcard");
-  const cardtext = common.getElement("cardtext");
-  const imagetext = common.getElement("imagetext");
-  const OKButton = common.getElement("OK");
-  const YesButton = common.getElement("Yes");
-  const NOButton = common.getElement("No");
-  const PlayAgain = common.getElement("PlayAgain");
-  const cardimage = common.getElement("cardimage");
+  const cover = document.getElementById("cover");
+  const card = document.getElementById("textcard");
+  const cardtext = document.getElementById("cardtext");
+  const imagetext = document.getElementById("imagetext");
+  const OKButton = document.getElementById("OK");
+  const YesButton = document.getElementById("Yes");
+  const NOButton = document.getElementById("No");
+  const PlayAgain = document.getElementById("PlayAgain");
+  const cardimage = document.getElementById("cardimage");
   if (cover) cover.remove();
   if (card) card.remove();
   if (cardtext) cardtext.remove();
@@ -305,13 +342,13 @@ function closeTextBox() {
   if (NOButton) NOButton.remove();
   if (PlayAgain) PlayAgain.remove();
   if (cardimage) cardimage.remove();
-  if (bgm.paused === true || bgm !== defaultbgm) setDefaultMusic();
+  Engine.Functions.unpauseTrack(track);
 }
 
 function throwDice() {
-  if (bgm.paused === true || bgm !== defaultbgm) setDefaultMusic();
+  Engine.Functions.unpauseTrack(track);
   //Let's get a number from 1 to 6 first.
-  const dice = common.getElement("dice");
+  const dice = document.getElementById("dice");
   dice.style.display = "none";
   let roll = undefined;
   switch (mode) {
@@ -334,7 +371,7 @@ function throwDice() {
       break;
   }
   console.log(roll);
-  common.playSound(`${package_folder}/${settings.sounds.dicesound}`);
+  Engine.Functions.playTrack(`${package_folder}/${settings.sounds.dicesound}`);
   gotoPos(currentTeam, currentpos[currentTeam - 1] + roll);
   //Let's check if someone already owns that cell.
   if (
@@ -350,7 +387,7 @@ function throwDice() {
         currentquestion.scale,
         currentquestion.text,
         currentquestion.fontSize,
-        currentquestion.buttonType
+        currentquestion.buttonType,
       );
       if (currentquestion.musicOverride)
         setMusic(`${package_folder}/${currentquestion.musicOverride}`);
@@ -360,22 +397,22 @@ function throwDice() {
 }
 
 function editPoints(team, value) {
-  const score = common.getElement("score" + team);
+  const score = document.getElementById("score" + team);
   score.innerText = parseInt(score.innerText, 10) + value;
 }
 
 function editOwned(team, value) {
-  const owned = common.getElement("owned" + team);
+  const owned = document.getElementById("owned" + team);
   owned.innerText = parseInt(owned.innerText, 10) + value;
 }
 
 function getPoints(team) {
-  const score = common.getElement("score" + team);
+  const score = document.getElementById("score" + team);
   return parseInt(score.innerText, 10);
 }
 
 function setPos(team, x, y) {
-  const player = common.getElement("player" + team);
+  const player = document.getElementById("player" + team);
   switch (team) {
     case 1:
       player.style.bottom = y + "%";
@@ -437,16 +474,9 @@ function checkOwnership(pos) {
   }
 }
 
-function setDefaultMusic() {
-  bgm.pause();
-  bgm = defaultbgm;
-  bgm.looped = true;
-  bgm.play();
-}
-
 function setMusic(path) {
-  bgm.pause();
-  bgm = common.playMusic(path, true);
+  Engine.Functions.pauseTrack(track);
+  bgm = Engine.Functions.playMusic(path, true);
 }
 
 function allClear() {
@@ -467,9 +497,7 @@ function allClear() {
 function endGame() {
   localStorage.setItem("team1", getPoints(1));
   localStorage.setItem("team2", getPoints(2));
-  common.goToScreen(
-    `results.html`
-  );
+  Engine.Functions.goToScreen(`results.html`);
 }
 
 await loadPackage();

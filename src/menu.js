@@ -1,4 +1,4 @@
-import * as common from "./common-scripts.js";
+import Engine from "../engine.js";
 
 let packages = undefined;
 
@@ -27,7 +27,7 @@ async function fetchSettings(pack) {
       console.log(json);
       if (
         !Array.from(selectpackage.options).some(
-          (option) => option.value === pack
+          (option) => option.value === pack,
         )
       )
         createPackageItem(pack, json);
@@ -68,28 +68,36 @@ async function resetModeList() {
 }
 
 function load() {
-  common.unloadAllStyleSheets();
-  common.loadStyleSheet(
-    `../assets/${selectpackage.value}/${settings.styles.menustyle}`
+  Engine.Functions.unloadAllStyleSheets();
+  Engine.Functions.loadStyleSheet(
+    Engine.Variables.RootFolder + Engine.Variables.UtilsFolder + "engine.css"
+  );
+  Engine.Functions.loadStyleSheet(
+    `../assets/${selectpackage.value}/${settings.styles.menustyle}`,
   );
   fetchSettings(selectpackage.value);
   selectpackage.onchange = async function () {
-    common.unloadAllStyleSheets();
-    common.loadStyleSheet(
-      `../assets/${selectpackage.value}/${settings.styles.menustyle}`
+    Engine.Functions.unloadAllStyleSheets();
+    Engine.Functions.loadStyleSheet(
+      Engine.Variables.RootFolder + Engine.Variables.UtilsFolder + "engine.css"
+    );
+    Engine.Functions.loadStyleSheet(
+      `../assets/${selectpackage.value}/${settings.styles.menustyle}`,
     );
     await fetchSettings(selectpackage.value);
   };
-  const startButton = common.getElement("startbutton");
-  const exitButton = common.getElement("exitbutton");
+  const startButton = document.getElementById("startbutton");
+  const exitButton = document.getElementById("exitbutton");
+  const volume = document.getElementById("sound");
   startButton.onclick = function () {
     localStorage.clear();
     localStorage.setItem("package", selectpackage.value);
+    localStorage.setItem("volume", volume.value);
     localStorage.setItem("mode", selectmode.value);
-    common.goToScreen(`board.html`);
+    Engine.Functions.goToScreen(`board.html`);
   };
   exitButton.onclick = function () {
-    common.exit();
+    Engine.Functions.exit();
   };
 }
 

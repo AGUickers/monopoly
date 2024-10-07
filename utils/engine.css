@@ -1,0 +1,53 @@
+#debug_info {
+    position: fixed;
+    left: 80%;
+    right: 0%;
+    top: 94%;
+    bottom: 0%;
+    display: none;
+    margin: auto;
+    background-color: black;
+    opacity: 70%;
+    z-index: 999999;
+    width: auto;
+    height: auto;
+}
+
+.fullscreen {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    object-fit: fill;
+    object-position: center;
+    background-color: black;
+}
+
+#volume {
+    position: fixed;
+    align-self: center;
+    z-index: 999999;
+    bottom: 0%;
+    left: 0%;
+    width: 5vmin;
+    height: auto;
+    display: none;
+  }
+
+  #volumediv {
+    position: fixed;
+    left: 0%;
+    right: 90%;
+    top: 70%;
+    bottom: 0%;
+    display: none;
+    margin: auto;
+    color: azure;
+    background-color: black;
+    opacity: 70%;
+    z-index: 999999;
+    width: fit-content;
+    height: fit-content;
+}
