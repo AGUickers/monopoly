@@ -2,7 +2,7 @@
   "1": {
     "cardAsset": "property-card-jap.avif",
     "scale": 2,
-    "text": "ラーメン\nра:мэн\n\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
+    "text": "ラーメン\nра:мэн\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
     "fontSize": "1.8",
     "image": "ramen.avif",
     "imageScale": "1",
@@ -13,7 +13,7 @@
   "3": {
     "cardAsset": "property-card-ch.avif",
     "scale": 2,
-    "text": "食堂 (shí táng)\nши тхан\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
+    "text": "食堂 shí táng\nши тхан\n\n\n\n\n\n\n\n我想去... wǒ xiǎng qù\nво сян чу",
     "fontSize": "1.8",
     "image": "shitang.avif",
     "imageScale": "1.1",
@@ -24,7 +24,7 @@
   "5": {
     "cardAsset": "property-card-jap.avif",
     "scale": 2,
-    "text": "うどん\nудон\n\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
+    "text": "うどん\nудон\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
     "fontSize": "1.8",
     "image": "udon.avif",
     "imageScale": "1",
@@ -35,7 +35,7 @@
   "7": {
     "cardAsset": "stockcard.avif",
     "scale": 1.5,
-    "text": "Что значит 森 (sēn)(сэн),\nесли он состоит из трёх 木 (mù)(му)?\n(木 = дерево)",
+    "text": "Что значит 森 sēn (сэн),\nесли он состоит из трёх 木 mù (му)?\n(木 = дерево)",
     "fontSize": "1.7",
     "textColor": "black",
     "buttonType": "YesNo",
@@ -44,7 +44,7 @@
   "9": {
     "cardAsset": "property-card-jap.avif",
     "scale": 2,
-    "text": "天ぷら\nтэмпура\n\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
+    "text": "天ぷら\nтэмпура\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
     "fontSize": "1.8",
     "image": "tempura.avif",
     "imageScale": "1",
@@ -55,7 +55,7 @@
   "11": {
     "cardAsset": "property-card-ch.avif",
     "scale": 2,
-    "text": "图书馆 (tú shū guǎn)\nтхушугуан\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
+    "text": "图书馆 tú shū guǎn\nтху шу гуан\n\n\n\n\n\n\n\n我想去... wǒ xiǎng qù\nво сян чу",
     "fontSize": "1.8",
     "image": "tushuguan.avif",
     "imageScale": "1",
@@ -76,7 +76,7 @@
   "13": {
     "cardAsset": "property-card-ch.avif",
     "scale": 2,
-    "text": "公园 (gōng yuán)\nгон юан\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
+    "text": "公园 gōng yuán\nгун юан\n\n\n\n\n\n\n\n我想去... wǒ xiǎng qù\nво сян чу",
     "fontSize": "1.8",
     "image": "gongyuan.avif",
     "imageScale": "1",
@@ -97,7 +97,7 @@
   "16": {
     "cardAsset": "property-card-ch.avif",
     "scale": 2,
-    "text": "博物馆 (bó wù guǎn)\nбовугуан\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
+    "text": "博物馆 bó wù guǎn\nбо у гуан\n\n\n\n\n\n\n\n我想去... wǒ xiǎng qù\nво сян чу",
     "fontSize": "1.8",
     "image": "bowuguan.avif",
     "imageScale": "1",
@@ -108,7 +108,7 @@
   "19": {
     "cardAsset": "property-card-ch.avif",
     "scale": 2,
-    "text": "商店 (shāng diàn)\nшан диэн\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
+    "text": "商店 shāng diàn\nшан диэн\n\n\n\n\n\n\n\n我想去... wǒ xiǎng qù\nво сян чу",
     "fontSize": "1.8",
     "image": "shangdian.avif",
     "imageScale": "1",
@@ -119,7 +119,7 @@
   "21": {
     "cardAsset": "property-card-jap.avif",
     "scale": 2,
-    "text": "お寿司屋\nосусия\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
+    "text": "お寿司屋\nосусия\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
     "fontSize": "1.8",
     "image": "sushi.avif",
     "imageScale": "1",
@@ -140,7 +140,7 @@
   "25": {
     "cardAsset": "stockcard.avif",
     "scale": 1.5,
-    "text": "Что значит 老人 (lǎo rén)(лао жен),\nесли он состоит из\n老 (lǎо)(лао) - старый и 人 (rén)(жен) - человек?",
+    "text": "Что значит 老人 lǎo rén (лао жен),\nесли он состоит из\n老 lǎо (лао) - старый и 人 rén (жен) - человек?",
     "fontSize": "1.7",
     "textColor": "black",
     "buttonType": "YesNo",
@@ -149,7 +149,7 @@
   "27": {
     "cardAsset": "property-card-ch.avif",
     "scale": 2,
-    "text": "大学 (dà xué)\nда сюэ\n\n\n\n\n\n\n\n\n我去...(wǒ qù)\nво чу",
+    "text": "大学 dà xué\nда сюэ\n\n\n\n\n\n\n\n我想去... wǒ xiǎng qù\nво сян чу",
     "fontSize": "1.8",
     "image": "daxue.avif",
     "imageScale": "1",
@@ -160,7 +160,7 @@
   "31": {
     "cardAsset": "property-card-jap.avif",
     "scale": 2,
-    "text": "たこ焼き\nтакояки\n\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
+    "text": "たこ焼き\nтакояки\n\n\n\n\n\n\n\n食べ物を食べます\nТабэмоно о табэмас",
     "fontSize": "1.8",
     "image": "takoyaki.avif",
     "imageScale": "1",
@@ -171,7 +171,7 @@
   "32": {
     "cardAsset": "property-card-jap.avif",
     "scale": 2,
-    "text": "マンガ店\nмангатэн\n\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
+    "text": "マンガ店\nмангатэн\n\n\n\n\n\n\n\nこの店に行きたいです。\nКоно мисе ни икитай дэс",
     "fontSize": "1.8",
     "image": "mangaimage.avif",
     "imageScale": "1",
@@ -182,7 +182,7 @@
   "36": {
     "cardAsset": "stockcard.avif",
     "scale": 1.5,
-    "text": "Что значит 口水 (kǒu shuǐ)(кхоу шуэй),\nесли он состоит из\n口 (kǒu)(кхоу) - рот и 水 (shuǐ)(шуэй) - вода?",
+    "text": "Что значит 口水 kǒu shuǐ (кхоу шуэй),\nесли он состоит из\n口 kǒu (кхоу) - рот и 水 shuǐ (шуэй) - вода?",
     "fontSize": "1.7",
     "textColor": "black",
     "buttonType": "YesNo",
