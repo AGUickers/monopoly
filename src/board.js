@@ -227,7 +227,8 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
       };
       document.onkeydown = (ev) => {
         if (ev.key === "Enter" && document.getElementById("cutscene")) {
-          Engine.Functions.stopVideo("cutscene");
+          let video = document.getElementById("cutscene");
+          Engine.Functions.stopVideo(video);
         }
       };
     }
@@ -257,8 +258,9 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
             `${package_folder}/${currentquestion.successvideo}`,
           );
           document.onkeydown = (ev) => {
-            if (ev.key === "Enter") {
-              Engine.Functions.stopVideo("cutscene");
+            if (ev.key === "Enter" && document.getElementById("cutscene")) {
+              let video = document.getElementById("cutscene");
+              Engine.Functions.stopVideo(video);
             }
           };
         }
@@ -295,8 +297,9 @@ function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
             `${package_folder}/${currentquestion.successvideo}`,
           );
           document.onkeydown = (ev) => {
-            if (ev.key === "Enter") {
-              Engine.Functions.stopVideo("cutscene");
+            if (ev.key === "Enter" && document.getElementById("cutscene")) {
+              let video = document.getElementById("cutscene");
+              Engine.Functions.stopVideo(video);
             }
           };
         }
