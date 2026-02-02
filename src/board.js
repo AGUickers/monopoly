@@ -1,505 +1,455 @@
 import Engine from "../engine.js";
 
 let current_package = localStorage.getItem("package");
-
-let package_folder =
+const package_folder =
   Engine.Variables.RootFolder + Engine.Variables.AssetsFolder + current_package;
-let package_content = undefined;
+
+let package_content;
 let filemanifest = [];
 
 async function loadPackage() {
-  await fetch(`${package_folder}/files.json`)
-    .then((response) => response.json())
-    .then(async (json) => {
-      console.log(json);
-      package_content = json;
-      package_content.files.forEach((file) => {
-        console.log(`${package_folder}/${file}`);
-        filemanifest.push(`${package_folder}/${file}`);
-      });
-      await fetch(`${package_folder}/settings.json`)
-        .then((response) => response.json())
-        .then((json) => {
-          console.log(json);
-          settings = json;
-          if (settings.general.ownedstart) {
-            owned = settings.general.ownedstart;
-          } else
-            owned = [
-              -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1,
-              0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            ];
-          if (settings.scripted_settings) {
-            movesTeam1 = settings.scripted_settings.team1moves;
-            movesTeam2 = settings.scripted_settings.team2moves;
-          } else mode = "random";
-        });
-      console.log("Done loading!");
-      loadMandatoryAssets();
+  try {
+    const filesResp = await fetch(`${package_folder}/files.json`);
+    package_content = await filesResp.json();
+
+    package_content.files.forEach((file) => {
+      filemanifest.push(`${package_folder}/${file}`);
     });
+
+    const settingsResp = await fetch(`${package_folder}/settings.json`);
+    settings = await settingsResp.json();
+
+    if (Array.isArray(settings.general?.ownedstart)) {
+      owned = settings.general.ownedstart.slice();
+    } else {
+      owned = [
+        -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      ];
+    }
+
+    if (settings.scripted_settings) {
+      movesTeam1 = settings.scripted_settings.team1moves;
+      movesTeam2 = settings.scripted_settings.team2moves;
+    } else {
+      mode = "random";
+    }
+
+    loadMandatoryAssets();
+  } catch (err) {
+    console.error("Failed to load package or settings:", err);
+  }
 }
 
 let currentTeam = 1;
-
 let currentpos = [0, 0];
-//Position can only iterate up to 39.
-
-let questions = undefined;
-let coords = undefined;
-
-let settings = undefined;
-
-let owned = undefined;
+let questions;
+let coords;
+let settings;
+let owned;
 
 const TextBoxButtonType = {
   OK: 1,
   YesNo: 2,
 };
 
-let bgm = undefined;
-let defaultbgm = undefined;
+let bgm;
+let defaultbgm;
+let track;
 
-let track = undefined;
-
-let currentquestion = undefined;
+let currentquestion;
 let currentmove = 0;
 
 let mode = localStorage.getItem("mode");
 
-let movesTeam1 = undefined;
+let movesTeam1;
+let movesTeam2;
 
-let movesTeam2 = undefined;
+let isMoving = false;
 
 async function loadMandatoryAssets() {
-  var preload = new createjs.LoadQueue(true);
-  //This will trigger once as soon as the page is loaded.
-  let count = 0;
+  const preload = new createjs.LoadQueue(true);
   preload.loadManifest(filemanifest);
   preload.setMaxConnections(60);
-  preload.on(
-    "fileload",
-    function () {
-      count++;
-      console.log("Files loaded: " + count);
-    },
-    this,
-  );
+
+  let filesLoaded = 0;
+  preload.on("fileload", () => {
+    filesLoaded++;
+  });
+
   preload.on("complete", load, this);
 }
 
 async function load() {
-  fetch(`${package_folder}/${settings.general.coordsfile}`)
-    .then((response) => response.json())
-    .then((json) => {
-      console.log(json);
-      coords = json;
-    });
-  fetch(`${package_folder}/${settings.general.questionsfile}`)
-    .then((response) => response.json())
-    .then((json) => {
-      console.log(json);
-      questions = json;
-    });
-  screen.orientation.onchange = function () {
-    let elem = document.documentElement;
-    elem.requestFullscreen("hide");
-  };
-  console.log("All assets loaded!");
+  try {
+    const [coordsResp, questionsResp] = await Promise.all([
+      fetch(`${package_folder}/${settings.general.coordsfile}`),
+      fetch(`${package_folder}/${settings.general.questionsfile}`),
+    ]);
+    coords = await coordsResp.json();
+    questions = await questionsResp.json();
+  } catch (err) {
+    console.error("Failed to load coords/questions:", err);
+  }
+
+  if (screen?.orientation) {
+    screen.orientation.onchange = function () {
+      const elem = document.documentElement;
+      if (elem.requestFullscreen) elem.requestFullscreen().catch(() => {});
+    };
+  }
+
+  console.info("All assets loaded!");
+
   Engine.Functions.unloadAllStyleSheets();
   Engine.Functions.loadStyleSheet(
     Engine.Variables.RootFolder + Engine.Variables.UtilsFolder + "engine.css"
   );
-  Engine.Functions.loadStyleSheet(
-    `${package_folder}/${settings.styles.boardstyle}`,
-  );
-  document.getElementById("loading").style.display = "none";
-  document.getElementById("field").style.display = "block";
-  document.getElementById("dice").style.display = "grid";
-  document.getElementsByClassName("exit")[0].style.display = "grid";
-  document.getElementsByClassName("exit")[1].style.display = "grid";
-  document.getElementById("score").style.display = "grid";
-  switch (Array.isArray(settings.sounds.defaultbgm)) {
-    case true:
-      let roll = Math.floor(Math.random() * settings.sounds.defaultbgm.length);
-      defaultbgm = `${package_folder}/${settings.sounds.defaultbgm[roll]}`
-      break;
-    case false:
-      defaultbgm = `${package_folder}/${settings.sounds.defaultbgm}`
-      break;
-    default:
-      break;
+  Engine.Functions.loadStyleSheet(`${package_folder}/${settings.styles.boardstyle}`);
+  
+  const loadingEl = document.getElementById("loading");
+  const fieldEl = document.getElementById("field");
+  const diceEl = document.getElementById("dice");
+  const exits = document.getElementsByClassName("exit");
+  const scoreEl = document.getElementById("score");
+
+  if (loadingEl) loadingEl.style.display = "none";
+  if (fieldEl) fieldEl.style.display = "block";
+  if (diceEl) {
+    diceEl.style.display = "grid";
+    diceEl.onclick = () => throwDice();
   }
-  bgm = defaultbgm;
-  track = Engine.Functions.playTrack(bgm, true);
+  if (exits[0]) exits[0].style.display = "grid";
+  if (exits[1]) exits[1].style.display = "grid";
+  if (scoreEl) scoreEl.style.display = "grid";
+
+  try {
+    if (Array.isArray(settings.sounds.defaultbgm)) {
+      const idx = Math.floor(Math.random() * settings.sounds.defaultbgm.length);
+      defaultbgm = `${package_folder}/${settings.sounds.defaultbgm[idx]}`;
+    } else {
+      defaultbgm = `${package_folder}/${settings.sounds.defaultbgm}`;
+    }
+    bgm = defaultbgm;
+    track = Engine.Functions.playTrack(bgm, true);
+  } catch (err) {
+    console.warn("BGM not available or failed to play:", err);
+  }
+
   currentmove = 1;
-  const menu = document.getElementById("exit");
-  menu.onclick = function () {
-    Engine.Functions.goToScreen("menu.html");
-  };
-  const giveup = document.getElementById("giveup");
-  giveup.onclick = function () {
-    endGame();
-  };
-  const dice = document.getElementById("dice");
-  dice.onclick = function () {
-    throwDice();
-  };
+
+  const menuBtn = document.getElementById("exit");
+  if (menuBtn) menuBtn.onclick = () => Engine.Functions.goToScreen("menu.html");
+
+  const giveupBtn = document.getElementById("giveup");
+  if (giveupBtn) giveupBtn.onclick = () => endGame();
 }
 
 function spawnTextBox(cardasset, scale, text, fontSize, buttontype) {
   Engine.Functions.playTrack(`${package_folder}/${settings.sounds.cardsound}`);
-  //Let's cover the entire page with a file named "cover.avif"
+
   const cover = Engine.Functions.createElement(
     "img",
     "cover",
     "cover",
-    Engine.Variables.Page,
+    Engine.Variables.Page
   );
-  cover.style.zIndex = "1";
-  cover.src = `${package_folder}/cover.avif`;
-  cover.style.width = "100%";
-  cover.style.height = "100%";
   cover.style.position = "fixed";
   cover.style.top = "0";
   cover.style.left = "0";
+  cover.style.width = "100%";
+  cover.style.height = "100%";
+  cover.style.zIndex = "1";
+  cover.src = `${package_folder}/cover.avif`;
 
   const card = Engine.Functions.createElement(
     "img",
     "textcard",
     "textcard",
-    Engine.Variables.Page,
+    Engine.Variables.Page
   );
   card.src = `${package_folder}/${cardasset}`;
   card.style.position = "absolute";
   card.style.zIndex = "2";
+  card.style.transformOrigin = "center center";
   card.style.scale = scale;
 
   const cardtext = Engine.Functions.createElement(
     "div",
     "cardtext",
     "cardtext",
-    Engine.Variables.Page,
+    Engine.Variables.Page
   );
   cardtext.innerText = text;
   cardtext.style.position = "absolute";
-  cardtext.style.zIndex = "3";
   cardtext.style.fontSize = fontSize + "vmax";
+  cardtext.style.zIndex = "3";
 
   if (currentquestion) {
-    cardtext.style.color = currentquestion.textColor;
+    if (currentquestion.textColor) cardtext.style.color = currentquestion.textColor;
+
     if (currentquestion.image) {
       const cardimage = Engine.Functions.createElement(
         "img",
         "cardimage",
         "cardimage",
-        Engine.Variables.Page,
+        Engine.Variables.Page
       );
       cardimage.src = `${package_folder}/${currentquestion.image}`;
-      cardimage.style.zIndex = "3";
       cardimage.style.position = "absolute";
-      if (currentquestion.imageScale)
-        cardimage.style.scale = currentquestion.imageScale;
+      cardimage.style.zIndex = "3";
+      if (currentquestion.imageScale) cardimage.style.scale = currentquestion.imageScale;
     }
 
     if (currentquestion.video) {
       Engine.Functions.pauseTrack(track);
-      Engine.Functions.playVideo(
-        "cutscene",
-        `${package_folder}/${currentquestion.video}`,
-      );
+      Engine.Functions.playVideo("cutscene", `${package_folder}/${currentquestion.video}`);
+
       const PlayAgain = Engine.Functions.createElement(
         "button",
         "PlayAgain",
         "PlayAgain",
-        Engine.Variables.Page,
+        Engine.Variables.Page
       );
       PlayAgain.innerText = "Play Again";
       PlayAgain.style.zIndex = "3";
-      PlayAgain.onclick = function () {
+      PlayAgain.onclick = () => {
         PlayAgain.blur();
-        Engine.Functions.playTrack(
-          `${package_folder}/${settings.sounds.selectsound}`,
-        );
-        Engine.Functions.playVideo(
-          "cutscene",
-          `${package_folder}/${currentquestion.video}`,
-        );
+        Engine.Functions.playTrack(`${package_folder}/${settings.sounds.selectsound}`);
+        Engine.Functions.playVideo("cutscene", `${package_folder}/${currentquestion.video}`);
       };
-      document.onkeydown = (ev) => {
-        if (ev.key === "Enter" && document.getElementById("cutscene")) {
-          let video = document.getElementById("cutscene");
+
+      const videoKeyHandler = (ev) => {
+        if ((ev.key === "Enter") && document.getElementById("cutscene")) {
+          const video = document.getElementById("cutscene");
           Engine.Functions.stopVideo(video);
         }
       };
+      document.addEventListener("keydown", videoKeyHandler);
+
+      document._board_videoKeyHandler = videoKeyHandler;
     }
   }
 
+  const playSelectSound = () => Engine.Functions.playTrack(`${package_folder}/${settings.sounds.selectsound}`);
+
   switch (buttontype) {
     case TextBoxButtonType.OK:
-    case "OK":
+    case "OK": {
       const OKButton = Engine.Functions.createElement(
         "button",
         "OK",
         "OK",
-        Engine.Variables.Page,
+        Engine.Variables.Page
       );
       OKButton.innerText = "OK";
       OKButton.style.zIndex = "3";
-      OKButton.onclick = function () {
-        Engine.Functions.playTrack(
-          `${package_folder}/${settings.sounds.selectsound}`,
-        );
+      OKButton.onclick = () => {
+        playSelectSound();
         closeTextBox();
         switchTeam();
-        if (currentquestion.successvideo) {
+        if (currentquestion?.successvideo) {
           Engine.Functions.pauseTrack(track);
-          Engine.Functions.playVideo(
-            "cutscene",
-            `${package_folder}/${currentquestion.successvideo}`,
-          );
-          document.onkeydown = (ev) => {
-            if (ev.key === "Enter" && document.getElementById("cutscene")) {
-              let video = document.getElementById("cutscene");
-              Engine.Functions.stopVideo(video);
-            }
-          };
+          Engine.Functions.playVideo("cutscene", `${package_folder}/${currentquestion.successvideo}`);
         }
       };
       break;
+    }
     case TextBoxButtonType.YesNo:
-    case "YesNo":
+    case "YesNo": {
       const YesButton = Engine.Functions.createElement(
         "button",
         "Yes",
         "Yes",
-        Engine.Variables.Page,
+        Engine.Variables.Page
       );
       YesButton.innerText = "Correct";
       YesButton.style.zIndex = "3";
-      YesButton.onclick = function () {
-        Engine.Functions.playTrack(
-          `${package_folder}/${settings.sounds.selectsound}`,
-        );
-        Engine.Functions.playTrack(
-          `${package_folder}/${settings.sounds.winsound}`,
-        );
+      YesButton.onclick = () => {
+        playSelectSound();
+        Engine.Functions.playTrack(`${package_folder}/${settings.sounds.winsound}`);
         closeTextBox();
-        //Let's set the ownership.
         setOwnership(currentpos[currentTeam - 1], currentTeam);
-        //Let's also award some points.
-        editPoints(currentTeam, currentquestion.score);
+        editPoints(currentTeam, currentquestion?.score || 0);
         editOwned(currentTeam, 1);
         switchTeam();
-        if (currentquestion.successvideo) {
+        if (currentquestion?.successvideo) {
           Engine.Functions.pauseTrack(track);
-          Engine.Functions.playVideo(
-            "cutscene",
-            `${package_folder}/${currentquestion.successvideo}`,
-          );
-          document.onkeydown = (ev) => {
-            if (ev.key === "Enter" && document.getElementById("cutscene")) {
-              let video = document.getElementById("cutscene");
-              Engine.Functions.stopVideo(video);
-            }
-          };
+          Engine.Functions.playVideo("cutscene", `${package_folder}/${currentquestion.successvideo}`);
         }
       };
+
       const NoButton = Engine.Functions.createElement(
         "button",
         "No",
         "No",
-        Engine.Variables.Page,
+        Engine.Variables.Page
       );
       NoButton.innerText = "Wrong";
       NoButton.style.zIndex = "3";
-      NoButton.onclick = function () {
-        Engine.Functions.playTrack(
-          `${package_folder}/${settings.sounds.selectsound}`,
-        );
-        Engine.Functions.playTrack(
-          `${package_folder}/${settings.sounds.failsound}`,
-        );
+      NoButton.onclick = () => {
+        playSelectSound();
+        Engine.Functions.playTrack(`${package_folder}/${settings.sounds.failsound}`);
         closeTextBox();
         switchTeam();
       };
+      break;
+    }
+    default:
       break;
   }
 }
 
 function closeTextBox() {
-  const cover = document.getElementById("cover");
-  const card = document.getElementById("textcard");
-  const cardtext = document.getElementById("cardtext");
-  const imagetext = document.getElementById("imagetext");
-  const OKButton = document.getElementById("OK");
-  const YesButton = document.getElementById("Yes");
-  const NOButton = document.getElementById("No");
-  const PlayAgain = document.getElementById("PlayAgain");
-  const cardimage = document.getElementById("cardimage");
-  if (cover) cover.remove();
-  if (card) card.remove();
-  if (cardtext) cardtext.remove();
-  if (imagetext) imagetext.remove();
-  if (OKButton) OKButton.remove();
-  if (YesButton) YesButton.remove();
-  if (NOButton) NOButton.remove();
-  if (PlayAgain) PlayAgain.remove();
-  if (cardimage) cardimage.remove();
+  ["cover", "textcard", "cardtext", "imagetext", "OK", "Yes", "No", "PlayAgain", "cardimage"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  });
+
+  if (document._board_videoKeyHandler) {
+    document.removeEventListener("keydown", document._board_videoKeyHandler);
+    delete document._board_videoKeyHandler;
+  }
+
   Engine.Functions.unpauseTrack(track);
 }
 
 function throwDice() {
+  if (isMoving) return;
+  isMoving = true;
+
   Engine.Functions.unpauseTrack(track);
-  //Let's get a number from 1 to 6 first.
+
   const dice = document.getElementById("dice");
-  dice.style.display = "none";
-  let roll = undefined;
+  if (dice) dice.style.display = "none";
+
+  let roll;
   switch (mode) {
     case "scripted":
-      switch (currentTeam) {
-        case 1:
-          roll = movesTeam1[currentmove];
-          console.log(roll);
-          break;
-        case 2:
-          roll = movesTeam2[currentmove];
-          console.log(roll);
-          break;
-      }
+      if (currentTeam === 1) roll = movesTeam1?.[currentmove];
+      else roll = movesTeam2?.[currentmove];
       break;
     case "random":
       roll = Math.floor(Math.random() * 6) + 1;
       break;
     default:
+      roll = 1;
       break;
   }
-  console.log(roll);
+
   Engine.Functions.playTrack(`${package_folder}/${settings.sounds.dicesound}`);
   gotoPos(currentTeam, currentpos[currentTeam - 1] + roll);
-  //Let's check if someone already owns that cell.
-  if (
-    checkOwnership(currentpos[currentTeam - 1]) === false ||
-    checkOwnership(currentpos[currentTeam - 1]) === null
-  ) {
-    //Spawn a textbox with the question on that position.
-    //Let's read from the JSON file in the questions variable.
-    currentquestion = questions[currentpos[currentTeam - 1]];
+
+  const ownership = checkOwnership(currentpos[currentTeam - 1]);
+  if (ownership === false || ownership === null) {
+    currentquestion = questions?.[currentpos[currentTeam - 1]];
     if (currentquestion) {
       spawnTextBox(
         currentquestion.cardAsset,
         currentquestion.scale,
         currentquestion.text,
         currentquestion.fontSize,
-        currentquestion.buttonType,
+        currentquestion.buttonType
       );
-      if (currentquestion.musicOverride)
-        setMusic(`${package_folder}/${currentquestion.musicOverride}`);
-    } else switchTeam();
-  } else switchTeam();
-  dice.style.display = "unset";
+      if (currentquestion.musicOverride) setMusic(`${package_folder}/${currentquestion.musicOverride}`);
+    } else {
+      switchTeam();
+    }
+  } else {
+    switchTeam();
+  }
+
+  if (dice) dice.style.display = "unset";
+  isMoving = false;
 }
 
 function editPoints(team, value) {
   const score = document.getElementById("score" + team);
-  score.innerText = parseInt(score.innerText, 10) + value;
+  if (!score) return;
+  const newVal = parseInt(score.innerText || "0", 10) + Number(value || 0);
+  score.innerText = String(newVal);
 }
 
 function editOwned(team, value) {
-  const owned = document.getElementById("owned" + team);
-  owned.innerText = parseInt(owned.innerText, 10) + value;
+  const ownedEl = document.getElementById("owned" + team);
+  if (!ownedEl) return;
+  const newVal = parseInt(ownedEl.innerText || "0", 10) + Number(value || 0);
+  ownedEl.innerText = String(newVal);
 }
 
 function getPoints(team) {
   const score = document.getElementById("score" + team);
-  return parseInt(score.innerText, 10);
+  return parseInt(score?.innerText || "0", 10);
 }
 
 function setPos(team, x, y) {
   const player = document.getElementById("player" + team);
-  switch (team) {
-    case 1:
-      player.style.bottom = y + "%";
-      player.style.left = x + "%";
-      break;
-    case 2:
-      player.style.bottom = y + "%";
-      player.style.left = x - 7 + "%";
-      break;
-  }
-  console.log(`New position: ${x}, ${y}`);
+  if (!player) return;
+
+  const leftValue = team === 2 ? x - 7 : x;
+  player.style.bottom = `${y}%`;
+  player.style.left = `${leftValue}%`;
 }
 
 function gotoPos(team, pos) {
-  //Let's iterate over positions starting from 0 and ending in 39.
-  console.log("Moving team " + team);
-  console.log(pos);
   currentpos[team - 1] = pos;
   if (pos > 39) {
     currentpos[team - 1] = 0;
-    setPos(team, coords[0].X, coords[0].Y);
+    setPos(team, coords?.[0]?.X ?? 0, coords?.[0]?.Y ?? 0);
     allClear();
-  } else setPos(team, coords[pos].X, coords[pos].Y);
+  } else {
+    const p = coords?.[pos];
+    if (p) setPos(team, p.X, p.Y);
+  }
 }
 
 function getPos(pos) {
-  return coords[pos];
+  return coords?.[pos];
 }
 
 function setOwnership(pos, team) {
-  console.log(checkOwnership(pos));
-  if (checkOwnership(pos) !== null && checkOwnership(pos) !== true) {
+  if (checkOwnership(pos) === false) {
     owned[pos] = team;
   }
 }
 
 function switchTeam() {
-  switch (currentTeam) {
-    case 1:
-      currentTeam = 2;
-      break;
-    case 2:
-      currentTeam = 1;
-      currentmove++;
-      if (currentmove > 9 && mode === "scripted") endGame();
-      break;
+  if (currentTeam === 1) {
+    currentTeam = 2;
+  } else {
+    currentTeam = 1;
+    currentmove++;
+    if (currentmove > 9 && mode === "scripted") endGame();
   }
 }
 
 function checkOwnership(pos) {
-  switch (owned[pos]) {
-    case 0:
-      return false;
-    case 1:
-    case 2:
-      return true;
-    default:
-      return null;
-  }
+  const val = owned?.[pos];
+  if (val === 0) return false;
+  if (val === 1 || val === 2) return true;
+  return null;
 }
 
 function setMusic(path) {
-  Engine.Functions.pauseTrack(track);
-  bgm = Engine.Functions.playMusic(path, true);
+  try {
+    Engine.Functions.pauseTrack(track);
+    bgm = Engine.Functions.playMusic(path, true);
+  } catch (err) {
+    console.warn("Failed to set music:", err);
+  }
 }
 
 function allClear() {
-  let ownedcount = 0;
-  console.log("Checking status!");
-  for (let index = 0; index < owned.length; index++) {
-    var status = checkOwnership(index);
-    if (status === true) {
-      ownedcount++;
-    }
-    console.log(ownedcount);
-    if (ownedcount >= 35) {
-      endGame();
-    }
+  if (!Array.isArray(owned)) return;
+  const ownedcount = owned.reduce((count, entry) => (entry === 1 || entry === 2 ? count + 1 : count), 0);
+  if (ownedcount >= 35) {
+    endGame();
   }
 }
 
 function endGame() {
-  localStorage.setItem("team1", getPoints(1));
-  localStorage.setItem("team2", getPoints(2));
+  localStorage.setItem("team1", String(getPoints(1)));
+  localStorage.setItem("team2", String(getPoints(2)));
   Engine.Functions.goToScreen(`results.html`);
 }
 
